@@ -1,4 +1,4 @@
-
+%define	_rc	rc1
 Summary:	Useful routines for 'C' programming
 Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
 Summary(da):	Nyttige biblioteksfunktioner
@@ -12,12 +12,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.2.2
-Release:	1
+Version:	2.2.3
+Release:	0.%{_rc}.1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.2/glib-%{version}.tar.bz2
-# Source0-md5:	3e9a9512943c81a78cafa0536dcc8b41
+#Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.2/glib-%{version}.tar.bz2
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.2/testing/glib-%{_rc}-%{version}.tar.gz
+# Source0-md5:	8d43444a65900dc9305a4c640b468f74
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am16.patch
 URL:		http://www.gtk.org/
@@ -135,7 +136,7 @@ Biblioteki statyczne glib.
 Bibliotecas estáticas para desenvolvimento com glib
 
 %prep
-%setup -q -n glib-%{version}
+%setup -q -n glib-%{_rc}-%{version}
 %patch0 -p1
 %patch1 -p1
 
