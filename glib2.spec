@@ -1,4 +1,4 @@
-%define         snap %{nil}
+%define         snap 20040114
 Summary:	Useful routines for 'C' programming
 Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
 Summary(da):	Nyttige biblioteksfunktioner
@@ -13,12 +13,12 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.3.1
-Release:	2
+Release:	2.%{snap}.1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.3/glib-%{version}.tar.bz2
-# Source0-md5:	c320c3c883dba4759b8f04f40079a24e
-#Source0:	glib-%{version}.%{snap}.tar.bz2
+Source0:	glib-%{version}-%{snap}.tar.bz2
+# Source0-md5:	2f0783b7d59a1ca9314c32ee30ddbf4f
+#Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.3/glib-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am18.patch
 URL:		http://www.gtk.org/
@@ -142,6 +142,8 @@ Bibliotecas estáticas para desenvolvimento com glib
 
 %build
 rm -f missing
+cp /usr/share/automake/mkinstalldirs .
+gtkdocize --copy
 %{__libtoolize}
 %{__aclocal} -I m4macros
 %{__autoconf}
