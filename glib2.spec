@@ -15,6 +15,7 @@ Version:	2.1.0
 Release:	1
 License:	LGPL
 Group:		Libraries
+# TODO: Must be fixed, this file not exist
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am16.patch
@@ -177,11 +178,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f glib.lang
 %defattr(644,root,root,755)
+%doc AUTHORS README
 %attr(755,root,root) %{_libdir}/libg*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc ChangeLog NEWS
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
