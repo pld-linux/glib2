@@ -11,11 +11,10 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.1.0
-Release:	3
+Version:	2.2.2
+Release:	1
 License:	LGPL
 Group:		Libraries
-# TODO: Must be fixed, this file not exist
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am16.patch
@@ -24,8 +23,9 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
-BuildRequires:	pkgconfig
+BuildRequires:	pkgconfig >= 0.14.0
 BuildRequires:	gettext-devel
+#BuildRequires:	rpmbuild(macros) >= 1.118
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
@@ -144,21 +144,14 @@ rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 
-# Inside %%install gobject is linked against just built (installed)
-# version of glib.
-LDFLAGS="%{rpmldflags} -L%{buildroot}%{_libdir}"
 %configure \
 	--enable-threads \
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir} \
 	--enable-static
-for f in `find -name Makefile` ; do
-	cp $f $f.tmp
-	sed -e 's/-pthread/& -lpthread/g' $f.tmp > $f
-	rm -f $f.tmp
-done
 %{__make}
 
 %install
@@ -183,15 +176,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f glib.lang
 %defattr(644,root,root,755)
-%doc AUTHORS README
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_libdir}/libg*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/lib*.la
 %{_datadir}/glib-2.0
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
