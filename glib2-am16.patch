@@ -1,0 +1,163 @@
+--- glib-2.0.6/gobject/Makefile.am~	Sun Aug  4 06:46:24 2002
++++ glib-2.0.6/gobject/Makefile.am	Sun Aug  4 06:50:45 2002
+@@ -3,15 +3,14 @@
+ #
+ ## Process this file with automake to produce Makefile.in
+ 
+-INCLUDES = @STRIP_BEGIN@ \
++INCLUDES =					\
+ 	-DG_LOG_DOMAIN=\"GLib-GObject\"		\
+ 	-I$(top_srcdir)				\
+ 	-I$(top_srcdir)/glib			\
+ 	-I$(top_builddir)			\
+-	@GLIB_DEBUG_FLAGS@			\
++	$(GLIB_DEBUG_FLAGS)			\
+ 	-DGOBJECT_COMPILATION			\
+-	-DG_DISABLE_CONST_RETURNS		\
+-@STRIP_END@
++	-DG_DISABLE_CONST_RETURNS
+ 
+ libglib = $(top_builddir)/glib/libglib-2.0.la
+ 
+@@ -49,20 +48,19 @@
+ 
+ # libtool stuff: set version and export symbols for resolving
+ libgobjectincludedir = $(includedir)/glib-2.0/gobject
+-libgobject_2_0_la_LDFLAGS = @STRIP_BEGIN@ \
++libgobject_2_0_la_LDFLAGS =					\
+ 	-version-info $(LT_CURRENT):$(LT_REVISION):$(LT_AGE)	\
+-	-export-dynamic $(no_undefined) $(export_symbols)	\
+-@STRIP_END@
++	-export-dynamic $(no_undefined) $(export_symbols)
+ 
+-libgobject_2_0_la_LIBADD = @G_OBJECT_WIN32_RESOURCE@ $(libglib)
++libgobject_2_0_la_LIBADD = $(G_OBJECT_WIN32_RESOURCE) $(libglib)
+ 
+-libgobject_2_0_la_DEPENDENCIES = @G_OBJECT_WIN32_RESOURCE@ @GOBJECT_DEF@
++libgobject_2_0_la_DEPENDENCIES = $(G_OBJECT_WIN32_RESOURCE) $(GOBJECT_DEF)
+ 
+ #
+ # setup source file variables
+ #
+ # GObject library header files for public installation (non-generated)
+-gobject_public_h_sources = @STRIP_BEGIN@ \
++gobject_public_h_sources =	\
+ 	gboxed.h		\
+ 	gclosure.h		\
+ 	genums.h		\
+@@ -78,13 +76,13 @@
+ 	gvaluearray.h		\
+ 	gvaluecollector.h	\
+ 	gvaluetypes.h		\
+-	gobjectnotifyqueue.c	\
+-@STRIP_END@
++	gobjectnotifyqueue.c
++
+ # GObject library header files that don't get installed
+-gobject_private_h_sources = @STRIP_BEGIN@ \
+-@STRIP_END@
++gobject_private_h_sources =
++
+ # GObject library C sources to build the library from
+-gobject_c_sources = @STRIP_BEGIN@ \
++gobject_c_sources =		\
+ 	gboxed.c		\
+ 	gclosure.c		\
+ 	genums.c		\
+@@ -99,8 +97,7 @@
+ 	gvalue.c		\
+ 	gvaluearray.c		\
+ 	gvaluetransform.c	\
+-	gvaluetypes.c		\
+-@STRIP_END@
++	gvaluetypes.c
+ 
+ # we use our own built_sources variable rules to avoid automake's
+ # BUILT_SOURCES oddities
+@@ -109,22 +106,21 @@
+ # content
+ 
+ # built sources that get installed with the header files
+-gobject_built_public_sources = @STRIP_BEGIN@ \
+-	gmarshal.h	\
+-@STRIP_END@
++gobject_built_public_sources =	\
++	gmarshal.h
++
+ # built sources that don't get installed
+-gobject_built_sources = @STRIP_BEGIN@ \
+-	stamp-gmarshal.h		 \
+-	gmarshal.c			 \
+-	${gobject_built_public_sources} \
+-@STRIP_END@
++gobject_built_sources =			\
++	stamp-gmarshal.h		\
++	gmarshal.c			\
++	${gobject_built_public_sources}
++
+ # non-header sources (headers should be specified in the above variables)
+ # that don't serve as direct make target sources, i.e. they don't have
+ # their own .lo rules and don't get publically installed
+-gobject_extra_sources = @STRIP_BEGIN@ \
++gobject_extra_sources =		\
+ 	gmarshal.list		\
+-	gmarshal.strings	\
+-@STRIP_END@
++	gmarshal.strings
+ 
+ 
+ #
+@@ -132,17 +128,14 @@
+ #
+ gobject_target_headers = $(gobject_public_h_sources) $(gobject_built_public_sources)
+ gobject_target_sources = $(gobject_c_sources)
+-MAINTAINERCLEANFILES += $(gobject_built_sources)
+-EXTRA_HEADERS +=
+-EXTRA_DIST += $(gobject_private_h_sources) $(gobject_extra_sources)
+-EXTRA_DIST += $(gobject_built_sources)
++MAINTAINERCLEANFILES = $(gobject_built_sources)
+ 
+ #
+ # rules to generate built sources
+ #
+ # setup autogeneration dependancies
+ gen_sources = xgen-gmh xgen-gmc xgen-gms
+-CLEANFILES += $(gen_sources)
++CLEANFILES = $(gen_sources)
+ 
+ $(libgobject_2_0_la_OBJECTS): $(gobject_built_sources)  ${gobject_built_public_sources} # this is our oldest file, used for implicit auto-generation deps
+ # initial creation of the real stamp-* files
+@@ -212,14 +205,16 @@
+ #
+ # auxillary files
+ #
+-EXTRA_DIST += 			\
+-	makefile.mingw.in 	\
+-	makefile.msc.in 	\
+-	gobject.def		\
+-	gobject.rc.in		\
+-	glib-genmarshal.1	\
+-	glib-mkenums.in		\
+-	glib-mkenums.1
++EXTRA_DIST = \
++	$(gobject_private_h_sources)	\
++	$(gobject_extra_sources) 	\
++	$(gobject_built_sources) 	\
++	makefile.mingw.in		\
++	makefile.msc.in			\
++	gobject.def			\
++	gobject.rc.in			\
++	glib-mkenums.in			\
++	$(man_MANS)
+ 
+ BUILT_EXTRA_DIST = \
+ 	makefile.mingw		\
+@@ -232,7 +227,7 @@
+ endif
+ 
+ gobject-2.0.lib: libgobject-2.0.la gobject.def
+-	lib -name:libgobject-2.0-@LT_CURRENT_MINUS_AGE@.dll -def:gobject.def -out:$@
++	lib -name:libgobject-2.0-$(LT_CURRENT_MINUS_AGE).dll -def:gobject.def -out:$@
+ 
+ gobject.rc: $(top_builddir)/config.status $(top_srcdir)/gobject/gobject.rc.in
+ 	cd $(top_builddir) && CONFIG_FILES=gobject/$@ CONFIG_HEADERS= $(SHELL) ./config.status
