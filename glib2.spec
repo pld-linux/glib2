@@ -12,14 +12,14 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.6.0
-Release:	1
+Release:	1.1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.6/glib-%{version}.tar.bz2
 # Source0-md5:	649b89c8bfd152feea6db6f68b7cd54e
 Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-locale-names.patch
+Patch1:		%{name}-bug161668.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
@@ -138,8 +138,6 @@ Bibliotecas estáticas para desenvolvimento com glib.
 %patch0 -p1
 %patch1 -p1
 
-rm -f po/no.po
-
 %build
 gtkdocize --copy
 %{__libtoolize}
@@ -163,6 +161,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
+
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang glib --with-gnome --all-name
 
