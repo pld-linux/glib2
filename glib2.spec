@@ -146,9 +146,6 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 
-# Inside %%install gobject is linked against just built (installed)
-# version of glib.
-LDFLAGS="%{rpmldflags} -L%{buildroot}%{_libdir}"
 %configure \
 	--enable-threads \
 	--enable-gtk-doc \
@@ -172,11 +169,6 @@ rm -rf $RPM_BUILD_ROOT
 
 mv -f $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-mkenums.1
 mv -f $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-genmarshal.1
-
-for i in %{buildroot}%{_libdir}/*.la; do
-	cat $i|sed -e "s,-L%{buildroot}%{_libdir},,">$i.tmp;
-	mv $i.tmp $i;
-done;
 
 %find_lang glib --with-gnome --all-name
 
