@@ -29,7 +29,7 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pkgconfig >= 0.14.0
 BuildRequires:	gettext-devel
 BuildRequires:	perl-base
-BuildRequires:	rpm-build >= 4.1-8.2
+BuildRequires:	rpmbuild(macros) >= 1.98
 Requires:	iconv
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
