@@ -143,7 +143,7 @@ Bibliotecas estáticas para desenvolvimento com glib
 %build
 rm -f missing
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4macros
 %{__autoconf}
 %{__autoheader}
 %{__automake}
