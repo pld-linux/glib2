@@ -12,16 +12,15 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.3.3
+Version:	2.3.5
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.3/glib-%{version}.tar.bz2
-# Source0-md5:	b363307e4ee0e75c44b0c99723b5f579
+# Source0-md5:	012e427d9efb12713357648f585b1d25
 #Source0:	glib-%{version}-%{snap}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-am18.patch
-Patch2:		%{name}-locale-names.patch
+Patch1:		%{name}-locale-names.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -143,7 +142,6 @@ Bibliotecas estáticas para desenvolvimento com glib
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 mv po/{no,nb}.po
 
