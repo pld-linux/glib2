@@ -12,7 +12,7 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.2.0
+Version:	2.2.1
 Release:	1
 License:	LGPL
 Group:		Libraries
