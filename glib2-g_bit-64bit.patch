@@ -1,0 +1,24 @@
+--- glib-2.2.3/glib/gutils.h.orig	2002-11-08 01:51:25.000000000 +0100
++++ glib-2.2.3/glib/gutils.h	2004-01-10 14:23:51.473033649 +0100
+@@ -232,10 +232,10 @@
+   do
+     {
+       nth_bit++;
+-      if (mask & (1 << (gulong) nth_bit))
++      if (mask & (1UL << nth_bit))
+ 	return nth_bit;
+     }
+-  while (nth_bit < 31);
++  while (nth_bit < ((GLIB_SIZEOF_LONG * 8) - 1));
+   return -1;
+ }
+ G_INLINE_FUNC gint
+@@ -247,7 +247,7 @@
+   do
+     {
+       nth_bit--;
+-      if (mask & (1 << (gulong) nth_bit))
++      if (mask & (1UL << nth_bit))
+ 	return nth_bit;
+     }
+   while (nth_bit > 0);
