@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.0.3
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
@@ -24,6 +24,8 @@ BuildRequires:	gettext-devel
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_gtkdocdir	/usr/share/doc/gtk-doc/html
 
 %description
 GLib, is a library which includes support routines for C such as
@@ -147,7 +149,8 @@ aclocal
 LDFLAGS="%{rpmldflags} -L%{buildroot}%{_libdir}"
 %configure \
 	--enable-threads \
-	--enable-gtk-doc=no \
+	--enable-gtk-doc \
+	--with-html-path=%{_gtkdocdir} \
 	--enable-static
 %{__make}
 
@@ -157,7 +160,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
-	pkgconfigdir=%{_pkgconfigdir}
+	pkgconfigdir=%{_pkgconfigdir} \
+	HTML_DIR=%{_gtkdocdir}
 
 mv -f $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-mkenums.1
 mv -f $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-genmarshal.1
@@ -184,9 +188,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
-%{_datadir}/glib-2.0/*
-%{_datadir}/gtk-doc/html/glib
-%{_datadir}/gtk-doc/html/gobject
+%{_datadir}/glib-2.0
+%{_gtkdocdir}/*
+
 %{_aclocaldir}/*
 %{_mandir}/man?/glib*
 
