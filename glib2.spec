@@ -150,7 +150,7 @@ aclocal
 LDFLAGS="%{rpmldflags} -L%{buildroot}%{_libdir}"
 %configure \
 	--enable-threads \
-	--enable-gtkdoc \
+	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir} \
 	--enable-static
 %{__make}
