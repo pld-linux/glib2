@@ -14,6 +14,7 @@ Summary(zh_CN):	实用工具函数库
 Name:		glib2
 Version:	2.3.6
 Release:	1
+Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.3/glib-%{version}.tar.bz2
@@ -90,7 +91,7 @@ Summary(es):	Conjunto de funciones gr醘icas utilitarias para desarrollo
 Summary(pl):	Pliki nag丑wkowe i dokumentacja do glib
 Summary(pt_BR):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gtk-doc-common
 
 %description devel
@@ -124,7 +125,7 @@ Summary(es):	Static libraries for glib development
 Summary(pl):	Biblioteki statyczne glib
 Summary(pt_BR):	Bibliotecas est醫icas para desenvolvimento com glib
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}-%{release}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static glib libraries.
