@@ -24,7 +24,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
-BuildRequires:	pkgconfig
+BuildRequires:	pkgconfig >= 0.14.0
 BuildRequires:	gettext-devel
 BuildRequires:	rpm-build >= 4.1-8.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
