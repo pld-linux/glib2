@@ -138,7 +138,7 @@ Bibliotecas estáticas para desenvolvimento com glib
 %patch1 -p1
 
 %build
-rm -f missing[B
+rm -f missing
 %{__libtoolize}
 aclocal
 %{__autoconf}
