@@ -15,7 +15,8 @@ Version:	2.2.2
 Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.2/glib-%{version}.tar.bz2
+# Source0-md5:	3e9a9512943c81a78cafa0536dcc8b41
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am16.patch
 URL:		http://www.gtk.org/
