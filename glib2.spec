@@ -16,7 +16,6 @@ Version:	2.1.3
 Release:	1
 License:	LGPL
 Group:		Libraries
-# TODO: Must be fixed, this file not exist
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.1/glib-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am16.patch
