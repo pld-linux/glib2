@@ -88,7 +88,7 @@ Summary(es):	Conjunto de funciones gráficas utilitarias para desarrollo
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Summary(pt_BR):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	gtk-doc-common
 
 %description devel
@@ -122,7 +122,7 @@ Summary(es):	Static libraries for glib development
 Summary(pl):	Biblioteki statyczne glib
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com glib
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static glib libraries.
