@@ -26,7 +26,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool >= 1:1.4.2-9
-BuildRequires:	pkgconfig >= 0.14.0
+BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	gettext-devel
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.98
