@@ -11,13 +11,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.6.1
-Release:	2
+Version:	2.6.2
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.6/glib-%{version}.tar.bz2
-# Source0-md5:	b7a07863d66f328bafadfe7747b85274
+# Source0-md5:	31fafaf9b1a96ab804c078fb965eb529
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
