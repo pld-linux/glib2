@@ -11,15 +11,14 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.6.0
-Release:	2
+Version:	2.6.1
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.6/glib-%{version}.tar.bz2
-# Source0-md5:	649b89c8bfd152feea6db6f68b7cd54e
+# Source0-md5:	b7a07863d66f328bafadfe7747b85274
 Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-bug161668.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -136,7 +135,6 @@ Bibliotecas estáticas para desenvolvimento com glib.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 gtkdocize --copy
