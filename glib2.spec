@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.2.3
-Release:	4
+Release:	5
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -87,7 +87,7 @@ Summary(es):	Conjunto de funciones gráficas utilitarias para desarrollo
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Summary(pt_BR):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	gtk-doc-common
 
 %description devel
@@ -121,7 +121,7 @@ Summary(es):	Static libraries for glib development
 Summary(pl):	Biblioteki statyczne glib
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com glib
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static glib libraries.
