@@ -1,12 +1,12 @@
-diff -urN aa/glib-2.3.3/configure.in glib-2.3.3/configure.in
---- aa/glib-2.3.3/configure.in	2004-02-24 18:30:35.000000000 +0100
-+++ glib-2.3.3/configure.in	2004-02-24 21:38:07.594526720 +0100
-@@ -381,7 +381,7 @@
+diff -urN glib-2.4.2.orig/configure.in glib-2.4.2/configure.in
+--- glib-2.4.2.orig/configure.in	2004-06-04 20:48:58.417684816 +0200
++++ glib-2.4.2/configure.in	2004-06-04 20:49:40.355309328 +0200
+@@ -380,7 +380,7 @@
  dnl gettext support
  dnl
  
--ALL_LINGUAS="am ar az be bg bn ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr id is it ja ko lt lv mk mn ms nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@ije sr@Latn sv ta tr uk vi yi zh_CN zh_TW"
-+ALL_LINGUAS="am ar az be bg bn ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr id is it ja ko lt lv mk mn ms nb nl nn pa pl pt pt_BR ro ru sk sl sq sr sr@ije sr@Latn sv ta tr uk vi yi zh_CN zh_TW"
+-ALL_LINGUAS="am ar az be bg bn ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr id is it ja ko lt lv mk mn ms nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@ije sr@Latn sv ta tr uk vi wa yi zh_CN zh_TW"
++ALL_LINGUAS="am ar az be bg bn ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr id is it ja ko lt lv mk mn ms nb nl nn pa pl pt pt_BR ro ru sk sl sq sr sr@ije sr@Latn sv ta tr uk vi wa yi zh_CN zh_TW"
  GLIB_GNU_GETTEXT
  
  if test "$gt_cv_have_gettext" != "yes" ; then
