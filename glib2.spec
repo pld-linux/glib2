@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.0.4
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
@@ -26,7 +26,7 @@ BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_gtkdocdir	/usr/share/doc/gtk-doc/html
+%define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
 
 %description
 GLib, is a library which includes support routines for C such as
@@ -86,6 +86,7 @@ Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Summary(pt_BR):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	gtk-doc-common
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
@@ -100,7 +101,6 @@ Conjunto de funciones gráficas utilitarias para desarrollo.
 %{name}-devel¥Ñ¥Ã¥±¡¼¥¸¤Ë¤Ï¡¢°ìÈÌ¥é¥¤¥Ö¥é¥ê¤È¤·¤ÆÍ­¸ú¤ÊGIMP¤ÎX¥é¥¤¥Ö¥é¥ê·²
 (Gtk¤ÈGDK)¤ò¥µ¥Ý¡¼¥È¤¹¤ë¥é¥¤¥Ö¥é¥ê¸þ¤±¤Ë¥¹¥¿¥Æ¥£¥Ã¥¯¥é¥¤¥Ö¥é¥ê¤È¥Ø¥Ã¥À¤¬
 ´Þ¤Þ¤ì¤Æ¤¤¤Þ¤¹¡£
-
 
 ¤â¤·GLib¤ò»È¤Ã¤Æ¥×¥í¥°¥é¥à¤ò³«È¯¤¹¤ë¤Ê¤é¤Ð¡¢%{name}-devel¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È
 ¡¼¥ë¤·¤Æ¤¯¤À¤µ¤¤¡£
