@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.0.4
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
@@ -97,8 +97,7 @@ structures.
 Conjunto de funciones gráficas utilitarias para desarrollo.
 
 %description devel -l ja
-
-%{name}-devel¥Ñ¥Ã¥±¡¼¥¸¤Ë¤Ï¡¢°ìÈÌ¥é¥¤¥Ö¥é¥ê¤È¤·¤ÆÍ­¸ú¤ÊGIMP¤ÎX¥é¥¤¥Ö¥é¥ê·²
+glib2-devel¥Ñ¥Ã¥±¡¼¥¸¤Ë¤Ï¡¢°ìÈÌ¥é¥¤¥Ö¥é¥ê¤È¤·¤ÆÍ­¸ú¤ÊGIMP¤ÎX¥é¥¤¥Ö¥é¥ê·²
 (Gtk¤ÈGDK)¤ò¥µ¥Ý¡¼¥È¤¹¤ë¥é¥¤¥Ö¥é¥ê¸þ¤±¤Ë¥¹¥¿¥Æ¥£¥Ã¥¯¥é¥¤¥Ö¥é¥ê¤È¥Ø¥Ã¥À¤¬
 ´Þ¤Þ¤ì¤Æ¤¤¤Þ¤¹¡£
 
