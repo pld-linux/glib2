@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.0.6
-Release:	3
+Release:	4
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
@@ -21,7 +21,6 @@ Patch1:		%{name}-am16.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gettext-devel
 BuildRequires:	gtk-doc >= 0.9-2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
@@ -141,7 +140,6 @@ Bibliotecas estáticas para desenvolvimento com glib
 %build
 rm -f missing[B
 %{__libtoolize}
-%{__gettextize}
 aclocal
 %{__autoconf}
 %{__automake}
@@ -186,7 +184,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
-
+%{_datadir}/glib-2.0
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
