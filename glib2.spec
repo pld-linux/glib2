@@ -13,6 +13,7 @@ Summary(zh_CN):	实用工具函数库
 Name:		glib2
 Version:	2.2.3
 Release:	3.1
+Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.2/glib-%{version}.tar.bz2
