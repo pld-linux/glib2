@@ -11,13 +11,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.4.2
+Version:	2.4.4
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.4/glib-%{version}.tar.bz2
-# Source0-md5:	038b7cf535cbe016c6bb6033dbcf9acf
+# Source0-md5:	ea37e29137cb988eb54ff43721143a81
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-locale-names.patch
 URL:		http://www.gtk.org/
