@@ -65,7 +65,7 @@ Header files for the support library for the GIMP's X libraries, which
 are available as public libraries. GLIB includes generally useful data
 structures.
 
-%description -l pl devel
+%description devel -l pl
 Pliki nag³ówkowe i dokumentacja do glib przydatna przy pisaniu
 programów wykorzystuj±cych tê bibliotekê.
 
@@ -78,7 +78,7 @@ Requires:	%{name}-devel = %{version}
 %description static
 Static glib libraries.
 
-%description -l pl static
+%description static -l pl
 Biblioteki statyczne do glib.
 
 %prep
@@ -109,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
-	
+
 mv $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-mkenums.1
 mv $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-genmarshal.1
 
