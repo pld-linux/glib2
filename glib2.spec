@@ -11,14 +11,16 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.2.2
+Version:	2.0.7
 Release:	1
+Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.2/glib-%{version}.tar.bz2
-# Source0-md5:	3e9a9512943c81a78cafa0536dcc8b41
+Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.0/glib-%{version}.tar.bz2
+# Source0-md5:	5882b1e729f57cb18af653a2f504197b
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am16.patch
+Patch2:		%{name}-gtkdoc.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -26,7 +28,6 @@ BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
 BuildRequires:	pkgconfig >= 0.14.0
 BuildRequires:	gettext-devel
-#BuildRequires:	rpmbuild(macros) >= 1.118
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
@@ -139,13 +140,13 @@ Bibliotecas estáticas para desenvolvimento com glib
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
-%{__autoheader}
 %{__automake}
 
 %configure \
