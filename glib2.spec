@@ -7,7 +7,7 @@ Summary(fr):	Bibliothèque de fonctions utilitaires
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib2
-Version:	1.3.8
+Version:	1.3.10
 Release:	1
 License:	LGPL
 Group:		Libraries
@@ -109,6 +109,7 @@ gettextize --copy --force
 aclocal
 autoconf
 #automake -a -c
+
 # Inside %%install gobject is linked against just built (installed)
 # version of glib.
 CFLAGS="-L%{buildroot}%{_libdir}"
@@ -130,19 +131,15 @@ mv $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-genmarshal.1
 
 gzip -9nf AUTHORS ChangeLog NEWS README
 
+%find_lang glib --with-gnome --all-name
+
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
-
-%post devel
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
-
-%postun devel
-[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir -c %{_infodir} >/dev/null 2>&1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files
+%files -f glib.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libg*.so.*.*
 
@@ -158,10 +155,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gtk-doc/html/glib
 %{_datadir}/gtk-doc/html/gobject
 %{_aclocaldir}/*
-
-#%{_infodir}/glib.info*
-
-%{_mandir}/man1/glib*
+%{_mandir}/man?/glib*
 
 %files static
 %defattr(644,root,root,755)
