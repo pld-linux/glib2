@@ -31,6 +31,7 @@ BuildRequires:	pkgconfig >= 0.14.0
 BuildRequires:	gettext-devel
 BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.1-8.2
+Requires:	iconv
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
