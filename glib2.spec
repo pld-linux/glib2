@@ -7,7 +7,7 @@ Summary(fr):	Bibliothèque de fonctions utilitaires
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib2
-Version:	1.3.13
+Version:	1.3.14
 Release:	1
 License:	LGPL
 Group:		Libraries
