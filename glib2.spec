@@ -22,7 +22,7 @@ Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-bug161668.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
-BuildRequires:	automake >= 1.7
+BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	gtk-doc >= 1.0
