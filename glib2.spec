@@ -129,9 +129,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
+
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
+%{_datadir}/glib-2.0/*
 %{_datadir}/gtk-doc/html/glib
 %{_datadir}/gtk-doc/html/gobject
 %{_aclocaldir}/*
