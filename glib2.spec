@@ -88,7 +88,7 @@ Biblioteki statyczne do glib.
 #libtoolize --copy --force
 gettextize --copy --force
 aclocal
-autoconf
+%{__autoconf}
 #automake -a -c
 
 # Inside %%install gobject is linked against just built (installed)
