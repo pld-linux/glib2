@@ -21,7 +21,7 @@ Patch1:		%{name}-am16.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gtk-doc >= 0.9-2
+BuildRequires:	gtk-doc >= 0.9-4
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	gettext-devel
@@ -150,7 +150,7 @@ aclocal
 LDFLAGS="%{rpmldflags} -L%{buildroot}%{_libdir}"
 %configure \
 	--enable-threads \
-	--disable-gtkdoc \
+	--enable-gtkdoc \
 	--with-html-path=%{_gtkdocdir} \
 	--enable-static
 %{__make}
