@@ -1,3 +1,6 @@
+
+%define		snap	20021123
+
 Summary:	Useful routines for 'C' programming
 Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
 Summary(da):	Nyttige biblioteksfunktioner
@@ -11,12 +14,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.1.0
-Release:	4
+Version:	2.1.3
+Release:	0.%{snap}
 License:	LGPL
 Group:		Libraries
 # TODO: Must be fixed, this file not exist
-Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
+#Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
+Source0:	glib-%{version}.%{snap}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am16.patch
 URL:		http://www.gtk.org/
@@ -144,6 +148,7 @@ rm -f missing
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
+%{__autoheader}
 %{__automake}
 
 %configure \
