@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.1.0
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Libraries
 # TODO: Must be fixed, this file not exist
