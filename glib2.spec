@@ -17,6 +17,7 @@ License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-am16.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -63,7 +64,6 @@ GLib¤Ï¥æ¡¼¥Æ¥£¥ê¥Æ¥£´Ø¿ô¤ò½¸¤á¤¿ÊØÍø¤Ê¥é¥¤¥Ö¥é¥ê¤Ç¤¹¡£¤³¤Î£Ã¸À¸ìÍÑ¥é¥¤¥Ö¥é¥ê¤Ï¡¢
 GLib¤ÏGDK,
 GTK+Â¾Â¿¤¯¤Î¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤ÇÍøÍÑ¤µ¤ì¤ë¡£¤³¤Î¥é¥¤¥Ö¥é¥ê¤Ë°ÍÂ¸¤¹¤ë¥¢¥×¥ê¥±¡¼¥·¥ç¥ó
 Åù¤Î¤¿¤á¤Ë¤³¤Îglib¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È¡¼¥ë¤·¤Æ¤¯¤À¤µ¤¤¡£
-
 
 %description -l pl
 Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list i
@@ -136,13 +136,15 @@ Bibliotecas estáticas para desenvolvimento com glib
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
-#%{__libtoolize}
-#%{__gettextize}
+rm -f missing[B
+%{__libtoolize}
+%{__gettextize}
 aclocal
 %{__autoconf}
-#%{__automake}
+%{__automake}
 
 # Inside %%install gobject is linked against just built (installed)
 # version of glib.
@@ -188,7 +190,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
-%{_datadir}/glib-2.0
 %{_gtkdocdir}/*
 
 %{_aclocaldir}/*
