@@ -1,4 +1,4 @@
-%define         snap 20031106
+%define         snap 20031110
 Summary:	Useful routines for 'C' programming
 Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
 Summary(da):	Nyttige biblioteksfunktioner
@@ -18,7 +18,7 @@ License:	LGPL
 Group:		Libraries
 #Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.3/glib-%{version}.%{snap}.tar.bz2
 Source0:	glib-%{version}.%{snap}.tar.bz2
-# Source0-md5:	98d744e4e4329c641c92817b6a6ec955
+# Source0-md5:	21cd1166495c1279971cc91b0aa4f88d
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf
