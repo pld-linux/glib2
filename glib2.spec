@@ -1,3 +1,4 @@
+%define         snap 20031106
 Summary:	Useful routines for 'C' programming
 Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
 Summary(da):	Nyttige biblioteksfunktioner
@@ -12,11 +13,11 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.3.0
-Release:	0.1
+Release:	1.%{snap}.1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.3/glib-%{version}.tar.bz2
-# Source0-md5:	2390f83aeba20851bbb9b816269c0735
+Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.3/glib-%{version}.%{snap}.tar.bz2
+# Source0-md5:	98d744e4e4329c641c92817b6a6ec955
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf
