@@ -24,6 +24,7 @@ BuildRequires:	automake
 BuildRequires:	gtk-doc >= 0.9-2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
+BuildRequires:	gettext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_gtkdocdir	%{_defaultdocdir}/gtk-doc/html
