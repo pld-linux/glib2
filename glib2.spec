@@ -7,7 +7,7 @@ Summary(fr):	Bibliothèque de fonctions utilitaires
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib2
-Version:	1.3.5
+Version:	1.3.6
 Release:	1
 License:	LGPL
 Group:		Libraries
@@ -93,24 +93,26 @@ Biblioteki statyczne do glib.
 %setup -q -n glib-%{version}
 
 %build
-#find -name Makefile.am -exec perl -pi -e 's/\@STRIP_BEGIN\@//g;s/\@STRIP_END\@//g' {} \;
-#gettextize --copy --force
-#libtoolize --copy --force
-#aclocal
-#automake -a -c
-#autoconf
+gettextize --copy --force
+autoconf
+# Inside %%install gobject is linked against just built (installed)
+# version of glib.
+CFLAGS="-L%{buildroot}%{_libdir}"
+export CFLAGS
 %configure \
 	--enable-threads
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 	
-mv $RPM_BUILD_ROOT%{_mandir}/man1/glib-config.1 $RPM_BUILD_ROOT%{_mandir}/man1/glib-config-2.0.1 
+mv $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-mkenums.1
+mv $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-genmarshal.1
 
 gzip -9nf AUTHORS ChangeLog NEWS README
 
@@ -133,18 +135,19 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc *.gz
+%attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
-%attr(644,root,root) %{_libdir}/lib*.a
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
+%{_datadir}/gtk-doc/html/glib
+%{_datadir}/gtk-doc/html/gobject
 %{_aclocaldir}/*
 
 #%{_infodir}/glib.info*
 
-%attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/glib*.1.*
+%{_mandir}/man1/glib*
 
 %files static
 %defattr(644,root,root,755)
