@@ -19,6 +19,7 @@ Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.5/glib-%{version}.tar.bz2
 # Source0-md5:	da6cc616614b98024334ffc78aafb9dc
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-locale-names.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
@@ -135,6 +136,9 @@ Bibliotecas estáticas para desenvolvimento com glib.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+%patch1 -p1
+
+mv po/{no,nb}.po
 
 %build
 gtkdocize --copy
@@ -159,8 +163,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
-
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 %find_lang glib --with-gnome --all-name
 
