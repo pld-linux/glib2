@@ -3,20 +3,22 @@ Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
 Summary(da):	Nyttige biblioteksfunktioner
 Summary(de):	Eine nützliche Library von Dienstprogramm-Funktionen
 Summary(fi):	Kirjasto, jossa on työkalufunktioita
-Summary(fr):	Bibliothèque de fonctions utilitaires.
+Summary(fr):	Bibliothèque de fonctions utilitaires
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib
-Version:	1.3.2
-Release:	2
+Version:	1.3.5
+Release:	1
+Epoch:		1
 License:	LGPL
 Group:		Libraries
+Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
-# seems to be no info inside since version 1.3.1
-#Patch0:		glib-info.patch
+#Patch0:		%{name}-info.patch
 URL:		http://www.gtk.org/
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr
@@ -39,7 +41,7 @@ og headerfiler er i glib-devel pakken.
 Eine nützliche Library von Dienstprogramm-Funktionen.
 Entwicklungs-Libraries und Header befinden sich in glib-devel.
 
-%desription -l fi
+%description -l fi
 Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja header-tiedostot
 ovat glib-devel-paketissa.
 
@@ -57,6 +59,7 @@ dosyalarý glib-devel paketinde yer almaktadýr.
 Summary:	Glib heades files, documentation
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -77,6 +80,7 @@ programów wykorzystuj±cych tê bibliotekê.
 Summary:	Static glib libraries
 Summary(pl):	Biblioteki statyczne do glib
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
@@ -89,6 +93,7 @@ Biblioteki statyczne do glib.
 
 %prep
 %setup -q
+#%patch0 -p1
 
 %build
 %configure \
@@ -99,16 +104,10 @@ Biblioteki statyczne do glib.
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	m4datadir=%{_aclocaldir}
+	m4datadir=%{_aclocaldir} \
+	pkgconfigdir=%{_pkgconfigdir}
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
-
-# hmm glib-config looks to be buggy: it lists -lgmodule even if 
-# old libgmodule.so from glib-1.2 is absent
-ln -s libgmodule-1.3.so $RPM_BUILD_ROOT%{_libdir}/libgmodule.so
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man1/* \
-	AUTHORS ChangeLog NEWS README
+gzip -9nf AUTHORS ChangeLog NEWS README
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -128,18 +127,19 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc {AUTHORS,ChangeLog,NEWS,README}.gz
-
+%doc *.gz
 %attr(755,root,root) %{_libdir}/lib*.so
-
-%{_libdir}/glib*
+%attr(755,root,root) %{_libdir}/lib*.la
+%attr(644,root,root) %{_libdir}/lib*.a
+%{_pkgconfigdir}/*
+%{_libdir}/glib-2.0
 %{_includedir}/*
 %{_aclocaldir}/*
 
 #%{_infodir}/glib.info*
 
 %attr(755,root,root) %{_bindir}/*
-%{_mandir}/man1/glib-config.1.*
+%{_mandir}/man1/glib*.1.*
 
 %files static
 %defattr(644,root,root,755)
