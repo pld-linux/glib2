@@ -148,8 +148,6 @@ Bibliotecas estáticas para desenvolvimento com glib
 %{__autoheader}
 %{__automake}
 
-LD_PRELOAD=/lib/libpthread.so.0; export LD_PRELOAD
-
 %configure \
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-threads \
