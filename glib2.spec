@@ -1,4 +1,3 @@
-%define         snap 20040114
 Summary:	Useful routines for 'C' programming
 Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
 Summary(da):	Nyttige biblioteksfunktioner
@@ -19,16 +18,15 @@ License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.4/glib-%{version}.tar.bz2
 # Source0-md5:	0f5f4896782ec7ab6ea8c7c1d9958114
-#Source0:	glib-%{version}-%{snap}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-locale-names.patch
 URL:		http://www.gtk.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
+BuildRequires:	autoconf >= 2.54
+BuildRequires:	automake >= 1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	gtk-doc >= 1.0
-BuildRequires:	libtool
+BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pkgconfig >= 0.14.0
 BuildRequires:	gettext-devel
 BuildRequires:	perl-base
@@ -62,7 +60,6 @@ Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja
 header-tiedostot ovat glib-devel-paketissa.
 
 %description -l ja
-
 GLib¤Ï¥æ¡¼¥Æ¥£¥ê¥Æ¥£´Ø¿ô¤ò½¸¤á¤¿ÊØÍø¤Ê¥é¥¤¥Ö¥é¥ê¤Ç¤¹¡£¤³¤Î£Ã¸À¸ìÍÑ¥é¥¤¥Ö¥é¥ê¤Ï¡¢
 ¤¤¤¯¤Ä¤«¤ÎÌäÂê¤ò²ò·è¤¹¤ë¤è¤¦Àß·×¤µ¤ì¤Æ¤ª¤ê¡¢Â¿¤¯¤Î¥×¥í¥°¥é¥à¤«¤éÍ×µá¤µ¤ì¤ë»È¤¤¤ä¤¹¤¤
 ´Ø¿ô¤òÄó¶¡¤·¤Þ¤¹¡£
@@ -121,7 +118,6 @@ públicas. A GLIB inclui estruturas de dados genéricas úteis.
 
 %package static
 Summary:	Static glib libraries
-Summary(es):	Static libraries for glib development
 Summary(pl):	Biblioteki statyczne glib
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com glib
 Group:		Development/Libraries
@@ -130,14 +126,11 @@ Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 %description static
 Static glib libraries.
 
-%description static -l es
-Static libraries for glib development
-
 %description static -l pl
 Biblioteki statyczne glib.
 
 %description static -l pt_BR
-Bibliotecas estáticas para desenvolvimento com glib
+Bibliotecas estáticas para desenvolvimento com glib.
 
 %prep
 %setup -q -n glib-%{version}
@@ -147,7 +140,6 @@ Bibliotecas estáticas para desenvolvimento com glib
 mv po/{no,nb}.po
 
 %build
-rm -f missing
 gtkdocize --copy
 %{__libtoolize}
 %{__aclocal} -I m4macros
@@ -157,7 +149,7 @@ gtkdocize --copy
 %configure \
 	--enable-threads \
 	--enable-gtk-doc \
-	--with-html-path=%{_gtkdocdir} \
+	--with-html-dir=%{_gtkdocdir} \
 	--enable-static \
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-man
@@ -169,11 +161,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
-	pkgconfigdir=%{_pkgconfigdir} \
-	HTML_DIR=%{_gtkdocdir}
-
-mv -f $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-mkenums.1
-mv -f $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-genmarshal.1
+	pkgconfigdir=%{_pkgconfigdir}
 
 %find_lang glib --with-gnome --all-name
 
@@ -186,7 +174,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f glib.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
-%attr(755,root,root) %{_libdir}/libg*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
@@ -199,7 +187,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/glib-2.0
 %{_includedir}/*
 %{_gtkdocdir}/*
-
 %{_aclocaldir}/*
 %{_mandir}/man?/*
 
