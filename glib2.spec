@@ -176,12 +176,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f glib.lang
 %defattr(644,root,root,755)
-%doc AUTHORS README
+%doc AUTHORS README NEWS
 %attr(755,root,root) %{_libdir}/libg*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
-%doc ChangeLog NEWS
+%doc ChangeLog
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
