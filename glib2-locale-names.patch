@@ -1,6 +1,5 @@
-diff -urN glib-2.4.2.orig/configure.in glib-2.4.2/configure.in
---- glib-2.4.2.orig/configure.in	2004-06-04 20:48:58.417684816 +0200
-+++ glib-2.4.2/configure.in	2004-06-04 20:49:40.355309328 +0200
+--- glib-2.4.4/configure.in.orig	2004-07-09 15:31:38.000000000 +0200
++++ glib-2.4.4/configure.in	2004-07-14 09:19:47.235843984 +0200
 @@ -380,7 +380,7 @@
  dnl gettext support
  dnl
