@@ -193,7 +193,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog NEWS
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/lib*.la
 %{_datadir}/glib-2.0
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
