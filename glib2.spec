@@ -8,10 +8,10 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib2
 Version:	2.0.0
-Release:	0.1
+Release:	1
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/testing/glib-rc1-%{version}.tar.gz
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://www.gtk.org/
 BuildRequires:	pkgconfig
@@ -81,7 +81,7 @@ Static glib libraries.
 Biblioteki statyczne do glib.
 
 %prep
-%setup -q -n glib-rc1-%{version}
+%setup -q -n glib-%{version}
 %patch0 -p1
 
 %build
