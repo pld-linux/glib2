@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.1.0
-Release:	3
+Release:	4
 License:	LGPL
 Group:		Libraries
 # TODO: Must be fixed, this file not exist
@@ -172,6 +172,11 @@ rm -rf $RPM_BUILD_ROOT
 
 mv -f $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-mkenums.1
 mv -f $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-genmarshal.1
+
+for i in %{buildroot}%{_libdir}/*.la; do
+	cat $i|sed -e "s,-L%{buildroot}%{_libdir},,">$i.tmp;
+	mv $i.tmp $i;
+done;
 
 %find_lang glib --with-gnome --all-name
 
