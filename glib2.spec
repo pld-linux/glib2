@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.2.3
-Release:	3
+Release:	3.1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.2/glib-%{version}.tar.bz2
@@ -147,6 +147,8 @@ Bibliotecas estáticas para desenvolvimento com glib
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+
+LD_PRELOAD=/lib/libpthread.so.0; export LD_PRELOAD
 
 %configure \
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
