@@ -1,3 +1,4 @@
+%define         snap 20040114
 Summary:	Useful routines for 'C' programming
 Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
 Summary(da):	Nyttige biblioteksfunktioner
@@ -11,24 +12,26 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.2.3
-Release:	5
+Version:	2.4.0
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.2/glib-%{version}.tar.bz2
-# Source0-md5:	aa214a10d873b68ddd67cd9de2ccae55
+Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.4/glib-%{version}.tar.bz2
+# Source0-md5:	0f5f4896782ec7ab6ea8c7c1d9958114
+#Source0:	glib-%{version}-%{snap}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-am16.patch
-Patch2:		%{name}-am18.patch
-Patch3:		%{name}-g_bit-64bit.patch
+Patch1:		%{name}-locale-names.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gtk-doc >= 0.9-4
+BuildRequires:	docbook-dtd412-xml
+BuildRequires:	docbook-style-xsl
+BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig >= 0.14.0
 BuildRequires:	gettext-devel
+BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.1-8.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -59,6 +62,7 @@ Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja
 header-tiedostot ovat glib-devel-paketissa.
 
 %description -l ja
+
 GLib¤Ï¥æ¡¼¥Æ¥£¥ê¥Æ¥£´Ø¿ô¤ò½¸¤á¤¿ÊØÍø¤Ê¥é¥¤¥Ö¥é¥ê¤Ç¤¹¡£¤³¤Î£Ã¸À¸ìÍÑ¥é¥¤¥Ö¥é¥ê¤Ï¡¢
 ¤¤¤¯¤Ä¤«¤ÎÌäÂê¤ò²ò·è¤¹¤ë¤è¤¦Àß·×¤µ¤ì¤Æ¤ª¤ê¡¢Â¿¤¯¤Î¥×¥í¥°¥é¥à¤«¤éÍ×µá¤µ¤ì¤ë»È¤¤¤ä¤¹¤¤
 ´Ø¿ô¤òÄó¶¡¤·¤Þ¤¹¡£
@@ -139,22 +143,24 @@ Bibliotecas estáticas para desenvolvimento com glib
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
+
+mv po/{no,nb}.po
 
 %build
+rm -f missing
+gtkdocize --copy
 %{__libtoolize}
-%{__aclocal}
+%{__aclocal} -I m4macros
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-
 %configure \
-	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-threads \
-	--enable-static \
 	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir}
+	--with-html-path=%{_gtkdocdir} \
+	--enable-static \
+	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
+	--enable-man
 %{__make}
 
 %install
@@ -195,7 +201,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_gtkdocdir}/*
 
 %{_aclocaldir}/*
-%{_mandir}/man?/glib*
+%{_mandir}/man?/*
 
 %files static
 %defattr(644,root,root,755)
