@@ -14,11 +14,11 @@ Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://www.gtk.org/
-BuildRequires:	pkgconfig
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	libtool
 BuildRequires:	gettext-devel
+BuildRequires:	libtool
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,10 +44,10 @@ Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja
 header-tiedostot ovat glib-devel-paketissa.
 
 %description -l pl
-Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list,
-drzewek, funkcji mieszaj±cych, funkcji do alokacji pamiêci i wielu
+Glib jest zestawem bibliotek zawieraj±cych funkcje do obs³ugi list i
+drzew, funkcje mieszaj±ce, funkcje do alokacji pamiêci i du¿o
 innych podstawowych funkcji i ró¿nych struktur danych u¿ywanych przez
-program GIMP i wiele innch.
+program GIMP i wiele innych.
 
 %description -l tr
 Yararlý yordamlar kitaplýðý. Geliþtirme kitaplýklarý ve baþlýk
@@ -70,7 +70,7 @@ programów wykorzystuj±cych tê bibliotekê.
 
 %package static
 Summary:	Static glib libraries
-Summary(pl):	Biblioteki statyczne do glib
+Summary(pl):	Biblioteki statyczne glib
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}
 
@@ -78,23 +78,22 @@ Requires:	%{name}-devel = %{version}
 Static glib libraries.
 
 %description static -l pl
-Biblioteki statyczne do glib.
+Biblioteki statyczne glib.
 
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
 
 %build
-#libtoolize --copy --force
-gettextize --copy --force
+#%{__libtoolize}
+#%{__gettextize}
 aclocal
 %{__autoconf}
-#automake -a -c
+#%{__automake}
 
 # Inside %%install gobject is linked against just built (installed)
 # version of glib.
-CFLAGS="-L%{buildroot}%{_libdir}"
-export CFLAGS
+LDFLAGS="%{rpmldflags} -L%{buildroot}%{_libdir}"
 %configure \
 	--enable-threads \
 	--enable-gtk-doc=no \
@@ -109,16 +108,16 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
-mv $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-mkenums.1
-mv $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-genmarshal.1
+mv -f $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-mkenums.1
+mv -f $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-genmarshal.1
 
 %find_lang glib --with-gnome --all-name
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files -f glib.lang
 %defattr(644,root,root,755)
