@@ -11,14 +11,15 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.4.8
-Release:	1
+Version:	2.6.0
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.4/glib-%{version}.tar.bz2
-# Source0-md5:	e160a5feecf46e0fbb36db09c356953c
+Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.6/glib-%{version}.tar.bz2
+# Source0-md5:	649b89c8bfd152feea6db6f68b7cd54e
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-bug161668.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1.7
@@ -30,6 +31,7 @@ BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	gettext-devel
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.98
+BuildRequires:	rpm-build >= 4.1-8.2
 Requires:	iconv
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -104,7 +106,7 @@ glib2-devel¥Ñ¥Ã¥±¡¼¥¸¤Ë¤Ï¡¢°ìÈÌ¥é¥¤¥Ö¥é¥ê¤È¤·¤ÆÍ­¸ú¤ÊGIMP¤ÎX¥é¥¤¥Ö¥é¥ê·²
 (Gtk¤ÈGDK)¤ò¥µ¥Ý¡¼¥È¤¹¤ë¥é¥¤¥Ö¥é¥ê¸þ¤±¤Ë¥¹¥¿¥Æ¥£¥Ã¥¯¥é¥¤¥Ö¥é¥ê¤È¥Ø¥Ã¥À¤¬
 ´Þ¤Þ¤ì¤Æ¤¤¤Þ¤¹¡£
 
-¤â¤·GLib¤ò»È¤Ã¤Æ¥×¥í¥°¥é¥à¤ò³«È¯¤¹¤ë¤Ê¤é¤Ð¡¢%{name}-devel¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È
+¤â¤·GLib¤ò»È¤Ã¤Æ¥×¥í¥°¥é¥à¤ò³«È¯¤¹¤ë¤Ê¤é¤Ð¡¢glib-devel¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È
 ¡¼¥ë¤·¤Æ¤¯¤À¤µ¤¤¡£
 
 %description devel -l pl
@@ -135,6 +137,7 @@ Bibliotecas estáticas para desenvolvimento com glib.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 gtkdocize --copy
@@ -181,7 +184,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%{_datadir}/glib-2.0
+%dir %{_datadir}/glib-2.0
+%dir %{_datadir}/glib-2.0/gettext
+%attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
+%{_datadir}/glib-2.0/gettext/po
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
