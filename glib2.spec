@@ -8,7 +8,7 @@ Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib2
 Version:	1.3.12
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -119,7 +119,8 @@ autoconf
 CFLAGS="-L%{buildroot}%{_libdir}"
 export CFLAGS
 %configure \
-	--enable-threads
+	--enable-threads \
+	--enable-gtk-doc=no
 %{__make}
 
 %install
