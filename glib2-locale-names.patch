@@ -1,0 +1,12 @@
+diff -urN glib-2.4.6.orig/configure.in glib-2.4.6/configure.in
+--- glib-2.4.6.orig/configure.in	2004-08-16 23:35:52.776026760 +0200
++++ glib-2.4.6/configure.in	2004-08-16 23:36:07.819739768 +0200
+@@ -380,7 +380,7 @@
+ dnl gettext support
+ dnl
+ 
+-ALL_LINGUAS="am ar az be bg bn ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr id is it ja ko lt lv mk mn ms nb ne nl nn no pa pl pt pt_BR ro ru sk sl sq sr sr@ije sr@Latn sv ta tr uk vi wa yi zh_CN zh_TW"
++ALL_LINGUAS="am ar az be bg bn ca cs cy da de el en_CA en_GB eo es et eu fa fi fr ga gl gu he hi hr id is it ja ko lt lv mk mn ms nb ne nl nn pa pl pt pt_BR ro ru sk sl sq sr sr@ije sr@Latn sv ta tr uk vi wa yi zh_CN zh_TW"
+ GLIB_GNU_GETTEXT
+ 
+ if test "$gt_cv_have_gettext" != "yes" ; then
