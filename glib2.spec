@@ -19,6 +19,7 @@ Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am16.patch
+Patch2:		%{name}-gtkdoc.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -140,6 +141,7 @@ Bibliotecas estáticas para desenvolvimento com glib
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
