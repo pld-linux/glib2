@@ -15,7 +15,7 @@ Version:	2.3.0
 Release:	0.1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.2/glib-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.3/glib-%{version}.tar.bz2
 # Source0-md5:	2390f83aeba20851bbb9b816269c0735
 Patch0:		%{name}-DESTDIR.patch
 URL:		http://www.gtk.org/
