@@ -56,7 +56,6 @@ Kirjasto, jossa on työkalufunktioita. Kehitysversiot ja
 header-tiedostot ovat glib-devel-paketissa.
 
 %description -l ja
-
 GLib¤Ï¥æ¡¼¥Æ¥£¥ê¥Æ¥£´Ø¿ô¤ò½¸¤á¤¿ÊØÍø¤Ê¥é¥¤¥Ö¥é¥ê¤Ç¤¹¡£¤³¤Î£Ã¸À¸ìÍÑ¥é¥¤¥Ö¥é¥ê¤Ï¡¢
 ¤¤¤¯¤Ä¤«¤ÎÌäÂê¤ò²ò·è¤¹¤ë¤è¤¦Àß·×¤µ¤ì¤Æ¤ª¤ê¡¢Â¿¤¯¤Î¥×¥í¥°¥é¥à¤«¤éÍ×µá¤µ¤ì¤ë»È¤¤¤ä¤¹¤¤
 ´Ø¿ô¤òÄó¶¡¤·¤Þ¤¹¡£
@@ -147,10 +146,11 @@ rm -f missing
 %{__automake}
 
 %configure \
+	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-threads \
+	--enable-static \
 	--enable-gtk-doc \
-	--with-html-path=%{_gtkdocdir} \
-	--enable-static
+	--with-html-dir=%{_gtkdocdir}
 %{__make}
 
 %install
