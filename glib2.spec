@@ -20,6 +20,8 @@ Group(ru):	Библиотеки
 Group(uk):	Б╕бл╕отеки
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/glib-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
+Patch1:		%{name}-m4.patch
+Patch2:		%{name}-pkgconfig.patch
 URL:		http://www.gtk.org/
 BuildRequires:	pkgconfig
 BuildRequires:	autoconf
@@ -104,6 +106,8 @@ Biblioteki statyczne do glib.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 #libtoolize --copy --force
