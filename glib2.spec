@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.6.3
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -152,8 +152,7 @@ gtkdocize --copy
 	--enable-static \
 	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-man
-%{__make} \
-	CFLAGS="%{rpmcflags} -fPIC"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
