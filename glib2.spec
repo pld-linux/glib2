@@ -7,13 +7,12 @@ Summary(fr):	Bibliothèque de fonctions utilitaires
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib2
-Version:	1.3.14
-Release:	1
+Version:	2.0.0
+Release:	0.1
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/glib-%{version}.tar.gz
+Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/testing/glib-rc1-%{version}.tar.gz
 Patch0:		%{name}-DESTDIR.patch
-Patch1:		%{name}-pkgconfig.patch
 URL:		http://www.gtk.org/
 BuildRequires:	pkgconfig
 BuildRequires:	autoconf
@@ -82,9 +81,8 @@ Static glib libraries.
 Biblioteki statyczne do glib.
 
 %prep
-%setup -q -n glib-%{version}
+%setup -q -n glib-rc1-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 #libtoolize --copy --force
@@ -99,7 +97,8 @@ CFLAGS="-L%{buildroot}%{_libdir}"
 export CFLAGS
 %configure \
 	--enable-threads \
-	--enable-gtk-doc=no
+	--enable-gtk-doc=no \
+	--enable-static
 %{__make}
 
 %install
