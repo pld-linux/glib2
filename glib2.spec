@@ -6,17 +6,15 @@ Summary(fi):	Kirjasto, jossa on työkalufunktioita
 Summary(fr):	Bibliothèque de fonctions utilitaires
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
-Name:		glib
+Name:		glib2
 Version:	1.3.5
 Release:	1
-Epoch:		1
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/%{name}-%{version}.tar.gz
-#Patch0:		%{name}-info.patch
+Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/glib-%{version}.tar.gz
 URL:		http://www.gtk.org/
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -92,10 +90,15 @@ Static glib libraries.
 Biblioteki statyczne do glib.
 
 %prep
-%setup -q
-#%patch0 -p1
+%setup -q -n glib-%{version}
 
 %build
+#find -name Makefile.am -exec perl -pi -e 's/\@STRIP_BEGIN\@//g;s/\@STRIP_END\@//g' {} \;
+#gettextize --copy --force
+#libtoolize --copy --force
+#aclocal
+#automake -a -c
+#autoconf
 %configure \
 	--enable-threads
 %{__make}
@@ -106,6 +109,8 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
+	
+mv $RPM_BUILD_ROOT%{_mandir}/man1/glib-config.1 $RPM_BUILD_ROOT%{_mandir}/man1/glib-config-2.0.1 
 
 gzip -9nf AUTHORS ChangeLog NEWS README
 
