@@ -151,11 +151,6 @@ rm -f missing
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir} \
 	--enable-static
-for f in `find -name Makefile` ; do
-	cp $f $f.tmp
-	sed -e 's/-pthread/& -lpthread/g' $f.tmp > $f
-	rm -f $f.tmp
-done
 %{__make}
 
 %install
