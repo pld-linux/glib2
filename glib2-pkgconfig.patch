@@ -1,0 +1,8 @@
+diff -urN glib-1.3.10.org/gobject-2.0.pc.in glib-1.3.10/gobject-2.0.pc.in
+--- glib-1.3.10.org/gobject-2.0.pc.in	Sun Oct 28 14:24:25 2001
++++ glib-1.3.10/gobject-2.0.pc.in	Sun Oct 28 14:41:59 2001
+@@ -8,4 +8,3 @@
+ Requires: glib-2.0
+ Version: @VERSION@
+ Libs: -L${libdir} -lgobject-1.3
+-Cflags:
