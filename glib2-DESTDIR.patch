@@ -1,0 +1,14 @@
+diff -urN glib-1.3.10.org/glib/Makefile.in glib-1.3.10/glib/Makefile.in
+--- glib-1.3.10.org/glib/Makefile.in	Sun Oct 28 13:50:29 2001
++++ glib-1.3.10/glib/Makefile.in	Sun Oct 28 13:51:33 2001
+@@ -1043,8 +1043,8 @@
+ @MS_LIB_AVAILABLE_FALSE@uninstall-ms-lib:
+ 
+ install-data-local: install-ms-lib install-libtool-import-lib
+-	@if test -f $(glibincludedir)/glist.h ; then					\
+-	  echo "*** Old headers found in $(glibincludedir). You should remove the" ;	\
++	@if test -f $(DESTDIR)$(glibincludedir)/glist.h ; then					\
++	  echo "*** Old headers found in $(DESTDIR)$(glibincludedir). You should remove the" ;	\
+ 	  echo "*** contents of this directory and type 'make install' again." ;	\
+ 	  false ;									\
+         fi
