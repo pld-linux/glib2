@@ -87,6 +87,8 @@ Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Summary(pt_BR):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
+Requires:	autoconf
+Requires:	pkgconfig
 Requires:	gtk-doc-common
 
 %description devel
@@ -146,9 +148,6 @@ rm -f missing
 %{__autoconf}
 %{__automake}
 
-# Inside %%install gobject is linked against just built (installed)
-# version of glib.
-LDFLAGS="%{rpmldflags} -L%{buildroot}%{_libdir}"
 %configure \
 	--enable-threads \
 	--enable-gtk-doc \
@@ -185,7 +184,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/lib*.la
+%{_libdir}/lib*.la
 %{_datadir}/glib-2.0
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
