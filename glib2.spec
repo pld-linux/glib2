@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.1.0
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Libraries
 # TODO: Must be fixed, this file not exist
@@ -156,7 +156,7 @@ LDFLAGS="%{rpmldflags} -L%{buildroot}%{_libdir}"
 	--enable-static
 for f in `find -name Makefile` ; do
 	cp $f $f.tmp
-	sed -e 's/-pthread/& -lpthread/g' $f.tmp > $
+	sed -e 's/-pthread/& -lpthread/g' $f.tmp > $f
 	rm -f $f.tmp
 done
 %{__make}
