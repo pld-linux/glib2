@@ -7,8 +7,8 @@ Summary(fr):	Bibliothèque de fonctions utilitaires
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib2
-Version:	2.0.1
-Release:	2
+Version:	2.0.3
+Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
@@ -112,8 +112,6 @@ rm -rf $RPM_BUILD_ROOT
 mv $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-mkenums.1
 mv $RPM_BUILD_ROOT%{_mandir}/man1/glib{,2}-genmarshal.1
 
-gzip -9nf AUTHORS ChangeLog NEWS README
-
 %find_lang glib --with-gnome --all-name
 
 %post   -p /sbin/ldconfig
@@ -128,7 +126,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
