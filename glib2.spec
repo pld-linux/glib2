@@ -11,13 +11,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.4.4
+Version:	2.5.0
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.4/glib-%{version}.tar.bz2
-# Source0-md5:	ea37e29137cb988eb54ff43721143a81
+Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.5/glib-%{version}.tar.bz2
+# Source0-md5:	98fbd81bef9e05978bbe68d7378a872a
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-locale-names.patch
 URL:		http://www.gtk.org/
@@ -104,7 +104,7 @@ glib2-devel¥Ñ¥Ã¥±¡¼¥¸¤Ë¤Ï¡¢°ìÈÌ¥é¥¤¥Ö¥é¥ê¤È¤·¤ÆÍ­¸ú¤ÊGIMP¤ÎX¥é¥¤¥Ö¥é¥ê·²
 (Gtk¤ÈGDK)¤ò¥µ¥Ý¡¼¥È¤¹¤ë¥é¥¤¥Ö¥é¥ê¸þ¤±¤Ë¥¹¥¿¥Æ¥£¥Ã¥¯¥é¥¤¥Ö¥é¥ê¤È¥Ø¥Ã¥À¤¬
 ´Þ¤Þ¤ì¤Æ¤¤¤Þ¤¹¡£
 
-¤â¤·GLib¤ò»È¤Ã¤Æ¥×¥í¥°¥é¥à¤ò³«È¯¤¹¤ë¤Ê¤é¤Ð¡¢%{name}-devel¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È
+¤â¤·GLib¤ò»È¤Ã¤Æ¥×¥í¥°¥é¥à¤ò³«È¯¤¹¤ë¤Ê¤é¤Ð¡¢glib-devel¥Ñ¥Ã¥±¡¼¥¸¤ò¥¤¥ó¥¹¥È
 ¡¼¥ë¤·¤Æ¤¯¤À¤µ¤¤¡£
 
 %description devel -l pl
