@@ -158,6 +158,7 @@ gtkdocize --copy
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir} \
 	--enable-static \
+	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
 	--enable-man
 %{__make}
 
