@@ -1,0 +1,40 @@
+--- glib-2.3.1/m4macros/glib-2.0.m4.wiget	2003-12-14 20:36:27.000000000 +0100
++++ glib-2.3.1/m4macros/glib-2.0.m4	2003-12-14 20:37:02.000000000 +0100
+@@ -5,7 +5,7 @@
+ dnl Test for GLIB, and define GLIB_CFLAGS and GLIB_LIBS, if gmodule, gobject or 
+ dnl gthread is specified in MODULES, pass to pkg-config
+ dnl
+-AC_DEFUN(AM_PATH_GLIB_2_0,
++AC_DEFUN([AM_PATH_GLIB_2_0],
+ [dnl 
+ dnl Get the cflags and libraries from pkg-config
+ dnl
+--- glib-2.3.1/m4macros/glib-gettext.m4.wiget	2003-12-14 20:36:36.000000000 +0100
++++ glib-2.3.1/m4macros/glib-gettext.m4	2003-12-14 20:39:11.000000000 +0100
+@@ -277,7 +277,7 @@
+ # on various variables needed by the Makefile.in.in installed by 
+ # glib-gettextize.
+ dnl
+-glib_DEFUN(GLIB_GNU_GETTEXT,
++glib_DEFUN([GLIB_GNU_GETTEXT],
+   [AC_REQUIRE([AC_PROG_CC])dnl
+    AC_REQUIRE([AC_HEADER_STDC])dnl
+    
+@@ -354,7 +354,7 @@
+ # -------------------------------
+ # Define VARIABLE to the location where catalog files will
+ # be installed by po/Makefile.
+-glib_DEFUN(GLIB_DEFINE_LOCALEDIR,
++glib_DEFUN([GLIB_DEFINE_LOCALEDIR],
+ [glib_REQUIRE([GLIB_GNU_GETTEXT])dnl
+ glib_save_prefix="$prefix"
+ glib_save_exec_prefix="$exec_prefix"
+@@ -375,6 +375,6 @@
+ dnl Now the definitions that aclocal will find
+ dnl
+ ifdef(glib_configure_in,[],[
+-AC_DEFUN(AM_GLIB_GNU_GETTEXT,[GLIB_GNU_GETTEXT($@)])
+-AC_DEFUN(AM_GLIB_DEFINE_LOCALEDIR,[GLIB_DEFINE_LOCALEDIR($@)])
++AC_DEFUN([AM_GLIB_GNU_GETTEXT],[GLIB_GNU_GETTEXT($@)])
++AC_DEFUN([AM_GLIB_DEFINE_LOCALEDIR],[GLIB_DEFINE_LOCALEDIR($@)])
+ ])dnl
