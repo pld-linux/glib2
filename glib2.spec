@@ -7,8 +7,8 @@ Summary(fr):	Bibliothèque de fonctions utilitaires
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlı ufak yordamlar kitaplığı
 Name:		glib2
-Version:	1.3.6
-Release:	7
+Version:	1.3.7
+Release:	1
 License:	LGPL
 Group:		Libraries
 Group(de):	Libraries
@@ -19,7 +19,6 @@ Group(pt_BR):	Bibliotecas
 Group(ru):	âÉÂÌÉÏÔÅËÉ
 Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/glib-%{version}.tar.gz
-Patch0:		%{name}-fix.patch
 URL:		http://www.gtk.org/
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -104,7 +103,6 @@ Biblioteki statyczne do glib.
 
 %prep
 %setup -q -n glib-%{version}
-%patch0 -p1
 
 %build
 gettextize --copy --force
