@@ -7,7 +7,7 @@ Summary(fr):	Bibliothèque de fonctions utilitaires
 Summary(pl):	Biblioteka zawieraj±ca wiele u¿ytecznych funkcji C
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Name:		glib2
-Version:	1.3.7
+Version:	1.3.8
 Release:	1
 License:	LGPL
 Group:		Libraries
@@ -21,9 +21,11 @@ Group(uk):	â¦ÂÌ¦ÏÔÅËÉ
 Source0:	ftp://ftp.gtk.org/pub/gtk/v1.3/glib-%{version}.tar.gz
 URL:		http://www.gtk.org/
 BuildRequires:	pkgconfig
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool
+BuildRequires:	gettext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_prefix		/usr
 
 %description
 GLib, is a library which includes support routines for C such as
@@ -69,9 +71,6 @@ Group(pt_BR):	Desenvolvimento/Bibliotecas
 Group(ru):	òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
 Group(uk):	òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	%{name} = %{version}
-Requires:	autoconf >= 2.13
-Requires:	automake >= 1.4
-Requires:	libtool	 >= 1.3.2 
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
@@ -105,8 +104,11 @@ Biblioteki statyczne do glib.
 %setup -q -n glib-%{version}
 
 %build
+#libtoolize --copy --force
 gettextize --copy --force
+aclocal
 autoconf
+#automake -a -c
 # Inside %%install gobject is linked against just built (installed)
 # version of glib.
 CFLAGS="-L%{buildroot}%{_libdir}"
