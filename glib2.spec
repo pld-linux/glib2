@@ -12,7 +12,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.5.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -182,7 +182,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%{_datadir}/glib-2.0
+%dir %{_datadir}/glib-2.0
+%dir %{_datadir}/glib-2.0/gettext
+%attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
+%{_datadir}/glib-2.0/gettext/po
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
