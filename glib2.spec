@@ -21,6 +21,7 @@ URL:		http://www.gtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	gettext-devel
+BuildRequires:	gtk-doc >= 0.9-2
 BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
