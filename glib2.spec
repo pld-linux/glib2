@@ -12,22 +12,26 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.3.2
+Version:	2.3.3
 Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.3/glib-%{version}.tar.bz2
-# Source0-md5:	84bd1116d79580d89131182967db4bb8
+# Source0-md5:	b363307e4ee0e75c44b0c99723b5f579
 #Source0:	glib-%{version}-%{snap}.tar.bz2
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am18.patch
+Patch2:		%{name}-locale-names.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	gtk-doc >= 0.9-4
+BuildRequires:	docbook-dtd412-xml
+BuildRequires:	docbook-style-xsl
+BuildRequires:	gtk-doc >= 1.0
 BuildRequires:	libtool
 BuildRequires:	pkgconfig >= 0.14.0
 BuildRequires:	gettext-devel
+BuildRequires:	perl-base
 BuildRequires:	rpm-build >= 4.1-8.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -87,7 +91,7 @@ Summary(es):	Conjunto de funciones gráficas utilitarias para desarrollo
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Summary(pt_BR):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	gtk-doc-common
 
 %description devel
@@ -121,7 +125,7 @@ Summary(es):	Static libraries for glib development
 Summary(pl):	Biblioteki statyczne glib
 Summary(pt_BR):	Bibliotecas estáticas para desenvolvimento com glib
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static glib libraries.
@@ -139,22 +143,24 @@ Bibliotecas estáticas para desenvolvimento com glib
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
+mv po/{no,nb}.po
 
 %build
 rm -f missing
-cp /usr/share/automake/mkinstalldirs .
 gtkdocize --copy
 %{__libtoolize}
 %{__aclocal} -I m4macros
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-
 %configure \
 	--enable-threads \
 	--enable-gtk-doc \
 	--with-html-path=%{_gtkdocdir} \
-	--enable-static
+	--enable-static \
+	--enable-man
 %{__make}
 
 %install
