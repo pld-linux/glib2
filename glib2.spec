@@ -17,6 +17,7 @@ Release:	1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.2/glib-%{version}.tar.bz2
+# Source0-md5: 42406a17819080326e105f8333963b97
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-am16.patch
 URL:		http://www.gtk.org/
