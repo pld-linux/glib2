@@ -13,6 +13,7 @@ Summary(zh_CN):	实用工具函数库
 Name:		glib2
 Version:	2.0.6
 Release:	5
+Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.0/glib-%{version}.tar.bz2
