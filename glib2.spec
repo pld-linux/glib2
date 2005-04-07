@@ -11,13 +11,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.6.3
-Release:	3
+Version:	2.6.4
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.6/glib-%{version}.tar.bz2
-# Source0-md5:	8f69ad5387197114b356efc64ce88d77
+# Source0-md5:	af7eeb8aae764ff763418471ed6eb93d
 Patch0:		%{name}-DESTDIR.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
@@ -30,7 +30,7 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	gettext-devel
 BuildRequires:	perl-base
-BuildRequires:	rpmbuild(macros) >= 1.98
+BuildRequires:	rpmbuild(macros) >= 1.197
 Requires:	iconv
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -139,7 +139,7 @@ Bibliotecas estáticas para desenvolvimento com glib.
 %patch1 -p1
 
 %build
-gtkdocize --copy
+%{__gtkdocize}
 %{__libtoolize}
 %{__aclocal} -I m4macros
 %{__autoconf}
@@ -150,7 +150,7 @@ gtkdocize --copy
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir} \
 	--enable-static \
-	--enable-debug=%{?debug:yes}%{!?debug:minimum} \
+	--enable-debug=%{?debug:yes} \
 	--enable-man
 %{__make}
 
@@ -169,8 +169,11 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post
+%ldconfig_post
+
+%postun
+%ldconfig_postun
 
 %files -f glib.lang
 %defattr(644,root,root,755)
