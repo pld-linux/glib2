@@ -1,3 +1,4 @@
+%bcond_without	static_libs	# don't build static library
 Summary:	Useful routines for 'C' programming
 Summary(cs):	©ikovná knihovna s funkcemi pro pomocné programy
 Summary(da):	Nyttige biblioteksfunktioner
@@ -151,7 +152,8 @@ Bibliotecas estáticas para desenvolvimento com glib.
 	--with-html-dir=%{_gtkdocdir} \
 	--enable-static \
 	--enable-debug=%{?debug:yes} \
-	--enable-man
+	--enable-man \
+	%{!?with_static_libs:--disable-static}
 %{__make}
 
 %install
@@ -194,6 +196,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_aclocaldir}/*
 %{_mandir}/man?/*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+%endif
