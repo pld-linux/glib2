@@ -1,4 +1,5 @@
 # Conditional build:
+%bcond_without  doc             # disable gtk-doc
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Useful routines for 'C' programming
@@ -149,12 +150,12 @@ Bibliotecas estáticas para desenvolvimento com glib.
 %{__autoheader}
 %{__automake}
 %configure \
-	--enable-threads \
-	--enable-gtk-doc \
-	--with-html-dir=%{_gtkdocdir} \
-	--enable-static \
 	--enable-debug=%{?debug:yes} \
+	%{?with_doc:--enable-gtk-doc} \
 	--enable-man \
+	--enable-static \
+	--enable-threads \
+	--with-html-dir=%{_gtkdocdir} \
 	%{!?with_static_libs:--disable-static}
 %{__make}
 
@@ -194,7 +195,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
-%{_gtkdocdir}/*
+%{?with_doc:%{_gtkdocdir}/*}
 %{_aclocaldir}/*
 %{_mandir}/man?/*
 
