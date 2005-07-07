@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without  doc             # disable gtk-doc
 %bcond_without	static_libs	# don't build static library
