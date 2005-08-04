@@ -15,16 +15,15 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.7.5
-Release:	2
+Version:	2.7.6
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.7/glib-%{version}.tar.bz2
-# Source0-md5:	b55611611f7a6afb34e2e7f7be4db7aa
+# Source0-md5:	7bf9ca8de29b3e5612325c15be64e68d
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
-Patch2:		%{name}-bug312402.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -142,7 +141,6 @@ Bibliotecas estáticas para desenvolvimento com glib.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__gtkdocize}
