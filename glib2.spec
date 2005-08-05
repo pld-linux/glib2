@@ -15,13 +15,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.7.6
+Version:	2.7.7
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.7/glib-%{version}.tar.bz2
-# Source0-md5:	7bf9ca8de29b3e5612325c15be64e68d
+# Source0-md5:	1524e5300d6bbdc6682be057744ddc53
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
