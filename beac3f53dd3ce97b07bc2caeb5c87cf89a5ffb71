@@ -1,0 +1,2 @@
+- removed gccwarn patch,
+- added lib*.la and pkgconfig files to devel.
