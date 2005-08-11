@@ -1,0 +1,2 @@
+- new {un}registering procedure for info pages using /usr/sbin/fix-info-dir,
+- standarization to "* text: (link).  description" index info entries format.
