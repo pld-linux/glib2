@@ -1,4 +1,3 @@
-#
 # Conditional build:
 %bcond_without	doc             # disable gtk-doc
 %bcond_without	static_libs	# don't build static library
@@ -16,14 +15,14 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.6.6
+Version:	2.8.1
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.6/glib-%{version}.tar.bz2
-# Source0-md5:	6e22b0639d314536f23ee118f29b43de
-Patch0:		%{name}-DESTDIR.patch
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.8/glib-%{version}.tar.bz2
+# Source0-md5:	2229ca9d5490a87d5e027e029520df14
+Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
