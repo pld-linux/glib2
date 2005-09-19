@@ -1,5 +1,5 @@
 # Conditional build:
-%bcond_without	doc             # disable gtk-doc
+%bcond_without	apidocs         # disable gtk-doc
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Useful routines for 'C' programming
@@ -29,7 +29,7 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	gtk-doc >= 1.0
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.0}
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	gettext-devel
@@ -150,13 +150,13 @@ Bibliotecas estáticas para desenvolvimento com glib.
 %{__autoheader}
 %{__automake}
 %configure \
+	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
+	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
+	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--enable-debug=%{?debug:yes} \
-	%{?with_doc:--enable-gtk-doc} \
 	--enable-man \
-	--enable-static \
-	--enable-threads \
-	--with-html-dir=%{_gtkdocdir} \
-	%{!?with_static_libs:--disable-static}
+	--enable-threads
+
 %{__make}
 
 %install
@@ -195,7 +195,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
-%{?with_doc:%{_gtkdocdir}/*}
+%{?with_apidocs:%{_gtkdocdir}/*}
 %{_aclocaldir}/*
 %{_mandir}/man?/*
 
