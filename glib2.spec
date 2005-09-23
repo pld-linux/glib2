@@ -143,7 +143,7 @@ Bibliotecas estáticas para desenvolvimento com glib.
 %patch1 -p1
 
 %build
-%{__gtkdocize}
+%{?with_apidocs:%{__gtkdocize}}
 %{__libtoolize}
 %{__aclocal} -I m4macros
 %{__autoconf}
