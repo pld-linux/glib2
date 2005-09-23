@@ -31,6 +31,7 @@ BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.0}
+BuildRequires:	gtk-doc-automake >= 1.0
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	gettext-devel
