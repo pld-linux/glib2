@@ -1,5 +1,6 @@
+#
 # Conditional build:
-%bcond_without  doc             # disable gtk-doc
+%bcond_without	apidocs         # disable gtk-doc
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Useful routines for 'C' programming
@@ -15,21 +16,22 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.6.5
+Version:	2.9.4
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/gnome/sources/glib/2.6/glib-%{version}.tar.bz2
-# Source0-md5:	777d2e34a60edad28319207b576cda91
-Patch0:		%{name}-DESTDIR.patch
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.9/glib-%{version}.tar.bz2
+# Source0-md5:	467d473c2fd43e124bcab02b6548c135
+Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	gtk-doc >= 1.0
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.0}
+BuildRequires:	gtk-doc-automake >= 1.0
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	gettext-devel
@@ -94,7 +96,6 @@ Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Summary(pt_BR):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gtk-doc-common
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
@@ -137,26 +138,38 @@ Biblioteki statyczne glib.
 %description static -l pt_BR
 Bibliotecas estáticas para desenvolvimento com glib.
 
+%package apidocs
+Summary:	Glib API documetation
+Summary(pl):	Dokumentacja API Glib
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+Glib API documetation.
+
+%description apidocs -l pl
+Dokumentacja API Glib.
+
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
 
 %build
-%{__gtkdocize}
+%{?with_apidocs:%{__gtkdocize}}
 %{__libtoolize}
 %{__aclocal} -I m4macros
 %{__autoconf}
 %{__autoheader}
 %{__automake}
 %configure \
+	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
+	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
+	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--enable-debug=%{?debug:yes} \
-	%{?with_doc:--enable-gtk-doc} \
 	--enable-man \
-	--enable-static \
-	--enable-threads \
-	--with-html-dir=%{_gtkdocdir} \
-	%{!?with_static_libs:--disable-static}
+	--enable-threads
+
 %{__make}
 
 %install
@@ -195,7 +208,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
-%{?with_doc:%{_gtkdocdir}/*}
 %{_aclocaldir}/*
 %{_mandir}/man?/*
 
@@ -203,4 +215,10 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+%endif
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/*
 %endif
