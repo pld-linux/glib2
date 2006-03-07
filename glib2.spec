@@ -16,13 +16,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.10.0
+Version:	2.10.1
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.10/glib-%{version}.tar.bz2
-# Source0-md5:	60c9f62979415bcb82f0b87d6785dc3b
+# Source0-md5:	51df7932da118f7f27bbda82b65f0f91
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
