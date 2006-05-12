@@ -16,13 +16,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.8.6
+Version:	2.10.2
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v2.8/glib-%{version}.tar.bz2
-# Source0-md5:	fce6835fd8c99ab4c3e5213bc5bcd0ed
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.10/glib-%{version}.tar.bz2
+# Source0-md5:	718961161ee1692c216a2d542196a04a
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
@@ -96,7 +96,6 @@ Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Summary(pt_BR):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	gtk-doc-common
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
@@ -138,6 +137,18 @@ Biblioteki statyczne glib.
 
 %description static -l pt_BR
 Bibliotecas estáticas para desenvolvimento com glib.
+
+%package apidocs
+Summary:	Glib API documetation
+Summary(pl):	Dokumentacja API Glib
+Group:		Documentation
+Requires:	gtk-doc-common
+
+%description apidocs
+Glib API documetation.
+
+%description apidocs -l pl
+Dokumentacja API Glib.
 
 %prep
 %setup -q -n glib-%{version}
@@ -197,7 +208,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_pkgconfigdir}/*
 %{_libdir}/glib-2.0
 %{_includedir}/*
-%{?with_apidocs:%{_gtkdocdir}/*}
 %{_aclocaldir}/*
 %{_mandir}/man?/*
 
@@ -205,4 +215,10 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/lib*.a
+%endif
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/*
 %endif
