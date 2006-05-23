@@ -16,13 +16,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.10.2
+Version:	2.11.1
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
-Source0:	ftp://ftp.gtk.org/pub/gtk/v2.10/glib-%{version}.tar.bz2
-# Source0-md5:	718961161ee1692c216a2d542196a04a
+Source0:	ftp://ftp.gtk.org/pub/gtk/v2.11/glib-%{version}.tar.bz2
+# Source0-md5:	3655de1e252f3028fff862347a624808
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
@@ -180,7 +180,7 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/zh_HK
 
 %find_lang glib --with-gnome --all-name
 
