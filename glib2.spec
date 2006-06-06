@@ -180,8 +180,6 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/zh_HK
-
 %find_lang glib --with-gnome --all-name
 
 %clean
