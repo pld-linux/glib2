@@ -16,13 +16,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.11.3
+Version:	2.11.4
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.11/glib-%{version}.tar.bz2
-# Source0-md5:	41931c4965f7e1848f81b800914905cd
+# Source0-md5:	9d3a94baa4bfcd9a579b45eea6de3a8c
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
@@ -30,8 +30,8 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.0}
-BuildRequires:	gtk-doc-automake >= 1.0
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.6}
+BuildRequires:	gtk-doc-automake >= 1.6
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	gettext-devel
