@@ -17,7 +17,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.12.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -162,6 +162,7 @@ Dokumentacja API Glib.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
