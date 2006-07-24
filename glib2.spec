@@ -16,13 +16,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.12.0
-Release:	2
+Version:	2.12.1
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/gtk/v2.12/glib-%{version}.tar.bz2
-# Source0-md5:	ea8c7733ba443e3db04cf7a84060f408
+# Source0-md5:	97786d2a03f0f190bd782749139dc10c
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
@@ -162,7 +162,6 @@ Dokumentacja API Glib.
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
