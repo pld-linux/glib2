@@ -30,13 +30,14 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
+BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.7}
 BuildRequires:	libtool >= 1:1.4.2-9
-BuildRequires:	pkgconfig >= 1:0.14.0
-BuildRequires:	gettext-devel
 BuildRequires:	perl-base
+BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	rpmbuild(macros) >= 1.197
+%{!?with_apidocs:BuildRequires:	sed >= 4.0}
 Requires:	iconv
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -154,6 +155,11 @@ Dokumentacja API Glib.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
+%if !%{with apidocs}
+sed -e '/SUBDIRS/s/docs//' -i Makefile.am
+sed -e '/^docs.*Makefile$/d' -i configure.in
+echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
+%endif
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
@@ -180,7 +186,7 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
-%find_lang glib --with-gnome --all-name
+%find_lang glib20 --with-gnome
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -188,7 +194,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files -f glib.lang
+%files -f glib20.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
@@ -207,7 +213,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/glib-2.0
 %{_includedir}/*
 %{_aclocaldir}/*
-%{_mandir}/man?/*
+%{?with_apidocs:%{_mandir}/man?/*}
 
 %if %{with static_libs}
 %files static
