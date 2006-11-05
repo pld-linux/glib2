@@ -25,6 +25,7 @@ Source0:	ftp://ftp.gtk.org/pub/glib/2.12/glib-%{version}.tar.bz2
 # Source0-md5:	ef7b9595fa788e245a0f883bddba8a25
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
+Patch2:		%{name}-pkgconfig-fix.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -155,6 +156,7 @@ Dokumentacja API Glib.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
 sed -e '/^docs.*Makefile$/d' -i configure.in
