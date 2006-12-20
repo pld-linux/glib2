@@ -16,13 +16,13 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.12.4
-Release:	2
+Version:	2.12.6
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/glib/2.12/glib-%{version}.tar.bz2
-# Source0-md5:	ef7b9595fa788e245a0f883bddba8a25
+# Source0-md5:	b13d971e7de0b844fc4ced7367702003
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 Patch2:		%{name}-pkgconfig-fix.patch
