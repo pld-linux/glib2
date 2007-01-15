@@ -16,16 +16,15 @@ Summary(pt_BR):	Conjunto de funções gráficas utilitárias
 Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
-Version:	2.12.7
+Version:	2.12.8
 Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/glib/2.12/glib-%{version}.tar.bz2
-# Source0-md5:	7a9e949627cf55c844c3570ab83a2caf
+# Source0-md5:	511a6666da510900d3e46fa582c9469d
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
-Patch2:		%{name}-pkgconfig-fix.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -156,7 +155,6 @@ Dokumentacja API Glib.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
 sed -e '/^docs.*Makefile$/d' -i configure.in
