@@ -1,0 +1,168 @@
+Index: glib/glib.symbols
+===================================================================
+--- glib/glib.symbols	(revision 5276)
++++ glib/glib.symbols	(working copy)
+@@ -1127,6 +1127,7 @@
+ g_thread_functions_for_glib_use
+ g_threads_got_initialized
+ g_thread_use_default_impl
++g_thread_gettime
+ #endif
+ g_thread_create_full
+ g_thread_error_quark
+Index: glib/gtimer.c
+===================================================================
+--- glib/gtimer.c	(revision 5276)
++++ glib/gtimer.c	(working copy)
+@@ -53,7 +53,7 @@
+ 
+ #define G_NSEC_PER_SEC 1000000000
+ 
+-#define GETTIME(v) (v = G_THREAD_UF (gettime, ()))
++#define GETTIME(v) (v = g_thread_gettime ())
+ 
+ struct _GTimer
+ {
+Index: glib/gthread.c
+===================================================================
+--- glib/gthread.c	(revision 5276)
++++ glib/gthread.c	(working copy)
+@@ -80,6 +80,8 @@
+ static void    g_thread_fail (void);
+ static guint64 gettime (void);
+ 
++guint64        (*g_thread_gettime) (void) = gettime;
++
+ /* Global variables */
+ 
+ static GSystemThread zero_thread; /* This is initialized to all zero */
+@@ -108,9 +110,8 @@
+   NULL,                                        /* thread_join */
+   NULL,                                        /* thread_exit */
+   NULL,                                        /* thread_set_priority */
+-  NULL,                                         /* thread_self */
+-  NULL,                                         /* thread_equal */
+-  gettime                                      /* gettime */
++  NULL,                                        /* thread_self */
++  NULL                                         /* thread_equal */
+ };
+ 
+ /* Local data */
+Index: glib/gthread.h
+===================================================================
+--- glib/gthread.h	(revision 5276)
++++ glib/gthread.h	(working copy)
+@@ -106,13 +106,14 @@
+   void      (*thread_self)        (gpointer              thread);
+   gboolean  (*thread_equal)       (gpointer              thread1,
+ 				   gpointer              thread2);
+-  guint64   (*gettime)            (void);
+ };
+ 
+ GLIB_VAR GThreadFunctions       g_thread_functions_for_glib_use;
+ GLIB_VAR gboolean               g_thread_use_default_impl;
+ GLIB_VAR gboolean               g_threads_got_initialized;
+ 
++GLIB_VAR guint64   (*g_thread_gettime) (void);
++
+ /* initializes the mutex/cond/private implementation for glib, might
+  * only be called once, and must not be called directly or indirectly
+  * from another glib-function, e.g. as a callback.
+Index: gthread/gthread-posix.c
+===================================================================
+--- gthread/gthread-posix.c	(revision 5276)
++++ gthread/gthread-posix.c	(working copy)
+@@ -426,23 +426,20 @@
+   return (pthread_equal (*(pthread_t*)thread1, *(pthread_t*)thread2) != 0);
+ }
+ 
++#ifdef USE_CLOCK_GETTIME 
+ static guint64
+-g_gettime_posix_impl (void)
++gettime (void)
+ {
+-#ifdef USE_CLOCK_GETTIME 
+   struct timespec tv;
+ 
+   clock_gettime (posix_clock, &tv);
+ 
+   return (guint64) tv.tv_sec * G_NSEC_PER_SEC + tv.tv_nsec;
++}
++static guint64 (*g_thread_gettime_impl)(void) = gettime;
+ #else
+-  struct timeval tv;
+-
+-  gettimeofday (&tv, NULL);
+-
+-  return (guint64) tv.tv_sec * G_NSEC_PER_SEC + tv.tv_usec * (G_NSEC_PER_SEC / G_USEC_PER_SEC);
++static guint64 (*g_thread_gettime_impl)(void) = 0;
+ #endif
+-}
+ 
+ static GThreadFunctions g_thread_functions_for_glib_use_default =
+ {
+@@ -466,6 +463,5 @@
+   g_thread_exit_posix_impl,
+   g_thread_set_priority_posix_impl,
+   g_thread_self_posix_impl,
+-  g_thread_equal_posix_impl,
+-  g_gettime_posix_impl
++  g_thread_equal_posix_impl
+ };
+Index: gthread/gthread-win32.c
+===================================================================
+--- gthread/gthread-win32.c	(revision 5276)
++++ gthread/gthread-win32.c	(working copy)
+@@ -546,7 +546,7 @@
+ }
+ 
+ static guint64
+-g_gettime_win32_impl (void)
++g_thread_gettime_impl (void)
+ {
+   guint64 v;
+ 
+@@ -578,8 +578,7 @@
+   g_thread_exit_win32_impl,
+   g_thread_set_priority_win32_impl,
+   g_thread_self_win32_impl,
+-  NULL,                             /* no equal function necessary */
+-  g_gettime_win32_impl
++  NULL                             /* no equal function necessary */
+ };
+ 
+ #define HAVE_G_THREAD_IMPL_INIT
+Index: gthread/gthread-none.c
+===================================================================
+--- gthread/gthread-none.c	(revision 5276)
++++ gthread/gthread-none.c	(working copy)
+@@ -34,4 +34,6 @@
+ static GThreadFunctions
+ g_thread_functions_for_glib_use_default; /* is NULLified */
+ 
++static guint64 (*g_thread_gettime_impl) (void) = NULL;
++ 
+ #define G_MUTEX_SIZE 0
+Index: gthread/gthread-impl.c
+===================================================================
+--- gthread/gthread-impl.c	(revision 5276)
++++ gthread/gthread-impl.c	(working copy)
+@@ -312,6 +312,8 @@
+     g_thread_use_default_impl = FALSE;
+ 
+   g_thread_functions_for_glib_use = *init;
++  if (g_thread_gettime_impl)
++    g_thread_gettime = g_thread_gettime_impl;
+ 
+   supported = (init->mutex_new &&
+ 	       init->mutex_lock &&
+@@ -332,8 +334,7 @@
+ 	       init->thread_join &&
+ 	       init->thread_exit &&
+ 	       init->thread_set_priority &&
+-	       init->thread_self &&
+-               init->gettime);
++	       init->thread_self);
+ 
+   /* if somebody is calling g_thread_init (), it means that he wants to
+    * have thread support, so check this
