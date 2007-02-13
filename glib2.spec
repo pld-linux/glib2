@@ -4,17 +4,17 @@
 %bcond_without	static_libs	# don't build static library
 #
 Summary:	Useful routines for 'C' programming
-Summary(cs.UTF-8):   Šikovná knihovna s funkcemi pro pomocné programy
-Summary(da.UTF-8):   Nyttige biblioteksfunktioner
-Summary(de.UTF-8):   Eine nützliche Library von Dienstprogramm-Funktionen
-Summary(es.UTF-8):   Conjunto de funciones gráficas utilitarias
-Summary(fi.UTF-8):   Kirjasto, jossa on työkalufunktioita
-Summary(fr.UTF-8):   Bibliothèque de fonctions utilitaires
-Summary(ja.UTF-8):   便利なユーティリティ関数のライブラリ
-Summary(pl.UTF-8):   Biblioteka zawierająca wiele użytecznych funkcji C
-Summary(pt_BR.UTF-8):   Conjunto de funções gráficas utilitárias
-Summary(tr.UTF-8):   Yararlı ufak yordamlar kitaplığı
-Summary(zh_CN.UTF-8):   实用工具函数库
+Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
+Summary(da.UTF-8):	Nyttige biblioteksfunktioner
+Summary(de.UTF-8):	Eine nützliche Library von Dienstprogramm-Funktionen
+Summary(es.UTF-8):	Conjunto de funciones gráficas utilitarias
+Summary(fi.UTF-8):	Kirjasto, jossa on työkalufunktioita
+Summary(fr.UTF-8):	Bibliothèque de fonctions utilitaires
+Summary(ja.UTF-8):	便利なユーティリティ関数のライブラリ
+Summary(pl.UTF-8):	Biblioteka zawierająca wiele użytecznych funkcji C
+Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
+Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
+Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.12.9
 Release:	1
@@ -92,9 +92,9 @@ dosyaları glib-devel paketinde yer almaktadır.
 
 %package devel
 Summary:	Glib heades files, documentation
-Summary(es.UTF-8):   Conjunto de funciones gráficas utilitarias para desarrollo
-Summary(pl.UTF-8):   Pliki nagłówkowe i dokumentacja do glib
-Summary(pt_BR.UTF-8):   Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
+Summary(es.UTF-8):	Conjunto de funciones gráficas utilitarias para desarrollo
+Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do glib
+Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -125,8 +125,8 @@ públicas. A GLIB inclui estruturas de dados genéricas úteis.
 
 %package static
 Summary:	Static glib libraries
-Summary(pl.UTF-8):   Biblioteki statyczne glib
-Summary(pt_BR.UTF-8):   Bibliotecas estáticas para desenvolvimento com glib
+Summary(pl.UTF-8):	Biblioteki statyczne glib
+Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com glib
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
@@ -141,7 +141,7 @@ Bibliotecas estáticas para desenvolvimento com glib.
 
 %package apidocs
 Summary:	Glib API documetation
-Summary(pl.UTF-8):   Dokumentacja API Glib
+Summary(pl.UTF-8):	Dokumentacja API Glib
 Group:		Documentation
 Requires:	gtk-doc-common
 
