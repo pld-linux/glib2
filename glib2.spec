@@ -17,7 +17,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.12.9
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -25,6 +25,7 @@ Source0:	ftp://ftp.gtk.org/pub/glib/2.12/glib-%{version}.tar.bz2
 # Source0-md5:	b3f6a2a318610af6398b3445f1a2d6c6
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
+Patch2:		%{name}-noarch.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -155,6 +156,8 @@ Dokumentacja API Glib.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
 sed -e '/^docs.*Makefile$/d' -i configure.in
