@@ -16,13 +16,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.12.10
-Release:	2
+Version:	2.12.11
+Release:	1
 Epoch:		1
 License:	LGPL
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/glib/2.12/glib-%{version}.tar.bz2
-# Source0-md5:	82d44a53690b0eff8f7a5dc65e592f61
+# Source0-md5:	077a9917b673a9a0bc63f351786dde24
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 Patch2:		%{name}-noarch.patch
