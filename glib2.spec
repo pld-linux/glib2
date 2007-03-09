@@ -189,9 +189,6 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
-# unsupported (?)
-rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/be\@latin
-
 %find_lang glib20 --with-gnome
 
 %clean
