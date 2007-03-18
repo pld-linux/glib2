@@ -92,11 +92,15 @@ dosyalarý glib-devel paketinde yer almaktadýr.
 
 %package libs
 Summary:	Shared Glib libraries
+Summary(pl):	Biblioteka wspó³dzielona Glib
 Group:		Libraries
 Conflicts:	glib2 < 1:2.10.3-2
 
 %description libs
 Glib shared libraries.
+
+%description libs -l pl
+Biblioteka wspó³dzielona Glib.
 
 %package devel
 Summary:	Glib heades files, documentation
