@@ -17,7 +17,7 @@ Summary(tr):	Yararlý ufak yordamlar kitaplýðý
 Summary(zh_CN):	ÊµÓÃ¹¤¾ßº¯Êý¿â
 Name:		glib2
 Version:	2.10.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -37,6 +37,7 @@ BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	gettext-devel
 BuildRequires:	perl-base
 BuildRequires:	rpmbuild(macros) >= 1.197
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 Requires:	iconv
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -89,13 +90,21 @@ arquivos de inclusão estão em glib-devel.
 Yararlý yordamlar kitaplýðý. Geliþtirme kitaplýklarý ve baþlýk
 dosyalarý glib-devel paketinde yer almaktadýr.
 
+%package libs
+Summary:	Shared Glib libraries
+Group:		Libraries
+Conflicts:	glib2 < 1:2.10.3-2
+
+%description libs
+Glib shared libraries.
+
 %package devel
 Summary:	Glib heades files, documentation
 Summary(es):	Conjunto de funciones gráficas utilitarias para desarrollo
 Summary(pl):	Pliki nag³ówkowe i dokumentacja do glib
 Summary(pt_BR):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
@@ -187,12 +196,15 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files -f glib.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
+
+%files libs
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
