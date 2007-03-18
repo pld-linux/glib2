@@ -17,7 +17,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.12.11
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL
 Group:		Libraries
@@ -40,6 +40,7 @@ BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 %{!?with_apidocs:BuildRequires:	sed >= 4.0}
 Requires:	iconv
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -91,13 +92,21 @@ arquivos de inclusão estão em glib-devel.
 Yararlı yordamlar kitaplığı. Geliştirme kitaplıkları ve başlık
 dosyaları glib-devel paketinde yer almaktadır.
 
+%package libs
+Summary:	Shared Glib libraries
+Group:		Libraries
+Conflicts:	glib2 < 1:2.12.11-2
+
+%description libs
+Glib shared libraries.
+
 %package devel
 Summary:	Glib heades files, documentation
 Summary(es.UTF-8):	Conjunto de funciones gráficas utilitarias para desarrollo
 Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do glib
 Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name}-libs = %{epoch}:%{version}-%{release}
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
@@ -194,12 +203,15 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post	libs -p /sbin/ldconfig
+%postun	libs -p /sbin/ldconfig
 
 %files -f glib20.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
+
+%files libs
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
