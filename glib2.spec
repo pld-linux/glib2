@@ -94,11 +94,15 @@ dosyaları glib-devel paketinde yer almaktadır.
 
 %package libs
 Summary:	Shared Glib libraries
+Summary(pl.UTF-8):	Biblioteka współdzielona Glib
 Group:		Libraries
 Conflicts:	glib2 < 1:2.12.11-2
 
 %description libs
 Glib shared libraries.
+
+%description libs -l pl.UTF-8
+Biblioteka współdzielona Glib.
 
 %package devel
 Summary:	Glib heades files, documentation
