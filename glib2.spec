@@ -19,7 +19,7 @@ Name:		glib2
 Version:	2.12.13
 Release:	1
 Epoch:		1
-License:	LGPL
+License:	LGPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/glib/2.12/glib-%{version}.tar.bz2
 # Source0-md5:	d76124236e4e216e8c0861341e967a76
