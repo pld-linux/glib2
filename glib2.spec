@@ -16,13 +16,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.12.13
+Version:	2.14.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	ftp://ftp.gtk.org/pub/glib/2.12/glib-%{version}.tar.bz2
-# Source0-md5:	d76124236e4e216e8c0861341e967a76
+Source0:	ftp://ftp.gtk.org/pub/glib/2.14/glib-%{version}.tar.bz2
+# Source0-md5:	6fabf21f68631043bc6924e01398e3af
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 Patch2:		%{name}-noarch.patch
@@ -32,8 +32,8 @@ BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	gettext-devel
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.7}
-%{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.7}
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
+%{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.8}
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.14.0
