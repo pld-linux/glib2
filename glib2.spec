@@ -16,13 +16,14 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.14.0
+Version:	2.14.1
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	ftp://ftp.gtk.org/pub/glib/2.14/glib-%{version}.tar.bz2
-# Source0-md5:	6fabf21f68631043bc6924e01398e3af
+#Source0:	ftp://ftp.gtk.org/pub/glib/2.14/glib-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.14/glib-%{version}.tar.bz2
+# Source0-md5:	196d7944a8ddc1f7c3d1e9c7146dd560
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 Patch2:		%{name}-noarch.patch
