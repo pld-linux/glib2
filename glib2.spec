@@ -21,12 +21,12 @@ Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-#Source0:	ftp://ftp.gtk.org/pub/glib/2.14/glib-%{version}.tar.bz2
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.14/glib-%{version}.tar.bz2
+Source0:	ftp://ftp.gtk.org/pub/glib/2.14/glib-%{version}.tar.bz2
 # Source0-md5:	fca5d26c8efea4e6e547c81c801bf67c
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 Patch2:		%{name}-noarch.patch
+Patch3:		%{name}-asneeded.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -36,11 +36,13 @@ BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.8}
 BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	pcre-devel >= 7.2
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 %{!?with_apidocs:BuildRequires:	sed >= 4.0}
 Requires:	iconv
+Requires:	pcre >= 7.2
 Provides:	glib2-libs
 Obsoletes:	glib2-libs
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -101,6 +103,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do glib
 Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	pcre-devel >= 7.2
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
@@ -160,6 +163,7 @@ Dokumentacja API Glib.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
@@ -180,7 +184,8 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--enable-debug=%{?debug:yes} \
 	--enable-man \
-	--enable-threads
+	--enable-threads \
+	--with-pcre=system
 
 %{__make}
 
