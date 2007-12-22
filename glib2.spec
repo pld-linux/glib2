@@ -19,13 +19,14 @@ Name:		glib2
 Version:	2.15.0
 Release:	1
 Epoch:		1
-License:	LGPL
+License:	LGPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/glib/2.15/glib-%{version}.tar.bz2
 # Source0-md5:	52536475a3f301842cf3448f19af094c
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 Patch2:		%{name}-noarch.patch
+Patch3:		%{name}-asneeded.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -35,12 +36,17 @@ BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.8}
 BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	pcre-devel >= 7.2
 BuildRequires:	perl-base
-BuildRequires:	pkgconfig >= 1:0.14.0
+BuildRequires:	pkgconfig >= 1:0.16.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 %{!?with_apidocs:BuildRequires:	sed >= 4.0}
 Requires:	iconv
+Requires:	pcre >= 7.2
+Provides:	glib2-libs
 Obsoletes:	glib2-libs
+# sr@Latn vs. sr@latin
+Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -99,6 +105,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do glib
 Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	pcre-devel >= 7.2
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
@@ -158,6 +165,7 @@ Dokumentacja API Glib.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
@@ -178,7 +186,8 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--enable-debug=%{?debug:yes} \
 	--enable-man \
-	--enable-threads
+	--enable-threads \
+	--with-pcre=system
 
 %{__make}
 
@@ -190,6 +199,8 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
+[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
+	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 %find_lang glib20 --with-gnome
 
 %clean
