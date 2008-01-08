@@ -212,32 +212,63 @@ rm -rf $RPM_BUILD_ROOT
 %files -f glib20.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libglib-2.0.so.0
+%attr(755,root,root) %{_libdir}/libgmodule-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgmodule-2.0.so.0
+%attr(755,root,root) %{_libdir}/libgobject-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgobject-2.0.so.0
+%attr(755,root,root) %{_libdir}/libgthread-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgthread-2.0.so.0
 
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_bindir}/glib-genmarshal
+%attr(755,root,root) %{_bindir}/glib-gettextize
+%attr(755,root,root) %{_bindir}/glib-mkenums
+%attr(755,root,root) %{_bindir}/gobject-query
+%attr(755,root,root) %{_libdir}/libglib-2.0.so
+%attr(755,root,root) %{_libdir}/libgmodule-2.0.so
+%attr(755,root,root) %{_libdir}/libgobject-2.0.so
+%attr(755,root,root) %{_libdir}/libgthread-2.0.so
+%{_libdir}/libglib-2.0.la
+%{_libdir}/libgmodule-2.0.la
+%{_libdir}/libgobject-2.0.la
+%{_libdir}/libgthread-2.0.la
+%{_includedir}/glib-2.0
+%{_libdir}/glib-2.0
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/gettext
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gettext/po
-%{_pkgconfigdir}/*
-%{_libdir}/glib-2.0
-%{_includedir}/*
-%{_aclocaldir}/*
-%{?with_apidocs:%{_mandir}/man?/*}
+%{_pkgconfigdir}/glib-2.0.pc
+%{_pkgconfigdir}/gmodule-2.0.pc
+%{_pkgconfigdir}/gmodule-export-2.0.pc
+%{_pkgconfigdir}/gmodule-no-export-2.0.pc
+%{_pkgconfigdir}/gobject-2.0.pc
+%{_pkgconfigdir}/gthread-2.0.pc
+%{_aclocaldir}/glib-2.0.m4
+%{_aclocaldir}/glib-gettext.m4
+%if %{with apidocs}
+%{_mandir}/man1/glib-genmarshal.1*
+%{_mandir}/man1/glib-gettextize.1*
+%{_mandir}/man1/glib-mkenums.1*
+%{_mandir}/man1/gobject-query.1*
+%endif
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libglib-2.0.a
+%{_libdir}/libgmodule-2.0.a
+%{_libdir}/libgobject-2.0.a
+%{_libdir}/libgthread-2.0.a
 %endif
 
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/*
+%{_gtkdocdir}/glib
+%{_gtkdocdir}/gobject
 %endif
