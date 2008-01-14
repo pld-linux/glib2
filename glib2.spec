@@ -16,13 +16,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.15.1
+Version:	2.15.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/glib/2.15/glib-%{version}.tar.bz2
-# Source0-md5:	b3a2ca18e618927d03d39000f2155958
+# Source0-md5:	633243dd337464a61336146ab862a646
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 Patch2:		%{name}-noarch.patch
@@ -215,10 +215,15 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
 %attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libglib-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgmodule-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgmodule-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgobject-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgobject-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgthread-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgthread-2.0.so.0
 %dir %{_libdir}/gio
 %dir %{_libdir}/gio/modules
 %attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
@@ -226,7 +231,12 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/glib-genmarshal
+%attr(755,root,root) %{_bindir}/glib-gettextize
+%attr(755,root,root) %{_bindir}/glib-mkenums
+%attr(755,root,root) %{_bindir}/gobject-query
+%attr(755,root,root) %{_bindir}/gtester
+%attr(755,root,root) %{_bindir}/gtester-report
 %attr(755,root,root) %{_libdir}/libgio-2.0.so
 %attr(755,root,root) %{_libdir}/libglib-2.0.so
 %attr(755,root,root) %{_libdir}/libgmodule-2.0.so
@@ -241,12 +251,25 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/glib-2.0/gettext
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gettext/po
-%{_pkgconfigdir}/*.pc
+%{_pkgconfigdir}/gio-2.0.pc
+%{_pkgconfigdir}/gio-unix-2.0.pc
+%{_pkgconfigdir}/glib-2.0.pc
+%{_pkgconfigdir}/gmodule-2.0.pc
+%{_pkgconfigdir}/gmodule-export-2.0.pc
+%{_pkgconfigdir}/gmodule-no-export-2.0.pc
+%{_pkgconfigdir}/gobject-2.0.pc
+%{_pkgconfigdir}/gthread-2.0.pc
 %{_libdir}/glib-2.0
 %{_includedir}/gio-unix-2.0
 %{_includedir}/glib-2.0
-%{_aclocaldir}/*.m4
-%{?with_apidocs:%{_mandir}/man?/*}
+%{_aclocaldir}/glib-2.0.m4
+%{_aclocaldir}/glib-gettext.m4
+%if %{with apidocs}
+%{_mandir}/man1/glib-genmarshal.1*
+%{_mandir}/man1/glib-gettextize.1*
+%{_mandir}/man1/glib-mkenums.1*
+%{_mandir}/man1/gobject-query.1*
+%endif
 
 %if %{with static_libs}
 %files static
