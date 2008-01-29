@@ -16,17 +16,15 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.15.3
+Version:	2.15.4
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.acc.umu.se/pub/GNOME/sources/glib/2.15/glib-%{version}.tar.bz2
-# Source0-md5:	83aa09c6126e3111c9f371c1396324e7
+# Source0-md5:	27aefcf0e57a56abbb9c9f1442dc2e8f
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
-Patch2:		%{name}-noarch.patch
-Patch3:		%{name}-asneeded.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -164,8 +162,6 @@ Dokumentacja API Glib.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
 
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
