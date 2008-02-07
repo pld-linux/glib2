@@ -16,13 +16,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.14.5
+Version:	2.14.6
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/glib/2.14/glib-%{version}.tar.bz2
-# Source0-md5:	c7eedaacd39d3606c307da5ea7fc7018
+# Source0-md5:	3b340946d6916ee9cbf2c348e7c099f1
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 Patch2:		%{name}-noarch.patch
@@ -36,13 +36,13 @@ BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.8}
 BuildRequires:	libtool >= 1:1.4.2-9
-BuildRequires:	pcre-devel >= 7.2
+BuildRequires:	pcre-devel >= 7.6
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.14.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 %{!?with_apidocs:BuildRequires:	sed >= 4.0}
 Requires:	iconv
-Requires:	pcre >= 7.2
+Requires:	pcre >= 7.6
 Provides:	glib2-libs
 Obsoletes:	glib2-libs
 # sr@Latn vs. sr@latin
@@ -105,7 +105,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do glib
 Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	pcre-devel >= 7.2
+Requires:	pcre-devel >= 7.6
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
