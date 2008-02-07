@@ -21,7 +21,7 @@ Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	ftp://ftp.gtk.org/pub/glib/2.14/glib-%{version}.tar.bz2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.14/glib-%{version}.tar.bz2
 # Source0-md5:	3b340946d6916ee9cbf2c348e7c099f1
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
