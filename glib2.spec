@@ -16,13 +16,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.15.5
+Version:	2.15.6
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.15/glib-%{version}.tar.bz2
-# Source0-md5:	a23f331f36ff78c8bffd37973fbfbb28
+# Source0-md5:	62b1a3c1fa52b8d91b4535e4a4ab3057
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
 URL:		http://www.gtk.org/
@@ -30,6 +30,7 @@ BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
+BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.8}
@@ -199,7 +200,7 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.{la,a}
 
 [ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
 	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
-%find_lang glib20 --with-gnome
+%find_lang glib20
 
 %clean
 rm -rf $RPM_BUILD_ROOT
