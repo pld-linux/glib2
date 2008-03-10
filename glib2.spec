@@ -16,29 +16,28 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.14.6
+Version:	2.16.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.14/glib-%{version}.tar.bz2
-# Source0-md5:	3b340946d6916ee9cbf2c348e7c099f1
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.16/glib-%{version}.tar.bz2
+# Source0-md5:	9b1e503956265050bc0bfd9feb2cc2d2
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-SEGV.patch
-Patch2:		%{name}-noarch.patch
-Patch3:		%{name}-asneeded.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
+BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.8}
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pcre-devel >= 7.6
 BuildRequires:	perl-base
-BuildRequires:	pkgconfig >= 1:0.14.0
+BuildRequires:	pkgconfig >= 1:0.16.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 %{!?with_apidocs:BuildRequires:	sed >= 4.0}
 Requires:	iconv
@@ -164,8 +163,6 @@ Dokumentacja API Glib.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
 
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
@@ -199,9 +196,11 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
+rm -f $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.{la,a}
+
 [ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
 	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
-%find_lang glib20 --with-gnome
+%find_lang glib20
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -212,6 +211,8 @@ rm -rf $RPM_BUILD_ROOT
 %files -f glib20.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
+%attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
 %attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libglib-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgmodule-2.0.so.*.*.*
@@ -220,6 +221,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libgobject-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgthread-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgthread-2.0.so.0
+%dir %{_libdir}/gio
+%dir %{_libdir}/gio/modules
+%attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
 
 %files devel
 %defattr(644,root,root,755)
@@ -228,26 +232,33 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/glib-gettextize
 %attr(755,root,root) %{_bindir}/glib-mkenums
 %attr(755,root,root) %{_bindir}/gobject-query
+%attr(755,root,root) %{_bindir}/gtester
+%attr(755,root,root) %{_bindir}/gtester-report
+%attr(755,root,root) %{_libdir}/libgio-2.0.so
 %attr(755,root,root) %{_libdir}/libglib-2.0.so
 %attr(755,root,root) %{_libdir}/libgmodule-2.0.so
 %attr(755,root,root) %{_libdir}/libgobject-2.0.so
 %attr(755,root,root) %{_libdir}/libgthread-2.0.so
+%{_libdir}/libgio-2.0.la
 %{_libdir}/libglib-2.0.la
 %{_libdir}/libgmodule-2.0.la
 %{_libdir}/libgobject-2.0.la
 %{_libdir}/libgthread-2.0.la
-%{_includedir}/glib-2.0
-%{_libdir}/glib-2.0
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/gettext
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gettext/po
+%{_pkgconfigdir}/gio-2.0.pc
+%{_pkgconfigdir}/gio-unix-2.0.pc
 %{_pkgconfigdir}/glib-2.0.pc
 %{_pkgconfigdir}/gmodule-2.0.pc
 %{_pkgconfigdir}/gmodule-export-2.0.pc
 %{_pkgconfigdir}/gmodule-no-export-2.0.pc
 %{_pkgconfigdir}/gobject-2.0.pc
 %{_pkgconfigdir}/gthread-2.0.pc
+%{_libdir}/glib-2.0
+%{_includedir}/gio-unix-2.0
+%{_includedir}/glib-2.0
 %{_aclocaldir}/glib-2.0.m4
 %{_aclocaldir}/glib-gettext.m4
 %if %{with apidocs}
@@ -260,6 +271,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
+%{_libdir}/libgio-2.0.a
 %{_libdir}/libglib-2.0.a
 %{_libdir}/libgmodule-2.0.a
 %{_libdir}/libgobject-2.0.a
@@ -269,6 +281,7 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
+%{_gtkdocdir}/gio
 %{_gtkdocdir}/glib
 %{_gtkdocdir}/gobject
 %endif
