@@ -24,7 +24,7 @@ Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.16/glib-%{version}.tar.bz2
 # Source0-md5:	9852daf0605f827bfd7199ffe4f5b22d
 Patch0:		%{name}-makefile.patch
-Patch1:		%{name}-SEGV.patch
+Patch1:		%{name}-lt.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
