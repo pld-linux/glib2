@@ -1,7 +1,13 @@
+# TODO:
+#	fix selinux mess:
+#		rm -lselinux from libglib-2.0.la (and others)
+#		add -lselinux to gio-2.0
+#		what about libselinux-devel in glib2-devel
 #
 # Conditional build:
 %bcond_without	apidocs         # disable gtk-doc
 %bcond_without	static_libs	# don't build static library
+%bcond_with	selinux		# gio with selinux support
 #
 Summary:	Useful routines for 'C' programming
 Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
@@ -17,7 +23,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.16.1
-Release:	2
+Release:	2.1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -34,6 +40,7 @@ BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.8}
+%{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pcre-devel >= 7.6
 BuildRequires:	perl-base
@@ -180,6 +187,7 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %configure \
 	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
+	--%{?with_selinux:en}%{!?with_selinux:dis}able-selinux \
 	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
 	--enable-debug=%{?debug:yes} \
 	--enable-man \
