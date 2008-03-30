@@ -1,6 +1,5 @@
 # TODO:
 #	fix selinux mess:
-#		rm -lselinux from libglib-2.0.la (and others)
 #		add -lselinux to gio-2.0
 #		what about libselinux-devel in glib2-devel
 #
@@ -31,6 +30,7 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.16/glib-%{version}.tar.bz
 # Source0-md5:	9852daf0605f827bfd7199ffe4f5b22d
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-lt.patch
+Patch2:		%{name}-selinux.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -170,6 +170,7 @@ Dokumentacja API Glib.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
