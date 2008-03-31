@@ -22,7 +22,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.16.1
-Release:	4
+Release:	5
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
