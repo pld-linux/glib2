@@ -22,7 +22,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.16.1
-Release:	2.1
+Release:	3
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -51,8 +51,6 @@ Requires:	iconv
 Requires:	pcre >= 7.6
 Provides:	glib2-libs
 Obsoletes:	glib2-libs
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -207,8 +205,6 @@ rm -rf $RPM_BUILD_ROOT
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.{la,a}
 
-[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
-	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 %find_lang glib20
 
 %clean
