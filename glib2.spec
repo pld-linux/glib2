@@ -1,7 +1,6 @@
 # TODO:
-#	fix selinux mess:
-#		add -lselinux to gio-2.0
-#		what about libselinux-devel in glib2-devel
+#	missing -lselinux in gio-2.0.pc
+#	missing R: libselinux-devel in glib2-devel
 #
 # Conditional build:
 %bcond_without	apidocs         # disable gtk-doc
