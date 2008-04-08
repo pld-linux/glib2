@@ -20,13 +20,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.16.2
+Version:	2.16.3
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.16/glib-%{version}.tar.bz2
-# Source0-md5:	662224ad0186183f64de98ef2183454b
+# Source0-md5:	195f9a803cc5279dbb39afdf985f44cb
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-lt.patch
 Patch2:		%{name}-selinux.patch
