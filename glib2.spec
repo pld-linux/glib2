@@ -1,11 +1,8 @@
-# TODO:
-#	missing -lselinux in gio-2.0.pc
-#	missing R: libselinux-devel in glib2-devel
 #
 # Conditional build:
 %bcond_without	apidocs         # disable gtk-doc
 %bcond_without	static_libs	# don't build static library
-%bcond_with	selinux		# gio with selinux support
+%bcond_with	selinux		# gio with SELinux support
 #
 Summary:	Useful routines for 'C' programming
 Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
@@ -29,7 +26,6 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.16/glib-%{version}.tar.bz
 # Source0-md5:	195f9a803cc5279dbb39afdf985f44cb
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-lt.patch
-Patch2:		%{name}-selinux.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -111,6 +107,8 @@ Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do 
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	pcre-devel >= 7.6
+# gio only
+%{?with_selinux:Requires:	libselinux-devel}
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
@@ -169,7 +167,6 @@ Dokumentacja API Glib.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
