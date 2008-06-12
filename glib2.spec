@@ -23,7 +23,7 @@ Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.17/glib-%{version}.tar.bz2
-# Source0-md5:	03da0783697df2db187c76d1534b3d93
+# Source0-md5:	2df8550a229771859a791f20c56a47a8
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-lt.patch
 URL:		http://www.gtk.org/
