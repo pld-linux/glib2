@@ -17,7 +17,7 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.17.0
+Version:	2.17.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
@@ -271,6 +271,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/glib-gettextize.1*
 %{_mandir}/man1/glib-mkenums.1*
 %{_mandir}/man1/gobject-query.1*
+%{_mandir}/man1/gtester-report.1*
+%{_mandir}/man1/gtester.1*
 %endif
 
 %if %{with static_libs}
