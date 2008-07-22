@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.17.3
+Version:	2.17.4
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.17/glib-%{version}.tar.bz2
-# Source0-md5:	1683dcb0b5fc865833b01daad8026924
+# Source0-md5:	9692116d39c2bd00c53a9b469711e3fc
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-lt.patch
 URL:		http://www.gtk.org/
@@ -202,6 +202,8 @@ rm -rf $RPM_BUILD_ROOT
 	pkgconfigdir=%{_pkgconfigdir}
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.{la,a}
+
+rm -rf $RPM_BUILD_ROOT%{_datadir}/locale/ps
 
 [ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
 	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
