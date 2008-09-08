@@ -37,13 +37,13 @@ BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.8}
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libtool >= 1:1.4.2-9
-BuildRequires:	pcre-devel >= 7.6
+BuildRequires:	pcre-devel >= 7.8
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16.0
 BuildRequires:	rpmbuild(macros) >= 1.197
 %{!?with_apidocs:BuildRequires:	sed >= 4.0}
 Requires:	iconv
-Requires:	pcre >= 7.6
+Requires:	pcre >= 7.8
 Provides:	glib2-libs
 Obsoletes:	glib2-libs
 # sr@Latn vs. sr@latin
@@ -106,7 +106,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do glib
 Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	pcre-devel >= 7.6
+Requires:	pcre-devel >= 7.8
 # gio only
 %{?with_selinux:Requires:	libselinux-devel}
 
