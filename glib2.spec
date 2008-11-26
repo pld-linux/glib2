@@ -39,6 +39,7 @@ BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pcre-devel >= 7.8
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16.0
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 %{!?with_apidocs:BuildRequires:	sed >= 4.0}
 Requires:	iconv
