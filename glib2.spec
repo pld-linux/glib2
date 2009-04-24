@@ -32,8 +32,8 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.8}
-%{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.8}
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.11}
+%{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.11}
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRequires:	pcre-devel >= 7.8
