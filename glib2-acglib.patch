@@ -1,0 +1,30 @@
+From c07b1c7a6218c74b3bee88aee06c47d912b61a60 Mon Sep 17 00:00:00 2001
+From: =?utf-8?q?Fr=C3=A9d=C3=A9ric=20P=C3=A9ters?= <fpeters@0d.be>
+Date: Fri, 14 Aug 2009 21:00:41 +0200
+Subject: [PATCH] Update GLIB_CHECK_COMPILE_WARNINGS macro to work with Autoconf 2.64
+
+Quoting its NEWS file: "The m4sh macros AS_IF and AS_CASE can now be
+used in shell lists.  The responsibility for supplying a trailing
+newline now belongs to the call site, but since most users did not add
+dnl, this generally results in fewer empty lines in configure."
+
+http://bugzilla.gnome.org/show_bug.cgi?id=591840
+---
+ acglib.m4 |    2 +-
+ 1 files changed, 1 insertions(+), 1 deletions(-)
+
+diff --git a/acglib.m4 b/acglib.m4
+index 530c0af..4778bfa 100644
+--- a/acglib.m4
++++ b/acglib.m4
+@@ -117,7 +117,7 @@ AS_IF([_AC_EVAL_STDERR($ac_compile) &&
+       [$2],
+       [echo "$as_me: failed program was:" >&AS_MESSAGE_LOG_FD
+ cat conftest.$ac_ext >&AS_MESSAGE_LOG_FD
+-m4_ifvaln([$3],[$3])dnl])dnl
++m4_ifvaln([$3],[$3])dnl])
+ ac_compile="$glib_ac_compile_save"
+ rm -f conftest.$ac_objext conftest.err m4_ifval([$1], [conftest.$ac_ext])[]dnl
+ ])# GLIB_CHECK_COMPILE_WARNINGS
+-- 
+1.6.3.3
