@@ -25,6 +25,7 @@ Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.21/glib-%{version}.tar.bz2
 # Source0-md5:	5092c5b479ba80065dc164d27e63000f
 Patch0:		%{name}-makefile.patch
+Patch1:		%{name}-acglib.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -166,6 +167,7 @@ Dokumentacja API GLib.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
