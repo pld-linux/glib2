@@ -17,15 +17,14 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.21.4
+Version:	2.21.5
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.21/glib-%{version}.tar.bz2
-# Source0-md5:	5092c5b479ba80065dc164d27e63000f
+# Source0-md5:	5f3f19c4a8088c51e21cad5b8ea166e5
 Patch0:		%{name}-makefile.patch
-Patch1:		%{name}-acglib.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
 BuildRequires:	automake >= 1:1.7
@@ -167,7 +166,6 @@ Dokumentacja API GLib.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
