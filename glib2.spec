@@ -162,6 +162,8 @@ Dokumentacja API GLib.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+sed -i s#^en@shaw## po/LINGUAS
+rm po/en@shaw.po
 
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
