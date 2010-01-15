@@ -42,7 +42,6 @@ BuildRequires:	pkgconfig >= 1:0.16.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 %{!?with_apidocs:BuildRequires:	sed >= 4.0}
-%{?with_apidocs:BuildRequires:	source-highlight}
 Requires:	iconv
 Requires:	pcre >= 7.8
 Provides:	glib2-libs
