@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.22.4
+Version:	2.22.5
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.22/glib-%{version}.tar.bz2
-# Source0-md5:	d91bcbe27556430ddecce65086355708
+# Source0-md5:	63413f704c2b07d6e81469b25cff5e60
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
@@ -78,11 +78,9 @@ header-tiedostot ovat glib-devel-paketissa.
 
 %description -l ja.UTF-8
 GLibはユーティリティ関数を集めた便利なライブラリです。このＣ言語用ライブラリは、
-いくつかの問題を解決するよう設計されており、多くのプログラムから要求される使いやすい
-関数を提供します。
+いくつかの問題を解決するよう設計されており、多くのプログラムから要求される使いやすい 関数を提供します。
 
-GLibはGDK,
-GTK+他多くのアプリケーションで利用される。このライブラリに依存するアプリケーション
+GLibはGDK, GTK+他多くのアプリケーションで利用される。このライブラリに依存するアプリケーション
 等のためにこのglibパッケージをインストールしてください。
 
 %description -l pl.UTF-8
@@ -120,11 +118,9 @@ Conjunto de funciones gráficas utilitarias para desarrollo.
 
 %description devel -l ja.UTF-8
 glib2-develパッケージには、一般ライブラリとして有効なGIMPのXライブラリ群
-(GtkとGDK)をサポートするライブラリ向けにスタティックライブラリとヘッダが
-含まれています。
+(GtkとGDK)をサポートするライブラリ向けにスタティックライブラリとヘッダが 含まれています。
 
-もしGLibを使ってプログラムを開発するならば、glib-develパッケージをインスト
-ールしてください。
+もしGLibを使ってプログラムを開発するならば、glib-develパッケージをインスト ールしてください。
 
 %description devel -l pl.UTF-8
 Pliki nagłówkowe i dokumentacja do GLib przydatna przy pisaniu
