@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.22.5
+Version:	2.24.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.22/glib-%{version}.tar.bz2
-# Source0-md5:	63413f704c2b07d6e81469b25cff5e60
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.24/glib-%{version}.tar.bz2
+# Source0-md5:	45a8bc697d07f859566c0b64c40382a8
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
@@ -41,7 +41,8 @@ BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
-%{!?with_apidocs:BuildRequires:	sed >= 4.0}
+BuildRequires:	sed >= 4.0
+BuildRequires:	zlib-devel
 Requires:	iconv
 Requires:	pcre >= 7.8
 Provides:	glib2-libs
@@ -162,6 +163,8 @@ Dokumentacja API GLib.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+sed -i s#^en@shaw## po/LINGUAS
+rm po/en@shaw.po
 
 %if !%{with apidocs}
 sed -e '/SUBDIRS/s/docs//' -i Makefile.am
@@ -196,6 +199,8 @@ rm -rf $RPM_BUILD_ROOT
 	m4datadir=%{_aclocaldir} \
 	pkgconfigdir=%{_pkgconfigdir}
 
+> $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
+
 rm -f $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.{la,a}
 
 %find_lang glib20
@@ -203,12 +208,19 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.{la,a}
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
+%post
+/sbin/ldconfig
+
+umask 022
+%{_bindir}/gio-querymodules %{_libdir}/gio/modules
+exit 0
+
 %postun	-p /sbin/ldconfig
 
 %files -f glib20.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
+%attr(755,root,root) %{_bindir}/gio-querymodules
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
 %attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
@@ -222,6 +234,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/gio
 %dir %{_libdir}/gio/modules
 %attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
+%ghost %{_libdir}/gio/modules/giomodule.cache
 
 %files devel
 %defattr(644,root,root,755)
