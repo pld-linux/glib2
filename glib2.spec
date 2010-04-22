@@ -235,6 +235,7 @@ exit 0
 %dir %{_libdir}/gio/modules
 %attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
 %ghost %{_libdir}/gio/modules/giomodule.cache
+%{_mandir}/man1/gio-querymodules.1*
 
 %files devel
 %defattr(644,root,root,755)
@@ -243,6 +244,8 @@ exit 0
 %attr(755,root,root) %{_bindir}/glib-gettextize
 %attr(755,root,root) %{_bindir}/glib-mkenums
 %attr(755,root,root) %{_bindir}/gobject-query
+%attr(755,root,root) %{_bindir}/gschema-compile
+%attr(755,root,root) %{_bindir}/gsettings-schema-convert
 %attr(755,root,root) %{_bindir}/gtester
 %attr(755,root,root) %{_bindir}/gtester-report
 %attr(755,root,root) %{_libdir}/libgio-2.0.so
@@ -256,9 +259,11 @@ exit 0
 %{_libdir}/libgobject-2.0.la
 %{_libdir}/libgthread-2.0.la
 %dir %{_datadir}/glib-2.0
+%{_datadir}/glib-2.0/gdb
 %dir %{_datadir}/glib-2.0/gettext
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gettext/po
+%{_datadir}/glib-2.0/schemas
 %{_pkgconfigdir}/gio-2.0.pc
 %{_pkgconfigdir}/gio-unix-2.0.pc
 %{_pkgconfigdir}/glib-2.0.pc
@@ -277,6 +282,8 @@ exit 0
 %{_mandir}/man1/glib-gettextize.1*
 %{_mandir}/man1/glib-mkenums.1*
 %{_mandir}/man1/gobject-query.1*
+%{_mandir}/man1/gschema-compile.1*
+%{_mandir}/man1/gsettings-schema-convert.1*
 %{_mandir}/man1/gtester-report.1*
 %{_mandir}/man1/gtester.1*
 %endif
