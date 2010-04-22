@@ -163,12 +163,12 @@ Dokumentacja API GLib.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-sed -i s#^en@shaw## po/LINGUAS
+%{__sed} -i 's#^en@shaw##' po/LINGUAS
 rm po/en@shaw.po
 
 %if !%{with apidocs}
-sed -e '/SUBDIRS/s/docs//' -i Makefile.am
-sed -e '/^docs.*Makefile$/d' -i configure.in
+%{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
+%{__sed} -e '/^docs.*Makefile$/d' -i configure.in
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
 
