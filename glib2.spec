@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.25.1
+Version:	2.25.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.25/glib-%{version}.tar.bz2
-# Source0-md5:	b6d487c175ff7e9852b2efb35d587699
+# Source0-md5:	ffcff135340311c640d36df94615a9c0
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
@@ -221,6 +221,8 @@ exit 0
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
 %attr(755,root,root) %{_bindir}/gio-querymodules
+%attr(755,root,root) %{_bindir}/gschema-compile
+%attr(755,root,root) %{_bindir}/gsettings
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
 %attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
@@ -236,6 +238,8 @@ exit 0
 %attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
 %ghost %{_libdir}/gio/modules/giomodule.cache
 %{_mandir}/man1/gio-querymodules.1*
+%{_mandir}/man1/gschema-compile.1*
+%{_mandir}/man1/gsettings.1*
 
 %files devel
 %defattr(644,root,root,755)
@@ -244,7 +248,6 @@ exit 0
 %attr(755,root,root) %{_bindir}/glib-gettextize
 %attr(755,root,root) %{_bindir}/glib-mkenums
 %attr(755,root,root) %{_bindir}/gobject-query
-%attr(755,root,root) %{_bindir}/gschema-compile
 %attr(755,root,root) %{_bindir}/gsettings-schema-convert
 %attr(755,root,root) %{_bindir}/gtester
 %attr(755,root,root) %{_bindir}/gtester-report
@@ -273,6 +276,7 @@ exit 0
 %{_pkgconfigdir}/gobject-2.0.pc
 %{_pkgconfigdir}/gthread-2.0.pc
 %{_libdir}/glib-2.0
+%{_aclocaldir}/gsettings.m4
 %{_includedir}/gio-unix-2.0
 %{_includedir}/glib-2.0
 %{_aclocaldir}/glib-2.0.m4
