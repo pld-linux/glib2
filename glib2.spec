@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.25.2
+Version:	2.25.3
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.25/glib-%{version}.tar.bz2
-# Source0-md5:	ffcff135340311c640d36df94615a9c0
+# Source0-md5:	232973e3757620b7a8a81670d8691b6c
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
@@ -221,7 +221,7 @@ exit 0
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
 %attr(755,root,root) %{_bindir}/gio-querymodules
-%attr(755,root,root) %{_bindir}/gschema-compile
+%attr(755,root,root) %{_bindir}/glib-compile-schemas
 %attr(755,root,root) %{_bindir}/gsettings
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
@@ -238,7 +238,7 @@ exit 0
 %attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
 %ghost %{_libdir}/gio/modules/giomodule.cache
 %{_mandir}/man1/gio-querymodules.1*
-%{_mandir}/man1/gschema-compile.1*
+%{_mandir}/man1/glib-compile-schemas.1*
 %{_mandir}/man1/gsettings.1*
 
 %files devel
@@ -286,7 +286,6 @@ exit 0
 %{_mandir}/man1/glib-gettextize.1*
 %{_mandir}/man1/glib-mkenums.1*
 %{_mandir}/man1/gobject-query.1*
-%{_mandir}/man1/gschema-compile.1*
 %{_mandir}/man1/gsettings-schema-convert.1*
 %{_mandir}/man1/gtester-report.1*
 %{_mandir}/man1/gtester.1*
