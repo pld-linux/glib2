@@ -160,6 +160,18 @@ GLib API documetation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API GLib.
 
+%package -n bash-completion-gdbus
+Summary:	bash-completion for gdbus
+Summary(pl.UTF-8):	bashowe uzupełnianie nazw dla gdbus
+Group:		Applications/Shells
+Requires:	bash-completion
+
+%description -n bash-completion-gdbus
+bash-completion for gdbus.
+
+%description -n bash-completion-gdbus -l pl.UTF-8
+bashowe uzupełnianie nazw dla gdbus.
+
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
@@ -310,3 +322,7 @@ exit 0
 %{_gtkdocdir}/glib
 %{_gtkdocdir}/gobject
 %endif
+
+%files -n bash-completion-gdbus
+%defattr(644,root,root,755)
+%{_sysconfdir}/bash_completion.d/gdbus-bash-completion.sh
