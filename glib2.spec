@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.25.9
+Version:	2.25.10
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.25/glib-%{version}.tar.bz2
-# Source0-md5:	1ac1a3f912bc99f02555d02001394e5a
+# Source0-md5:	cdbe09f15536b526e19f06893e9b64ef
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
@@ -262,7 +262,6 @@ exit 0
 %attr(755,root,root) %{_bindir}/glib-gettextize
 %attr(755,root,root) %{_bindir}/glib-mkenums
 %attr(755,root,root) %{_bindir}/gobject-query
-%attr(755,root,root) %{_bindir}/gsettings-schema-convert
 %attr(755,root,root) %{_bindir}/gtester
 %attr(755,root,root) %{_bindir}/gtester-report
 %attr(755,root,root) %{_libdir}/libgio-2.0.so
@@ -300,7 +299,6 @@ exit 0
 %{_mandir}/man1/glib-gettextize.1*
 %{_mandir}/man1/glib-mkenums.1*
 %{_mandir}/man1/gobject-query.1*
-%{_mandir}/man1/gsettings-schema-convert.1*
 %{_mandir}/man1/gtester-report.1*
 %{_mandir}/man1/gtester.1*
 %endif
