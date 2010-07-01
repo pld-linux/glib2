@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.24.1
+Version:	2.25.10
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.24/glib-%{version}.tar.bz2
-# Source0-md5:	6a7db81c9a2cffe6a34dadb57d7ba2d2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.25/glib-%{version}.tar.bz2
+# Source0-md5:	cdbe09f15536b526e19f06893e9b64ef
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
@@ -220,7 +220,9 @@ exit 0
 %files -f glib20.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
+%attr(755,root,root) %{_bindir}/gdbus
 %attr(755,root,root) %{_bindir}/gio-querymodules
+%attr(755,root,root) %{_bindir}/gsettings
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
 %attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
@@ -235,10 +237,14 @@ exit 0
 %dir %{_libdir}/gio/modules
 %attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
 %ghost %{_libdir}/gio/modules/giomodule.cache
+%{_mandir}/man1/gdbus.1*
+%{_mandir}/man1/gio-querymodules.1*
+%{_mandir}/man1/gsettings.1*
 
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog
+%attr(755,root,root) %{_bindir}/glib-compile-schemas
 %attr(755,root,root) %{_bindir}/glib-genmarshal
 %attr(755,root,root) %{_bindir}/glib-gettextize
 %attr(755,root,root) %{_bindir}/glib-mkenums
@@ -256,6 +262,7 @@ exit 0
 %{_libdir}/libgobject-2.0.la
 %{_libdir}/libgthread-2.0.la
 %dir %{_datadir}/glib-2.0
+%{_datadir}/glib-2.0/schemas/gschema.dtd
 %dir %{_datadir}/glib-2.0/gettext
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gettext/po
@@ -272,7 +279,9 @@ exit 0
 %{_includedir}/glib-2.0
 %{_aclocaldir}/glib-2.0.m4
 %{_aclocaldir}/glib-gettext.m4
+%{_aclocaldir}/gsettings.m4
 %if %{with apidocs}
+%{_mandir}/man1/glib-compile-schemas.1*
 %{_mandir}/man1/glib-genmarshal.1*
 %{_mandir}/man1/glib-gettextize.1*
 %{_mandir}/man1/glib-mkenums.1*
