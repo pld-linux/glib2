@@ -262,10 +262,11 @@ exit 0
 %{_libdir}/libgobject-2.0.la
 %{_libdir}/libgthread-2.0.la
 %dir %{_datadir}/glib-2.0
-%{_datadir}/glib-2.0/schemas/gschema.dtd
 %dir %{_datadir}/glib-2.0/gettext
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gettext/po
+%dir %{_datadir}/glib-2.0/schemas
+%{_datadir}/glib-2.0/schemas/gschema.dtd
 %{_pkgconfigdir}/gio-2.0.pc
 %{_pkgconfigdir}/gio-unix-2.0.pc
 %{_pkgconfigdir}/glib-2.0.pc
