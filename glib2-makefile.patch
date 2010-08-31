@@ -9,7 +9,7 @@ diff -aurN glib-2.7.1.orig/glib/Makefile.am glib-2.7.1/glib/Makefile.am
 -	  echo "*** Old headers found in $(glibincludedir). You should remove the" ;	\
 -	  echo "*** contents of this directory and type 'make install' again." ;	\
 -	  false ;									\
--        fi
+-	fi
  
  uninstall-local: uninstall-ms-lib uninstall-def-file
  
