@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.24.2
+Version:	2.26.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.24/glib-%{version}.tar.bz2
-# Source0-md5:	8a6e45d7840460ed84288ebfd75782d4
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.26/glib-%{version}.tar.bz2
+# Source0-md5:	9b7dc61f5e389e1cff277a6350c37397
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.54
@@ -160,15 +160,27 @@ GLib API documetation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API GLib.
 
+%package -n bash-completion-gdbus
+Summary:	bash-completion for gdbus
+Summary(pl.UTF-8):	bashowe uzupełnianie nazw dla gdbus
+Group:		Applications/Shells
+Requires:	bash-completion
+
+%description -n bash-completion-gdbus
+bash-completion for gdbus.
+
+%description -n bash-completion-gdbus -l pl.UTF-8
+bashowe uzupełnianie nazw dla gdbus.
+
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-sed -i s#^en@shaw## po/LINGUAS
+%{__sed} -i 's#^en@shaw##' po/LINGUAS
 rm po/en@shaw.po
 
 %if !%{with apidocs}
-sed -e '/SUBDIRS/s/docs//' -i Makefile.am
-sed -e '/^docs.*Makefile$/d' -i configure.in
+%{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
+%{__sed} -e '/^docs.*Makefile$/d' -i configure.ac
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
 
@@ -220,7 +232,10 @@ exit 0
 %files -f glib20.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
+%attr(755,root,root) %{_bindir}/gdbus
 %attr(755,root,root) %{_bindir}/gio-querymodules
+%attr(755,root,root) %{_bindir}/glib-compile-schemas
+%attr(755,root,root) %{_bindir}/gsettings
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
 %attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
@@ -235,6 +250,10 @@ exit 0
 %dir %{_libdir}/gio/modules
 %attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
 %ghost %{_libdir}/gio/modules/giomodule.cache
+%{_mandir}/man1/gdbus.1*
+%{_mandir}/man1/gio-querymodules.1*
+%{_mandir}/man1/glib-compile-schemas.1*
+%{_mandir}/man1/gsettings.1*
 
 %files devel
 %defattr(644,root,root,755)
@@ -256,9 +275,11 @@ exit 0
 %{_libdir}/libgobject-2.0.la
 %{_libdir}/libgthread-2.0.la
 %dir %{_datadir}/glib-2.0
+%{_datadir}/glib-2.0/gdb
 %dir %{_datadir}/glib-2.0/gettext
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gettext/po
+%{_datadir}/glib-2.0/schemas
 %{_pkgconfigdir}/gio-2.0.pc
 %{_pkgconfigdir}/gio-unix-2.0.pc
 %{_pkgconfigdir}/glib-2.0.pc
@@ -268,6 +289,7 @@ exit 0
 %{_pkgconfigdir}/gobject-2.0.pc
 %{_pkgconfigdir}/gthread-2.0.pc
 %{_libdir}/glib-2.0
+%{_aclocaldir}/gsettings.m4
 %{_includedir}/gio-unix-2.0
 %{_includedir}/glib-2.0
 %{_aclocaldir}/glib-2.0.m4
@@ -298,3 +320,7 @@ exit 0
 %{_gtkdocdir}/glib
 %{_gtkdocdir}/gobject
 %endif
+
+%files -n bash-completion-gdbus
+%defattr(644,root,root,755)
+%{_sysconfdir}/bash_completion.d/gdbus-bash-completion.sh
