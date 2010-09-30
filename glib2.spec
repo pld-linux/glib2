@@ -18,7 +18,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.26.0
-Release:	2
+Release:	3
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -250,6 +250,7 @@ exit 0
 %dir %{_libdir}/gio/modules
 %attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
 %ghost %{_libdir}/gio/modules/giomodule.cache
+%dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
 %{_mandir}/man1/gdbus.1*
 %{_mandir}/man1/gio-querymodules.1*
@@ -275,7 +276,6 @@ exit 0
 %{_libdir}/libgmodule-2.0.la
 %{_libdir}/libgobject-2.0.la
 %{_libdir}/libgthread-2.0.la
-%dir %{_datadir}/glib-2.0
 %{_datadir}/glib-2.0/gdb
 %dir %{_datadir}/glib-2.0/gettext
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
