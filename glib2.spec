@@ -26,8 +26,8 @@ Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.26/glib-%{version}.tar.bz
 # Source0-md5:	9b7dc61f5e389e1cff277a6350c37397
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
-BuildRequires:	autoconf >= 2.54
-BuildRequires:	automake >= 1:1.7
+BuildRequires:	autoconf >= 2.62
+BuildRequires:	automake >= 1:1.10
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fam-devel
@@ -35,7 +35,7 @@ BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.11}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.11}
 %{?with_selinux:BuildRequires:	libselinux-devel}
-BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 7.8
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16.0
