@@ -160,17 +160,18 @@ GLib API documetation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API GLib.
 
-%package -n bash-completion-gdbus
-Summary:	bash-completion for gdbus
-Summary(pl.UTF-8):	bashowe uzupełnianie nazw dla gdbus
+%package -n bash-completion-gio
+Summary:	bash-completion for gio utilities
+Summary(pl.UTF-8):	Bashowe uzupełnianie nazw dla narzędzi gio
 Group:		Applications/Shells
 Requires:	bash-completion
+Obsoletes:	bash-completion-gdbus
 
-%description -n bash-completion-gdbus
-bash-completion for gdbus.
+%description -n bash-completion-gio
+bash-completion for gio utilities: gdbus and gsettings.
 
-%description -n bash-completion-gdbus -l pl.UTF-8
-bashowe uzupełnianie nazw dla gdbus.
+%description -n bash-completion-gio -l pl.UTF-8
+Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 
 %prep
 %setup -q -n glib-%{version}
@@ -276,6 +277,9 @@ exit 0
 %{_libdir}/libgmodule-2.0.la
 %{_libdir}/libgobject-2.0.la
 %{_libdir}/libgthread-2.0.la
+%{_libdir}/glib-2.0
+%{_includedir}/gio-unix-2.0
+%{_includedir}/glib-2.0
 %{_datadir}/glib-2.0/gdb
 %dir %{_datadir}/glib-2.0/gettext
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
@@ -289,12 +293,9 @@ exit 0
 %{_pkgconfigdir}/gmodule-no-export-2.0.pc
 %{_pkgconfigdir}/gobject-2.0.pc
 %{_pkgconfigdir}/gthread-2.0.pc
-%{_libdir}/glib-2.0
-%{_aclocaldir}/gsettings.m4
-%{_includedir}/gio-unix-2.0
-%{_includedir}/glib-2.0
 %{_aclocaldir}/glib-2.0.m4
 %{_aclocaldir}/glib-gettext.m4
+%{_aclocaldir}/gsettings.m4
 %if %{with apidocs}
 %{_mandir}/man1/glib-genmarshal.1*
 %{_mandir}/man1/glib-gettextize.1*
@@ -322,6 +323,7 @@ exit 0
 %{_gtkdocdir}/gobject
 %endif
 
-%files -n bash-completion-gdbus
+%files -n bash-completion-gio
 %defattr(644,root,root,755)
 %{_sysconfdir}/bash_completion.d/gdbus-bash-completion.sh
+%{_sysconfdir}/bash_completion.d/gsettings-bash-completion.sh
