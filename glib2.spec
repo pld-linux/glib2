@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.27.1
-Release:	1
+Version:	2.26.0
+Release:	3
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.27/glib-%{version}.tar.bz2
-# Source0-md5:	76edbad0d21f62a7d5e76a3646710d41
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.26/glib-%{version}.tar.bz2
+# Source0-md5:	9b7dc61f5e389e1cff277a6350c37397
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -32,8 +32,8 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.15}
-%{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.15}
+%{?with_apidocs:BuildRequires:	gtk-doc >= 1.11}
+%{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.11}
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 7.8
