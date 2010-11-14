@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.26.0
-Release:	3
+Version:	2.26.1
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.26/glib-%{version}.tar.bz2
-# Source0-md5:	9b7dc61f5e389e1cff277a6350c37397
+# Source0-md5:	17535accceef55bcb17a74d73f9c2aef
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
