@@ -4,6 +4,7 @@
 %bcond_without	static_libs	# don't build static library
 %bcond_with	selinux		# gio with SELinux support
 #
+%include	/usr/lib/rpm/macros.perl
 Summary:	Useful routines for 'C' programming
 Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
 Summary(da.UTF-8):	Nyttige biblioteksfunktioner
@@ -18,7 +19,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.26.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -39,6 +40,7 @@ BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 7.8
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16.0
+BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	sed >= 4.0
