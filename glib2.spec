@@ -214,7 +214,9 @@ rm -rf $RPM_BUILD_ROOT
 
 > $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
+	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
+	
 
 %find_lang glib20
 
@@ -253,10 +255,12 @@ exit 0
 %ghost %{_libdir}/gio/modules/giomodule.cache
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
+%if %{with apidocs}
 %{_mandir}/man1/gdbus.1*
 %{_mandir}/man1/gio-querymodules.1*
 %{_mandir}/man1/glib-compile-schemas.1*
 %{_mandir}/man1/gsettings.1*
+%endif
 
 %files devel
 %defattr(644,root,root,755)
