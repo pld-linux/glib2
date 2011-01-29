@@ -195,7 +195,6 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %{__autoheader}
 %{__automake}
 %configure \
-	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
 	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
 	--%{?with_selinux:en}%{!?with_selinux:dis}able-selinux \
 	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
@@ -255,10 +254,12 @@ exit 0
 %ghost %{_libdir}/gio/modules/giomodule.cache
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
+%if %{with apidocs}
 %{_mandir}/man1/gdbus.1*
 %{_mandir}/man1/gio-querymodules.1*
 %{_mandir}/man1/glib-compile-schemas.1*
 %{_mandir}/man1/gsettings.1*
+%endif
 
 %files devel
 %defattr(644,root,root,755)
