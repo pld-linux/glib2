@@ -37,7 +37,7 @@ BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.15}
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libtool >= 2:2.2
-BuildRequires:	pcre-devel >= 7.8
+BuildRequires:	pcre-devel >= 8.11
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16.0
 BuildRequires:	rpm-pythonprov
