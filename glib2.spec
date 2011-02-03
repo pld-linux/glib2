@@ -17,13 +17,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.27.91
-Release:	0.1
+Version:	2.27.93
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.27/glib-%{version}.tar.bz2
-# Source0-md5:	268a44c73429a86e29473abe8b120184
+# Source0-md5:	73954628c437408c189d62670a7032f7
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -40,7 +40,7 @@ BuildRequires:	pcre-devel >= 7.8
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16.0
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 Requires:	iconv
@@ -193,10 +193,11 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %{__autoheader}
 %{__automake}
 %configure \
-	--%{?with_apidocs:en}%{!?with_apidocs:dis}able-gtk-doc \
+	--disable-silent-rules \
+	%{__enable_disable apidocs gtk-doc} \
 	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
-	--%{?with_selinux:en}%{!?with_selinux:dis}able-selinux \
-	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
+	%{__enable_disable selinux} \
+	%{__enable_disable static_libs static} \
 	--enable-debug=%{?debug:yes} \
 	--enable-man \
 	--enable-threads \
