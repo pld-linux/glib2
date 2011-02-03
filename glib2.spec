@@ -18,13 +18,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.26.1
-Release:	2
+Version:	2.27.93
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.26/glib-%{version}.tar.bz2
-# Source0-md5:	17535accceef55bcb17a74d73f9c2aef
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.27/glib-%{version}.tar.bz2
+# Source0-md5:	73954628c437408c189d62670a7032f7
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -40,9 +40,8 @@ BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 7.8
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16.0
-BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.197
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 Requires:	iconv
@@ -179,7 +178,7 @@ Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %{__sed} -i 's#^en@shaw##' po/LINGUAS
-rm po/en@shaw.po
+%{__rm} po/en@shaw.po
 
 %if !%{with apidocs}
 %{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
@@ -195,9 +194,11 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %{__autoheader}
 %{__automake}
 %configure \
+	--disable-silent-rules \
+	%{__enable_disable apidocs gtk-doc} \
 	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
-	--%{?with_selinux:en}%{!?with_selinux:dis}able-selinux \
-	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static \
+	%{__enable_disable selinux} \
+	%{__enable_disable static_libs static} \
 	--enable-debug=%{?debug:yes} \
 	--enable-man \
 	--enable-threads \
@@ -215,7 +216,9 @@ rm -rf $RPM_BUILD_ROOT
 
 > $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.{la,a}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
+	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
+
 
 %find_lang glib20
 
