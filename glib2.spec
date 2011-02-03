@@ -40,6 +40,7 @@ BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 8.11
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16.0
+BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	sed >= 4.0
