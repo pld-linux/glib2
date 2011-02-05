@@ -31,7 +31,7 @@ BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.10
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
-BuildRequires:	fam-devel
+BuildRequires:	gamin-devel
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.15}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.15}
