@@ -39,7 +39,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 8.11
 BuildRequires:	perl-base
-BuildRequires:	pkgconfig >= 1:0.16.0
+BuildRequires:	pkgconfig >= 1:0.16
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.527
@@ -162,6 +162,22 @@ GLib API documetation.
 %description apidocs -l pl.UTF-8
 Dokumentacja API GLib.
 
+%package gdb
+Summary:	GDB Python pretty printers for GObject/GLib types
+Summary(pl.UTF-8):	Skrypty Pythona dla GDB do ładnego wypisywania typów GObject/GLib
+Group:		Development/Debuggers
+Requires:	python-gdb
+
+%description gdb
+GDB Python pretty printers for GObject/GLib types. This includes
+support for GObject pointer pretty printing and signal frame
+compression in backtraces.
+
+%description gdb -l pl.UTF-8
+Skrypty Pythona dla GDB do ładnego wypisywania typów GObject/GLib.
+Obejmują także ładne wypisywanie wskaźników GObject oraz kompresję
+ramek sygnagłów w zrzutach wywołań (backtrace).
+
 %package -n bash-completion-gio
 Summary:	bash-completion for gio utilities
 Summary(pl.UTF-8):	Bashowe uzupełnianie nazw dla narzędzi gio
@@ -224,6 +240,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
 	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
 
+%py_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
+%py_ocomp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
+%py_postclean $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 
 %find_lang glib20
 
@@ -291,7 +310,6 @@ exit 0
 %{_libdir}/glib-2.0
 %{_includedir}/gio-unix-2.0
 %{_includedir}/glib-2.0
-%{_datadir}/glib-2.0/gdb
 %dir %{_datadir}/glib-2.0/gettext
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gettext/po
@@ -333,6 +351,12 @@ exit 0
 %{_gtkdocdir}/glib
 %{_gtkdocdir}/gobject
 %endif
+
+%files gdb
+%defattr(644,root,root,755)
+%{_datadir}/gdb/auto-load/usr/%{_lib}/libglib-2.0.so.*.*.*-gdb.py
+%{_datadir}/gdb/auto-load/usr/%{_lib}/libgobject-2.0.so.*.*.*-gdb.py
+%{_datadir}/glib-2.0/gdb
 
 %files -n bash-completion-gio
 %defattr(644,root,root,755)
