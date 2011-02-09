@@ -18,13 +18,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.27.93
+Version:	2.28.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.27/glib-%{version}.tar.bz2
-# Source0-md5:	73954628c437408c189d62670a7032f7
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.28/glib-%{version}.tar.bz2
+# Source0-md5:	51dbe36bc03a29a1f9bf6b74fb4a6926
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -46,7 +46,7 @@ BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 Requires:	iconv
-Requires:	pcre >= 7.8
+Requires:	pcre >= 8.11
 Provides:	glib2-libs
 Obsoletes:	glib2-libs
 # sr@Latn vs. sr@latin
@@ -107,7 +107,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do GLib
 Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	pcre-devel >= 7.8
+Requires:	pcre-devel >= 8.11
 # gio only
 %{?with_selinux:Requires:	libselinux-devel}
 
@@ -178,14 +178,18 @@ Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-%{__sed} -i 's#^en@shaw##' po/LINGUAS
-%{__rm} po/en@shaw.po
 
 %if !%{with apidocs}
 %{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
 %{__sed} -e '/^docs.*Makefile$/d' -i configure.ac
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
+
+# fix broken tarball
+cp docs/reference/gio/{html/,}gvfs-overview.png
+cp docs/reference/glib/{html/,}mainloop-states.gif
+mkdir docs/reference/gobject/images
+cp docs/reference/gobject/{html,images}/glue.png
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
