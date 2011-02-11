@@ -19,13 +19,14 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.28.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.28/glib-%{version}.tar.bz2
 # Source0-md5:	51dbe36bc03a29a1f9bf6b74fb4a6926
 Patch0:		%{name}-makefile.patch
+Patch1:		%{name}-pc.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.10
@@ -194,6 +195,7 @@ Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %if !%{with apidocs}
 %{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
