@@ -18,13 +18,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.28.5
+Version:	2.28.6
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.28/glib-%{version}.tar.bz2
-# Source0-md5:	ddf80a060ec9039ad40452ba3ca2311b
+# Source0-md5:	7d8fc15ae70d5111c0cf2a79d50ef717
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-pc.patch
 URL:		http://www.gtk.org/
@@ -202,12 +202,6 @@ Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 %{__sed} -e '/^docs.*Makefile$/d' -i configure.ac
 echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %endif
-
-# fix broken tarball
-cp docs/reference/gio/{html/,}gvfs-overview.png
-cp docs/reference/glib/{html/,}mainloop-states.gif
-mkdir docs/reference/gobject/images
-cp docs/reference/gobject/{html,images}/glue.png
 
 %build
 %{?with_apidocs:%{__gtkdocize}}
