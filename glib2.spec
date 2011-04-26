@@ -19,7 +19,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.28.6
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -48,6 +48,7 @@ BuildRequires:	sed >= 4.0
 BuildRequires:	zlib-devel
 Requires:	iconv
 Requires:	pcre >= 8.11
+Suggests:	gvfs
 Provides:	glib2-libs
 Obsoletes:	glib2-libs
 # sr@Latn vs. sr@latin
