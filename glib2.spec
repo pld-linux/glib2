@@ -3,7 +3,7 @@
 %bcond_without	apidocs         # disable gtk-doc
 %bcond_without	static_libs	# don't build static library
 %bcond_with	selinux		# gio with SELinux support
-#
+
 %include	/usr/lib/rpm/macros.perl
 Summary:	Useful routines for 'C' programming
 Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
@@ -19,7 +19,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.28.8
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -233,6 +233,7 @@ rm -rf $RPM_BUILD_ROOT
 	pkgconfigdir=%{_pkgconfigdir}
 
 > $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
+> $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
 	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
@@ -277,6 +278,7 @@ umask 022
 %ghost %{_libdir}/gio/modules/giomodule.cache
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
+%ghost %{_datadir}/glib-2.0/schemas/gschemas.compiled
 %if %{with apidocs}
 %{_mandir}/man1/gdbus.1*
 %{_mandir}/man1/gio-querymodules.1*
