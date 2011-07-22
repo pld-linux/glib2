@@ -3,7 +3,7 @@
 %bcond_without	apidocs         # disable gtk-doc
 %bcond_without	static_libs	# don't build static library
 %bcond_with	selinux		# gio with SELinux support
-#
+
 %include	/usr/lib/rpm/macros.perl
 Summary:	Useful routines for 'C' programming
 Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
@@ -18,24 +18,25 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.29.10
+Version:	2.29.14
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.29/glib-%{version}.tar.bz2
-# Source0-md5:	ca18f5b3dde5326a4c95868616b592cd
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.29/glib-%{version}.tar.xz
+# Source0-md5:	b1154dbc1758df9934f697e90abf5d44
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-pc.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
-BuildRequires:	automake >= 1:1.10
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.15}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.15}
+BuildRequires:	libffi-devel >= 3.0.0
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 8.11
@@ -45,6 +46,8 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	sed >= 4.0
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	iconv
 Requires:	pcre >= 8.11
@@ -232,6 +235,7 @@ rm -rf $RPM_BUILD_ROOT
 	pkgconfigdir=%{_pkgconfigdir}
 
 > $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
+> $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
 	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
@@ -279,8 +283,10 @@ umask 022
 %ghost %{_libdir}/gio/modules/giomodule.cache
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
+%ghost %{_datadir}/glib-2.0/schemas/gschemas.compiled
 %if %{with apidocs}
 %{_mandir}/man1/gdbus.1*
+%{_mandir}/man1/gdbus-codegen.1*
 %{_mandir}/man1/gio-querymodules.1*
 %{_mandir}/man1/glib-compile-schemas.1*
 %{_mandir}/man1/gsettings.1*
@@ -345,6 +351,7 @@ umask 022
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
+%{_gtkdocdir}/gdbus-object-manager-example
 %{_gtkdocdir}/gio
 %{_gtkdocdir}/glib
 %{_gtkdocdir}/gobject
