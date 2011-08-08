@@ -112,6 +112,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	pcre-devel >= 8.11
 # gio only
 %{?with_selinux:Requires:	libselinux-devel}
+Requires:	zlib-devel
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
