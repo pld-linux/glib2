@@ -18,13 +18,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.29.16
+Version:	2.29.18
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.29/glib-%{version}.tar.xz
-# Source0-md5:	893ce829cdba1d8a3c6c8cd8a5b8fdcf
+# Source0-md5:	2ac3df9236116d40ec23b28a44635e65
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -263,8 +263,9 @@ umask 022
 %attr(755,root,root) %{_bindir}/gio-querymodules
 %attr(755,root,root) %{_bindir}/glib-compile-schemas
 %attr(755,root,root) %{_bindir}/gsettings
-%dir %{_libdir}/gdbus-codegen
-%{_libdir}/gdbus-codegen/*.py*
+%dir %{_libdir}/gdbus-2.0
+%dir %{_libdir}/gdbus-2.0/codegen
+%{_libdir}/gdbus-2.0/codegen/*.py*
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
 %attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
