@@ -18,13 +18,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.29.18
+Version:	2.29.90
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.29/glib-%{version}.tar.xz
-# Source0-md5:	2ac3df9236116d40ec23b28a44635e65
+# Source0-md5:	51e69449109606b7b82e53982173bee3
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -259,13 +259,9 @@ umask 022
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
 %attr(755,root,root) %{_bindir}/gdbus
-%attr(755,root,root) %{_bindir}/gdbus-codegen
 %attr(755,root,root) %{_bindir}/gio-querymodules
 %attr(755,root,root) %{_bindir}/glib-compile-schemas
 %attr(755,root,root) %{_bindir}/gsettings
-%dir %{_libdir}/gdbus-2.0
-%dir %{_libdir}/gdbus-2.0/codegen
-%{_libdir}/gdbus-2.0/codegen/*.py*
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
 %attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
@@ -285,7 +281,6 @@ umask 022
 %ghost %{_datadir}/glib-2.0/schemas/gschemas.compiled
 %if %{with apidocs}
 %{_mandir}/man1/gdbus.1*
-%{_mandir}/man1/gdbus-codegen.1*
 %{_mandir}/man1/gio-querymodules.1*
 %{_mandir}/man1/glib-compile-schemas.1*
 %{_mandir}/man1/gsettings.1*
@@ -294,6 +289,7 @@ umask 022
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog
+%attr(755,root,root) %{_bindir}/gdbus-codegen
 %attr(755,root,root) %{_bindir}/glib-genmarshal
 %attr(755,root,root) %{_bindir}/glib-gettextize
 %attr(755,root,root) %{_bindir}/glib-mkenums
@@ -310,6 +306,9 @@ umask 022
 %{_libdir}/libgmodule-2.0.la
 %{_libdir}/libgobject-2.0.la
 %{_libdir}/libgthread-2.0.la
+%dir %{_libdir}/gdbus-2.0
+%dir %{_libdir}/gdbus-2.0/codegen
+%{_libdir}/gdbus-2.0/codegen/*.py*
 %{_libdir}/glib-2.0
 %{_includedir}/gio-unix-2.0
 %{_includedir}/glib-2.0
@@ -329,6 +328,7 @@ umask 022
 %{_aclocaldir}/glib-gettext.m4
 %{_aclocaldir}/gsettings.m4
 %if %{with apidocs}
+%{_mandir}/man1/gdbus-codegen.1*
 %{_mandir}/man1/glib-genmarshal.1*
 %{_mandir}/man1/glib-gettextize.1*
 %{_mandir}/man1/glib-mkenums.1*
