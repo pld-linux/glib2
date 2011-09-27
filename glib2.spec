@@ -18,24 +18,24 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.28.8
-Release:	2
+Version:	2.30.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.28/glib-%{version}.tar.bz2
-# Source0-md5:	789e7520f71c6a4bf08bc683ec764d24
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.30/glib-%{version}.tar.xz
+# Source0-md5:	68ac9516233044f27e76577d4f4e6de9
 Patch0:		%{name}-makefile.patch
-Patch1:		%{name}-pc.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
-BuildRequires:	automake >= 1:1.10
+BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 %{?with_apidocs:BuildRequires:	gtk-doc >= 1.17}
 %{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.17}
+BuildRequires:	libffi-devel >= 3.0.0
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 8.11
@@ -45,6 +45,8 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	sed >= 4.0
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	iconv
 Requires:	pcre >= 8.11
@@ -197,7 +199,6 @@ Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %if !%{with apidocs}
 %{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
@@ -290,6 +291,7 @@ umask 022
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog
+%attr(755,root,root) %{_bindir}/gdbus-codegen
 %attr(755,root,root) %{_bindir}/glib-genmarshal
 %attr(755,root,root) %{_bindir}/glib-gettextize
 %attr(755,root,root) %{_bindir}/glib-mkenums
@@ -306,6 +308,9 @@ umask 022
 %{_libdir}/libgmodule-2.0.la
 %{_libdir}/libgobject-2.0.la
 %{_libdir}/libgthread-2.0.la
+%dir %{_libdir}/gdbus-2.0
+%dir %{_libdir}/gdbus-2.0/codegen
+%{_libdir}/gdbus-2.0/codegen/*.py*
 %{_libdir}/glib-2.0
 %{_includedir}/gio-unix-2.0
 %{_includedir}/glib-2.0
@@ -325,6 +330,7 @@ umask 022
 %{_aclocaldir}/glib-gettext.m4
 %{_aclocaldir}/gsettings.m4
 %if %{with apidocs}
+%{_mandir}/man1/gdbus-codegen.1*
 %{_mandir}/man1/glib-genmarshal.1*
 %{_mandir}/man1/glib-gettextize.1*
 %{_mandir}/man1/glib-mkenums.1*
@@ -346,6 +352,7 @@ umask 022
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
+%{_gtkdocdir}/gdbus-object-manager-example
 %{_gtkdocdir}/gio
 %{_gtkdocdir}/glib
 %{_gtkdocdir}/gobject
