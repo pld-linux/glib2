@@ -18,13 +18,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.30.3
+Version:	2.32.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.30/glib-%{version}.tar.xz
-# Source0-md5:	0f9fa329c6c1012d0fd861ad3d8a4520
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.32/glib-%{version}.tar.xz
+# Source0-md5:	c5fa76fbf9184d20dfb04af66b598190
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -222,7 +222,6 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 	%{__enable_disable static_libs static} \
 	--enable-debug=%{?debug:yes} \
 	--enable-man \
-	--enable-threads \
 	--with-pcre=system
 
 %{__make}
@@ -293,10 +292,12 @@ umask 022
 %defattr(644,root,root,755)
 %doc ChangeLog
 %attr(755,root,root) %{_bindir}/gdbus-codegen
+%attr(755,root,root) %{_bindir}/glib-compile-resources
 %attr(755,root,root) %{_bindir}/glib-genmarshal
 %attr(755,root,root) %{_bindir}/glib-gettextize
 %attr(755,root,root) %{_bindir}/glib-mkenums
 %attr(755,root,root) %{_bindir}/gobject-query
+%attr(755,root,root) %{_bindir}/gresource
 %attr(755,root,root) %{_bindir}/gtester
 %attr(755,root,root) %{_bindir}/gtester-report
 %attr(755,root,root) %{_libdir}/libgio-2.0.so
@@ -332,10 +333,12 @@ umask 022
 %{_aclocaldir}/gsettings.m4
 %if %{with apidocs}
 %{_mandir}/man1/gdbus-codegen.1*
+%{_mandir}/man1/glib-compile-resources.1*
 %{_mandir}/man1/glib-genmarshal.1*
 %{_mandir}/man1/glib-gettextize.1*
 %{_mandir}/man1/glib-mkenums.1*
 %{_mandir}/man1/gobject-query.1*
+%{_mandir}/man1/gresource.1*
 %{_mandir}/man1/gtester-report.1*
 %{_mandir}/man1/gtester.1*
 %endif
@@ -368,4 +371,5 @@ umask 022
 %files -n bash-completion-gio
 %defattr(644,root,root,755)
 %{_sysconfdir}/bash_completion.d/gdbus-bash-completion.sh
+%{_sysconfdir}/bash_completion.d/gresource-bash-completion.sh
 %{_sysconfdir}/bash_completion.d/gsettings-bash-completion.sh
