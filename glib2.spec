@@ -41,6 +41,7 @@ BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 8.11
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16
+BuildRequires:	pkgconfig(libffi) >= 3.0.0
 BuildRequires:	python >= 1:2.5
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
