@@ -1,0 +1,21 @@
+--- glib-2.32.1/configure.ac.orig	2012-04-13 15:39:41.000000000 +0200
++++ glib-2.32.1/configure.ac	2012-04-18 21:22:32.292969778 +0200
+@@ -1816,14 +1816,14 @@
+ PKG_CHECK_MODULES([LIBELF], [libelf], [have_libelf=yes], [have_libelf=maybe])
+ 
+ if test $have_libelf = maybe; then
+-  AC_CHECK_LIB([elf], [elf_begin], , [have_libelf=no])
+-  AC_CHECK_LIB([elf], [elf_getshdrstrndx], , [have_libelf=no])
+-  AC_CHECK_LIB([elf], [elf_getshdrnum], , [have_libelf=no])
++  AC_CHECK_LIB([elf], [elf_begin], [:], [have_libelf=no])
++  AC_CHECK_LIB([elf], [elf_getshdrstrndx], [:], [have_libelf=no])
++  AC_CHECK_LIB([elf], [elf_getshdrnum], [:], [have_libelf=no])
+   AC_CHECK_HEADER([libelf.h], , [have_libelf=no])
+ 
+   if test $have_libelf != no; then
+     LIBELF_LIBS=-lelf
+-    have_libelf = yes
++    have_libelf=yes
+   fi
+ fi
+ 
