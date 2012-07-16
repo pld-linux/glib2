@@ -19,13 +19,14 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.32.4
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.32/glib-%{version}.tar.xz
 # Source0-md5:	bf84fefd9c1a5b5a7a38736f4ddd674a
 Patch0:		%{name}-makefile.patch
+Patch1:		bash_completion.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
@@ -202,6 +203,7 @@ Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %if !%{with apidocs}
 %{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
@@ -241,10 +243,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
 	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
-
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/bash_completion.d
-ln -s %{_datadir}/bash-completion/completions/{gdbus,gresource,gsettings} \
-	$RPM_BUILD_ROOT%{_sysconfdir}/bash_completion.d
 
 %py_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
@@ -376,9 +374,6 @@ umask 022
 
 %files -n bash-completion-gio
 %defattr(644,root,root,755)
-%{_datadir}/bash-completion/completions/gdbus
-%{_datadir}/bash-completion/completions/gresource
-%{_datadir}/bash-completion/completions/gsettings
-%ghost %{_sysconfdir}/bash_completion.d/gdbus
-%ghost %{_sysconfdir}/bash_completion.d/gresource
-%ghost %{_sysconfdir}/bash_completion.d/gsettings
+%{_sysconfdir}/bash_completion.d/gdbus
+%{_sysconfdir}/bash_completion.d/gresource
+%{_sysconfdir}/bash_completion.d/gsettings
