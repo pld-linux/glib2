@@ -1,0 +1,12 @@
+diff -uNr glib-2.32.4.old/gio/Makefile.am glib-2.32.4/gio/Makefile.am
+--- glib-2.32.4.old/gio/Makefile.am	2012-07-14 22:33:13.000000000 +0200
++++ glib-2.32.4/gio/Makefile.am	2012-07-16 12:26:07.800783120 +0200
+@@ -715,7 +715,7 @@
+ 	$(top_builddir)/glib/libglib-2.0.la 		\
+ 	$(top_builddir)/gobject/libgobject-2.0.la
+ 
+-completiondir = $(datadir)/bash-completion/completions
++completiondir = $(sysconfdir)/bash_completion.d
+ completion_DATA = \
+ 	completion/gdbus				\
+ 	completion/gsettings				\
