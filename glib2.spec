@@ -18,13 +18,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.32.3
-Release:	2
+Version:	2.32.4
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.32/glib-%{version}.tar.xz
-# Source0-md5:	9bd3ac535c24b6c162be13b2c43c5adc
+# Source0-md5:	bf84fefd9c1a5b5a7a38736f4ddd674a
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -242,6 +242,10 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
 	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
 
+install -d $RPM_BUILD_ROOT%{_sysconfdir}/bash_completion.d
+ln -s %{_datadir}/bash-completion/completions/{gdbus,gresource,gsettings} \
+	$RPM_BUILD_ROOT%{_sysconfdir}/bash_completion.d
+
 %py_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 %py_postclean $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
@@ -372,6 +376,9 @@ umask 022
 
 %files -n bash-completion-gio
 %defattr(644,root,root,755)
-%{_sysconfdir}/bash_completion.d/gdbus-bash-completion.sh
-%{_sysconfdir}/bash_completion.d/gresource-bash-completion.sh
-%{_sysconfdir}/bash_completion.d/gsettings-bash-completion.sh
+%{_datadir}/bash-completion/completions/gdbus
+%{_datadir}/bash-completion/completions/gresource
+%{_datadir}/bash-completion/completions/gsettings
+%ghost %{_sysconfdir}/bash_completion.d/gdbus
+%ghost %{_sysconfdir}/bash_completion.d/gresource
+%ghost %{_sysconfdir}/bash_completion.d/gsettings
