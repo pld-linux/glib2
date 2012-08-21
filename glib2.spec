@@ -1,8 +1,8 @@
 #
 # Conditional build:
-%bcond_without	apidocs         # disable gtk-doc
-%bcond_without	static_libs	# don't build static library
-%bcond_with	selinux		# gio with SELinux support
+%bcond_without	apidocs     # disable gtk-doc
+%bcond_without	static_libs # don't build static library
+%bcond_with	    selinux		# gio with SELinux support
 
 %include	/usr/lib/rpm/macros.perl
 Summary:	Useful routines for 'C' programming
@@ -18,15 +18,14 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.32.4
-Release:	2
+Version:	2.33.10
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.32/glib-%{version}.tar.xz
-# Source0-md5:	bf84fefd9c1a5b5a7a38736f4ddd674a
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.33/glib-%{version}.tar.xz
+# Source0-md5:	f817af6c6794200af23f9ef084c85219
 Patch0:		%{name}-makefile.patch
-Patch1:		bash_completion.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
@@ -35,12 +34,14 @@ BuildRequires:	docbook-style-xsl
 BuildRequires:	elfutils-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
-%{?with_apidocs:BuildRequires:	gtk-doc >= 1.17}
-%{?with_apidocs:BuildRequires:	gtk-doc-automake >= 1.17}
+%if %{with apidocs}
+BuildRequires:	gtk-doc >= 1.17
+BuildRequires:	gtk-doc-automake >= 1.17
+%endif
 BuildRequires:	libffi-devel >= 3.0.0
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libtool >= 2:2.2
-BuildRequires:	pcre-devel >= 8.11
+BuildRequires:	pcre-devel >= 8.13
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16
 BuildRequires:	pkgconfig(libffi) >= 3.0.0
@@ -53,7 +54,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	iconv
-Requires:	pcre >= 8.11
+Requires:	pcre >= 8.13
 Suggests:	gvfs
 Provides:	glib2-libs
 Obsoletes:	glib2-libs
@@ -115,7 +116,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do GLib
 Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	pcre-devel >= 8.11
+Requires:	pcre-devel >= 8.13
 # gio only
 %{?with_selinux:Requires:	libselinux-devel}
 Requires:	zlib-devel
@@ -191,7 +192,7 @@ ramek sygnagłów w zrzutach wywołań (backtrace).
 Summary:	bash-completion for gio utilities
 Summary(pl.UTF-8):	Bashowe uzupełnianie nazw dla narzędzi gio
 Group:		Applications/Shells
-Requires:	bash-completion
+Requires:	bash-completion >= 2.0
 Obsoletes:	bash-completion-gdbus
 
 %description -n bash-completion-gio
@@ -203,7 +204,6 @@ Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %if !%{with apidocs}
 %{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
@@ -243,6 +243,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
 	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %py_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
@@ -309,11 +311,6 @@ umask 022
 %attr(755,root,root) %{_libdir}/libgmodule-2.0.so
 %attr(755,root,root) %{_libdir}/libgobject-2.0.so
 %attr(755,root,root) %{_libdir}/libgthread-2.0.so
-%{_libdir}/libgio-2.0.la
-%{_libdir}/libglib-2.0.la
-%{_libdir}/libgmodule-2.0.la
-%{_libdir}/libgobject-2.0.la
-%{_libdir}/libgthread-2.0.la
 %dir %{_libdir}/gdbus-2.0
 %dir %{_libdir}/gdbus-2.0/codegen
 %{_libdir}/gdbus-2.0/codegen/*.py*
@@ -374,6 +371,6 @@ umask 022
 
 %files -n bash-completion-gio
 %defattr(644,root,root,755)
-%{_sysconfdir}/bash_completion.d/gdbus
-%{_sysconfdir}/bash_completion.d/gresource
-%{_sysconfdir}/bash_completion.d/gsettings
+%{_datadir}/bash-completion/completions/gdbus
+%{_datadir}/bash-completion/completions/gresource
+%{_datadir}/bash-completion/completions/gsettings
