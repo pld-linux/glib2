@@ -18,13 +18,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.33.12
+Version:	2.34.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.33/glib-%{version}.tar.xz
-# Source0-md5:	9073f6c032384491223ecae9545da4fe
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.34/glib-%{version}.tar.xz
+# Source0-md5:	d80aef668f981b5dcf157633d13081c0
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -244,8 +244,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
 	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
-
 %py_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 %py_postclean $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
@@ -321,6 +319,11 @@ umask 022
 %attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gettext/po
 %{_datadir}/glib-2.0/schemas/gschema.dtd
+%{_libdir}/libgio-2.0.la
+%{_libdir}/libglib-2.0.la
+%{_libdir}/libgmodule-2.0.la
+%{_libdir}/libgobject-2.0.la
+%{_libdir}/libgthread-2.0.la
 %{_pkgconfigdir}/gio-2.0.pc
 %{_pkgconfigdir}/gio-unix-2.0.pc
 %{_pkgconfigdir}/glib-2.0.pc
