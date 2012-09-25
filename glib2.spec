@@ -1,8 +1,8 @@
 #
 # Conditional build:
-%bcond_without	apidocs     # disable gtk-doc
-%bcond_without	static_libs # don't build static library
-%bcond_with	    selinux		# gio with SELinux support
+%bcond_without	apidocs		# disable gtk-doc
+%bcond_without	static_libs	# don't build static library
+%bcond_with	selinux		# gio with SELinux support
 
 %include	/usr/lib/rpm/macros.perl
 Summary:	Useful routines for 'C' programming
