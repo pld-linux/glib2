@@ -1,15 +1,14 @@
-diff -aurN glib-2.7.1.orig/glib/Makefile.am glib-2.7.1/glib/Makefile.am
---- glib-2.7.1.orig/glib/Makefile.am	2005-06-26 20:04:07.000000000 +0200
-+++ glib-2.7.1/glib/Makefile.am	2005-07-02 21:51:56.707643632 +0200
-@@ -187,11 +187,6 @@
- 	gprintf.h
+--- glib-2.36.0/glib/Makefile.am.makefile	2013-03-25 22:56:57.103911399 +0100
++++ glib-2.36.0/glib/Makefile.am	2013-03-25 22:57:04.707203541 +0100
+@@ -326,11 +326,6 @@ CLEANFILES += glib-public-headers.txt
+ all-local: glib-public-headers.txt
  
- install-data-local: install-ms-lib install-def-file
+ install-data-local: install-ms-lib
 -	@if test -f $(glibincludedir)/glist.h ; then					\
 -	  echo "*** Old headers found in $(glibincludedir). You should remove the" ;	\
 -	  echo "*** contents of this directory and type 'make install' again." ;	\
 -	  false ;									\
 -	fi
  
- uninstall-local: uninstall-ms-lib uninstall-def-file
+ uninstall-local: uninstall-ms-lib uninstall-gdb
  

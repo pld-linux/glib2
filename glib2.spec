@@ -18,15 +18,14 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.34.3
-Release:	2
+Version:	2.36.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.34/glib-%{version}.tar.xz
-# Source0-md5:	a4ca31e258273c3761e3de2edd607661
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.36/glib-%{version}.tar.xz
+# Source0-md5:	2047dff287473450593edecb18f79c17
 Patch0:		%{name}-makefile.patch
-Patch1:		%{name}-am.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
@@ -205,7 +204,6 @@ Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %if %{without apidocs}
 %{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
@@ -313,14 +311,12 @@ umask 022
 %attr(755,root,root) %{_libdir}/libgmodule-2.0.so
 %attr(755,root,root) %{_libdir}/libgobject-2.0.so
 %attr(755,root,root) %{_libdir}/libgthread-2.0.so
-%dir %{_libdir}/gdbus-2.0
-%dir %{_libdir}/gdbus-2.0/codegen
-%{_libdir}/gdbus-2.0/codegen/*.py*
 %{_libdir}/glib-2.0
 %{_includedir}/gio-unix-2.0
 %{_includedir}/glib-2.0
+%dir %{_datadir}/glib-2.0/codegen
+%{_datadir}/glib-2.0/codegen/*.py*
 %dir %{_datadir}/glib-2.0/gettext
-%attr(755,root,root) %{_datadir}/glib-2.0/gettext/mkinstalldirs
 %{_datadir}/glib-2.0/gettext/po
 %{_datadir}/glib-2.0/schemas/gschema.dtd
 %{_libdir}/libgio-2.0.la
