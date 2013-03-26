@@ -1,8 +1,8 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# disable gtk-doc
-%bcond_without	static_libs	# don't build static library
-%bcond_with	selinux		# gio with SELinux support
+%bcond_without	static_libs	# static library
+%bcond_without	selinux		# SELinux support in gio
 
 %include	/usr/lib/rpm/macros.perl
 Summary:	Useful routines for 'C' programming
@@ -44,6 +44,8 @@ BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 8.13
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16
+# advised
+#BuildRequires:	pkgconfig(libelf) >= 0.8.12
 BuildRequires:	pkgconfig(libffi) >= 3.0.0
 BuildRequires:	python >= 1:2.5
 BuildRequires:	rpm-perlprov
