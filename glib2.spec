@@ -19,13 +19,14 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.36.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.36/glib-%{version}.tar.xz
 # Source0-md5:	a3bbee44a13facb5a3cab18be5ece14c
 Patch0:		%{name}-makefile.patch
+Patch1:		bug-698081.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
@@ -62,6 +63,8 @@ Provides:	glib2-libs
 Obsoletes:	glib2-libs
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
+# see https://bugzilla.xfce.org/show_bug.cgi?id=9709
+Conflicts:	xfce4-session < 4.10.0-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
