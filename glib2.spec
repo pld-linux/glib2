@@ -18,15 +18,14 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.36.1
-Release:	3
+Version:	2.36.2
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.36/glib-%{version}.tar.xz
-# Source0-md5:	a3bbee44a13facb5a3cab18be5ece14c
+# Source0-md5:	d791774ac49eaf8ba59792427bb74af7
 Patch0:		%{name}-makefile.patch
-Patch1:		bug-698081.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
@@ -209,7 +208,6 @@ Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %if %{without apidocs}
 %{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
