@@ -19,7 +19,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.36.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -222,7 +222,10 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 %{__autoconf}
 %{__autoheader}
 %{__automake}
+
+# -Wall CPPFLAGS is workaround for https://bugzilla.gnome.org/show_bug.cgi?id=698716
 %configure \
+	CPPFLAGS="%{rpmcppflags} -Wall" \
 	--disable-silent-rules \
 	%{__enable_disable apidocs gtk-doc} \
 	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
