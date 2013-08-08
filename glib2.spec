@@ -3,6 +3,7 @@
 %bcond_without	apidocs		# disable gtk-doc
 %bcond_without	static_libs	# static library
 %bcond_without	selinux		# SELinux support in gio
+%bcond_without	systemtap	# systemtap/dtrace probes
 
 %include	/usr/lib/rpm/macros.perl
 Summary:	Useful routines for 'C' programming
@@ -18,13 +19,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.36.3
+Version:	2.36.4
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.36/glib-%{version}.tar.xz
-# Source0-md5:	89180c7354b0acd3efb0a36ac05ca39c
+# Source0-md5:	2f4b15f7ef43d8702d067ab987bf7aba
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -52,6 +53,7 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRequires:	sed >= 4.0
+%{?with_systemtap:BuildRequires:	systemtap-sdt-devel}
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zlib-devel
@@ -205,6 +207,19 @@ bash-completion for gio utilities: gdbus and gsettings.
 %description -n bash-completion-gio -l pl.UTF-8
 Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 
+%package -n systemtap-glib2
+Summary:	systemtap/dtrace probes for GLib 2
+Summary(pl.UTF-8):	Sondy systemtap/dtrace dla GLib 2
+Group:		Development/Tools
+Requires:	%{name} = %{version}-%{release}
+Requires:	systemtap-client
+
+%description -n systemtap-glib2
+systemtap/dtrace probes for GLib 2.
+
+%description -n systemtap-glib2 -l pl.UTF-8
+Sondy systemtap/dtrace dla GLib 2.
+
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
@@ -226,13 +241,14 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 # -Wall CPPFLAGS is workaround for https://bugzilla.gnome.org/show_bug.cgi?id=698716
 %configure \
 	CPPFLAGS="%{rpmcppflags} -Wall" \
-	--disable-silent-rules \
-	%{__enable_disable apidocs gtk-doc} \
-	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
-	%{__enable_disable selinux} \
-	%{__enable_disable static_libs static} \
 	--enable-debug=%{?debug:yes} \
+	%{!?with_systemtap:--disable-dtrace} \
+	%{__enable_disable apidocs gtk-doc} \
+	%{__enable_disable selinux} \
+	--disable-silent-rules \
+	%{__enable_disable static_libs static} \
 	--enable-man \
+	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
 	--with-pcre=system
 
 %{__make}
@@ -384,3 +400,10 @@ umask 022
 %{_datadir}/bash-completion/completions/gdbus
 %{_datadir}/bash-completion/completions/gresource
 %{_datadir}/bash-completion/completions/gsettings
+
+%if %{with systemtap}
+%files -n systemtap-glib2
+%defattr(644,root,root,755)
+%{_datadir}/systemtap/tapset/glib.stp
+%{_datadir}/systemtap/tapset/gobject.stp
+%endif
