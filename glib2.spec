@@ -20,7 +20,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.36.4
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -211,7 +211,7 @@ Bashowe uzupełnianie nazw dla narzędzi gio: gdbus i gsettings.
 Summary:	systemtap/dtrace probes for GLib 2
 Summary(pl.UTF-8):	Sondy systemtap/dtrace dla GLib 2
 Group:		Development/Tools
-Requires:	%{name} = %{version}-%{release}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	systemtap-client
 
 %description -n systemtap-glib2
