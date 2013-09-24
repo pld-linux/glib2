@@ -19,13 +19,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.36.4
-Release:	2
+Version:	2.38.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.36/glib-%{version}.tar.xz
-# Source0-md5:	2f4b15f7ef43d8702d067ab987bf7aba
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.38/glib-%{version}.tar.xz
+# Source0-md5:	c50d2805a76763e9b4cc4385d4ea215d
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -45,7 +45,7 @@ BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 8.13
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16
-# advised
+# in case of separate libelf (elfutils don't provide .pc file)
 #BuildRequires:	pkgconfig(libelf) >= 0.8.12
 BuildRequires:	pkgconfig(libffi) >= 3.0.0
 BuildRequires:	python >= 1:2.5
