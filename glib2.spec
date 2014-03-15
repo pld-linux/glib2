@@ -200,6 +200,9 @@ Summary(pl.UTF-8):	Bashowe uzupełnianie nazw dla narzędzi gio
 Group:		Applications/Shells
 Requires:	bash-completion >= 2.0
 Obsoletes:	bash-completion-gdbus
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description -n bash-completion-gio
 bash-completion for gio utilities: gdbus and gsettings.
