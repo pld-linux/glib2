@@ -20,7 +20,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.38.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -123,6 +123,7 @@ Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do 
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	pcre-devel >= 8.13
+Requires:	python-modules
 # gio only
 %{?with_selinux:Requires:	libselinux-devel}
 Requires:	zlib-devel
@@ -270,7 +271,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
 	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
 
-%{__mv} $RPM_BUILD_ROOT%{_datadir}/locale/{sr@ije,sr@ijekavian}
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
 
 %py_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
