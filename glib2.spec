@@ -19,13 +19,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.38.2
-Release:	2
+Version:	2.40.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.38/glib-%{version}.tar.xz
-# Source0-md5:	26d1d08e478fc48c181ca8be44f5b69f
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.40/glib-%{version}.tar.xz
+# Source0-md5:	05fb7cb17eacbc718e90366a1eae60d9
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -36,8 +36,8 @@ BuildRequires:	elfutils-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-devel
 %if %{with apidocs}
-BuildRequires:	gtk-doc >= 1.17
-BuildRequires:	gtk-doc-automake >= 1.17
+BuildRequires:	gtk-doc >= 1.20
+BuildRequires:	gtk-doc-automake >= 1.20
 %endif
 BuildRequires:	libffi-devel >= 3.0.0
 %{?with_selinux:BuildRequires:	libselinux-devel}
@@ -293,6 +293,7 @@ umask 022
 %files -f glib20.lang
 %defattr(644,root,root,755)
 %doc AUTHORS README NEWS
+%attr(755,root,root) %{_bindir}/gapplication
 %attr(755,root,root) %{_bindir}/gdbus
 %attr(755,root,root) %{_bindir}/gio-querymodules
 %attr(755,root,root) %{_bindir}/glib-compile-schemas
@@ -315,6 +316,7 @@ umask 022
 %dir %{_datadir}/glib-2.0/schemas
 %ghost %{_datadir}/glib-2.0/schemas/gschemas.compiled
 %if %{with apidocs}
+%{_mandir}/man1/gapplication.1*
 %{_mandir}/man1/gdbus.1*
 %{_mandir}/man1/gio-querymodules.1*
 %{_mandir}/man1/glib-compile-schemas.1*
@@ -401,6 +403,7 @@ umask 022
 
 %files -n bash-completion-gio
 %defattr(644,root,root,755)
+%{_datadir}/bash-completion/completions/gapplication
 %{_datadir}/bash-completion/completions/gdbus
 %{_datadir}/bash-completion/completions/gresource
 %{_datadir}/bash-completion/completions/gsettings
