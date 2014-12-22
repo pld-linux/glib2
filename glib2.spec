@@ -31,10 +31,11 @@ URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
+BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl
 BuildRequires:	elfutils-devel
 BuildRequires:	fam-devel
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 %if %{with apidocs}
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	gtk-doc-automake >= 1.20
