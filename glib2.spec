@@ -393,7 +393,6 @@ umask 022
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%{_gtkdocdir}/gdbus-object-manager-example
 %{_gtkdocdir}/gio
 %{_gtkdocdir}/glib
 %{_gtkdocdir}/gobject
