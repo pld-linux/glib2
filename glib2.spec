@@ -19,15 +19,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.48.0
+Version:	2.48.1
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.48/glib-%{version}.tar.xz
-# Source0-md5:	093a586f37d2853bdb129231e1b350e0
-# https://bugzilla.gnome.org/show_bug.cgi?id=763821
-Source1:	gobject.stp.in
+# Source0-md5:	67bd3b75c9f6d5587b457dc01cdcd5bb
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -233,8 +231,6 @@ Sondy systemtap/dtrace dla GLib 2.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-
-cp %{SOURCE1} gobject/
 
 %if %{without apidocs}
 %{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
