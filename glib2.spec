@@ -19,13 +19,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.48.2
+Version:	2.50.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.48/glib-%{version}.tar.xz
-# Source0-md5:	f4ac1aa2efd4f5798c37625ea697ac57
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.50/glib-%{version}.tar.xz
+# Source0-md5:	0fd6d3339cd7e4714eb643c6fa4b6499
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -41,6 +41,7 @@ BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	gtk-doc-automake >= 1.20
 %endif
 BuildRequires:	libffi-devel >= 3.0.0
+BuildRequires:	libmount-devel >= 2.28
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libtool >= 2:2.2
 BuildRequires:	pcre-devel >= 8.13
@@ -299,6 +300,7 @@ umask 022
 %doc AUTHORS README NEWS
 %attr(755,root,root) %{_bindir}/gapplication
 %attr(755,root,root) %{_bindir}/gdbus
+%attr(755,root,root) %{_bindir}/gio
 %attr(755,root,root) %{_bindir}/gio-querymodules
 %attr(755,root,root) %{_bindir}/glib-compile-schemas
 %attr(755,root,root) %{_bindir}/gsettings
@@ -322,6 +324,7 @@ umask 022
 %if %{with apidocs}
 %{_mandir}/man1/gapplication.1*
 %{_mandir}/man1/gdbus.1*
+%{_mandir}/man1/gio.1*
 %{_mandir}/man1/gio-querymodules.1*
 %{_mandir}/man1/glib-compile-schemas.1*
 %{_mandir}/man1/gsettings.1*
@@ -416,6 +419,7 @@ umask 022
 %if %{with systemtap}
 %files -n systemtap-glib2
 %defattr(644,root,root,755)
-%{_datadir}/systemtap/tapset/glib.stp
-%{_datadir}/systemtap/tapset/gobject.stp
+%{_datadir}/systemtap/tapset/libgio-2.0*.stp
+%{_datadir}/systemtap/tapset/libglib-2.0*.stp
+%{_datadir}/systemtap/tapset/libgobject-2.0*.stp
 %endif
