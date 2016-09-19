@@ -60,6 +60,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	iconv
+Requires:	libmount >= 2.28
 Requires:	pcre >= 8.13
 Suggests:	gvfs
 Provides:	glib2-libs
@@ -124,6 +125,7 @@ Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do GLib
 Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	libffi-devel >= 3.0.0
 Requires:	pcre-devel >= 8.13
 Requires:	python-modules
 # gio only
