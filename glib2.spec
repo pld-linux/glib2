@@ -126,6 +126,7 @@ Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do 
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	libffi-devel >= 3.0.0
+Requires:	libmount-devel >= 2.28
 Requires:	pcre-devel >= 8.13
 Requires:	python-modules
 # gio only
