@@ -19,13 +19,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.50.3
+Version:	2.52.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.50/glib-%{version}.tar.xz
-# Source0-md5:	381ab22934f296750d036aa55a397ded
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.52/glib-%{version}.tar.xz
+# Source0-md5:	64283e546091dcf3c9837d5430dda022
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -358,6 +358,7 @@ umask 022
 %dir %{_datadir}/glib-2.0/gettext
 %{_datadir}/glib-2.0/gettext/po
 %{_datadir}/glib-2.0/schemas/gschema.dtd
+%{_datadir}/glib-2.0/valgrind
 %{_datadir}/gettext/its/gschema.its
 %{_datadir}/gettext/its/gschema.loc
 %{_libdir}/libgio-2.0.la
