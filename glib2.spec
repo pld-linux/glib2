@@ -32,10 +32,13 @@ BuildRequires:	autoconf >= 2.62
 BuildRequires:	automake >= 1:1.11
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd45-xml
-BuildRequires:	docbook-style-xsl
+BuildRequires:	docbook-style-xsl-nons
 BuildRequires:	elfutils-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-tools
+%if %(locale -a | grep -q '^C-UTF\.8$'; echo $?)
+BuildRequires:	glibc-localedb-all
+%endif
 %if %{with apidocs}
 BuildRequires:	gtk-doc >= 1.20
 BuildRequires:	gtk-doc-automake >= 1.20
@@ -50,7 +53,7 @@ BuildRequires:	pkgconfig >= 1:0.16
 # in case of separate libelf (elfutils don't provide .pc file)
 #BuildRequires:	pkgconfig(libelf) >= 0.8.12
 BuildRequires:	pkgconfig(libffi) >= 3.0.0
-BuildRequires:	python >= 1:2.5
+BuildRequires:	python >= 1:2.7
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.527
@@ -263,6 +266,8 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
 	--with-pcre=system
 
+# gtk-doc build requires UTF-8 locale
+LC_ALL=C.UTF-8 \
 %{__make}
 
 %install
