@@ -19,13 +19,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.54.3
+Version:	2.56.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.54/glib-%{version}.tar.xz
-# Source0-md5:	16e886ad677bf07b7d48eb8188bcf759
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.56/glib-%{version}.tar.xz
+# Source0-md5:	f2b59392f2fb514bbe7791dda0c36da5
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
@@ -428,7 +428,7 @@ umask 022
 %if %{with systemtap}
 %files -n systemtap-glib2
 %defattr(644,root,root,755)
-%{_datadir}/systemtap/tapset/libgio-2.0*.stp
-%{_datadir}/systemtap/tapset/libglib-2.0*.stp
-%{_datadir}/systemtap/tapset/libgobject-2.0*.stp
+%{_datadir}/systemtap/tapset/*/libgio-2.0*.stp
+%{_datadir}/systemtap/tapset/*/libglib-2.0*.stp
+%{_datadir}/systemtap/tapset/*/libgobject-2.0*.stp
 %endif
