@@ -20,7 +20,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.56.2
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -258,6 +258,9 @@ echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
 	CPPFLAGS="%{rpmcppflags} -Wall" \
 	--enable-debug=%{?debug:yes} \
 	%{!?with_systemtap:--disable-dtrace} \
+%ifarch %{ix86}
+	%{?with_systemtap:--with-tapset-install-dir=%{_datadir}/systemtap/tapset/i386} \
+%endif
 	%{__enable_disable apidocs gtk-doc} \
 	%{__enable_disable selinux} \
 	--disable-silent-rules \
