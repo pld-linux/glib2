@@ -19,17 +19,17 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.56.2
-Release:	2
+Version:	2.58.0
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.56/glib-%{version}.tar.xz
-# Source0-md5:	568b6b872d088ac9593b7a8d740812b4
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.58/glib-%{version}.tar.xz
+# Source0-md5:	9b5d21c802f55bf37171c4fbfe7d32d1
 Patch0:		%{name}-makefile.patch
 URL:		http://www.gtk.org/
 BuildRequires:	autoconf >= 2.62
-BuildRequires:	automake >= 1:1.11
+BuildRequires:	automake >= 1:1.13.3
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl-nons
@@ -47,7 +47,7 @@ BuildRequires:	libffi-devel >= 3.0.0
 BuildRequires:	libmount-devel >= 2.28
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	libtool >= 2:2.2
-BuildRequires:	pcre-devel >= 8.13
+BuildRequires:	pcre-devel >= 8.31
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16
 # in case of separate libelf (elfutils don't provide .pc file)
@@ -64,7 +64,7 @@ BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	iconv
 Requires:	libmount >= 2.28
-Requires:	pcre >= 8.13
+Requires:	pcre >= 8.31
 Suggests:	gvfs
 Provides:	glib2-libs
 Obsoletes:	glib2-libs
@@ -130,7 +130,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	libffi-devel >= 3.0.0
 Requires:	libmount-devel >= 2.28
-Requires:	pcre-devel >= 8.13
+Requires:	pcre-devel >= 8.31
 Requires:	python-modules
 # gio only
 %{?with_selinux:Requires:	libselinux-devel}
@@ -312,6 +312,7 @@ umask 022
 %attr(755,root,root) %{_bindir}/gapplication
 %attr(755,root,root) %{_bindir}/gdbus
 %attr(755,root,root) %{_bindir}/gio
+%attr(755,root,root) %{_bindir}/gio-launch-desktop
 %attr(755,root,root) %{_bindir}/gio-querymodules
 %attr(755,root,root) %{_bindir}/glib-compile-schemas
 %attr(755,root,root) %{_bindir}/gsettings
@@ -343,7 +344,6 @@ umask 022
 
 %files devel
 %defattr(644,root,root,755)
-%doc ChangeLog
 %attr(755,root,root) %{_bindir}/gdbus-codegen
 %attr(755,root,root) %{_bindir}/glib-compile-resources
 %attr(755,root,root) %{_bindir}/glib-genmarshal
@@ -425,6 +425,7 @@ umask 022
 %defattr(644,root,root,755)
 %{_datadir}/bash-completion/completions/gapplication
 %{_datadir}/bash-completion/completions/gdbus
+%{_datadir}/bash-completion/completions/gio
 %{_datadir}/bash-completion/completions/gresource
 %{_datadir}/bash-completion/completions/gsettings
 
