@@ -36,7 +36,7 @@ BuildRequires:	docbook-style-xsl-nons
 BuildRequires:	elfutils-devel
 BuildRequires:	fam-devel
 BuildRequires:	gettext-tools
-%if %(locale -a | grep -q '^C-UTF\.8$'; echo $?)
+%if %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
 %if %{with apidocs}
