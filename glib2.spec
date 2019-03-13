@@ -129,7 +129,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	libffi-devel >= 3.0.0
 Requires:	libmount-devel >= 2.28
 Requires:	pcre-devel >= 8.31
-Requires:	python-modules
+Requires:	python3-modules
 # gio only
 %{?with_selinux:Requires:	libselinux-devel}
 Requires:	zlib-devel
