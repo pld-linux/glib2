@@ -19,17 +19,14 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.58.3
+Version:	2.60.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.58/glib-%{version}.tar.xz
-# Source0-md5:	8058c7bde846dcffe5fa453eca366d73
-Patch0:		%{name}-makefile.patch
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.60/glib-%{version}.tar.xz
+# Source0-md5:	7d36520dda58de65027abf5b4fb1241a
 URL:		http://www.gtk.org/
-BuildRequires:	autoconf >= 2.62
-BuildRequires:	automake >= 1:1.13.3
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl-nons
@@ -46,17 +43,18 @@ BuildRequires:	gtk-doc-automake >= 1.20
 BuildRequires:	libffi-devel >= 3.0.0
 BuildRequires:	libmount-devel >= 2.28
 %{?with_selinux:BuildRequires:	libselinux-devel}
-BuildRequires:	libtool >= 2:2.2
+BuildRequires:	meson >= 0.48.0
+BuildRequires:	ninja
 BuildRequires:	pcre-devel >= 8.31
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16
 # in case of separate libelf (elfutils don't provide .pc file)
 #BuildRequires:	pkgconfig(libelf) >= 0.8.12
 BuildRequires:	pkgconfig(libffi) >= 3.0.0
-BuildRequires:	python >= 1:2.7
+BuildRequires:	python3 >= 1:3.4
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.527
+BuildRequires:	rpmbuild(macros) >= 1.736
 BuildRequires:	sed >= 4.0
 %{?with_systemtap:BuildRequires:	systemtap-sdt-devel}
 BuildRequires:	tar >= 1:1.22
@@ -237,57 +235,28 @@ Sondy systemtap/dtrace dla GLib 2.
 
 %prep
 %setup -q -n glib-%{version}
-%patch0 -p1
-
-%if %{without apidocs}
-%{__sed} -e '/SUBDIRS/s/docs//' -i Makefile.am
-%{__sed} -e '/^docs.*Makefile$/d' -i configure.ac
-echo 'AC_DEFUN([GTK_DOC_CHECK],[])' >> acinclude.m4
-%endif
 
 %build
-%{?with_apidocs:%{__gtkdocize}}
-%{__libtoolize}
-%{__aclocal} -I m4macros
-%{__autoconf}
-%{__autoheader}
-%{__automake}
-
-# -Wall CPPFLAGS is workaround for https://bugzilla.gnome.org/show_bug.cgi?id=698716
-%configure \
-	CPPFLAGS="%{rpmcppflags} -Wall" \
-	--enable-debug=%{?debug:yes} \
-	%{!?with_systemtap:--disable-dtrace} \
+%meson build \
+	%{?debug:--debug} \
+	-Ddtrace=%{__true_false systemtap} \
+	-Dsystemtap=%{__true_false systemtap} \
 %ifarch %{ix86}
-	%{?with_systemtap:--with-tapset-install-dir=%{_datadir}/systemtap/tapset/i386} \
+	%{?with_systemtap:-Dtapset_install_dir=%{_datadir}/systemtap/tapset/i386} \
 %endif
-	%{__enable_disable apidocs gtk-doc} \
-	%{__enable_disable selinux} \
-	--disable-silent-rules \
-	%{__enable_disable static_libs static} \
-	--enable-man \
-	%{?with_apidocs:--with-html-dir=%{_gtkdocdir}} \
-	--with-pcre=system
+	-Dgtk_doc=%{__true_false apidocs} \
+	-Dselinux=%{?with_selinux:enabled}%{!?with_selinux:disabled} \
+	-Dman=true \
+	-Dinternal_pcre=false
 
-# gtk-doc build requires UTF-8 locale
-LC_ALL=C.UTF-8 \
-%{__make}
+%ninja_build -C build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	m4datadir=%{_aclocaldir} \
-	pkgconfigdir=%{_pkgconfigdir}
+%ninja_install -C build
 
-> $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
 > $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/gschemas.compiled
-
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.la \
-	%{?with_static_libs:$RPM_BUILD_ROOT%{_libdir}/gio/modules/libgiofam.a}
-
-%{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
 
 %py_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
@@ -300,9 +269,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
-
-umask 022
-%{_bindir}/gio-querymodules %{_libdir}/gio/modules || :
 
 %postun	-p /sbin/ldconfig
 
@@ -326,10 +292,6 @@ umask 022
 %attr(755,root,root) %ghost %{_libdir}/libgobject-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgthread-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgthread-2.0.so.0
-%dir %{_libdir}/gio
-%dir %{_libdir}/gio/modules
-%attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
-%ghost %{_libdir}/gio/modules/giomodule.cache
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
 %ghost %{_datadir}/glib-2.0/schemas/gschemas.compiled
@@ -369,11 +331,6 @@ umask 022
 %{_datadir}/glib-2.0/valgrind
 %{_datadir}/gettext/its/gschema.its
 %{_datadir}/gettext/its/gschema.loc
-%{_libdir}/libgio-2.0.la
-%{_libdir}/libglib-2.0.la
-%{_libdir}/libgmodule-2.0.la
-%{_libdir}/libgobject-2.0.la
-%{_libdir}/libgthread-2.0.la
 %{_pkgconfigdir}/gio-2.0.pc
 %{_pkgconfigdir}/gio-unix-2.0.pc
 %{_pkgconfigdir}/glib-2.0.pc
