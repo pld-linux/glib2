@@ -244,6 +244,7 @@ Sondy systemtap/dtrace dla GLib 2.
 %ifarch %{ix86}
 	%{?with_systemtap:-Dtapset_install_dir=%{_datadir}/systemtap/tapset/i386} \
 %endif
+	-Dfam=true \
 	-Dgtk_doc=%{__true_false apidocs} \
 	-Dselinux=%{?with_selinux:enabled}%{!?with_selinux:disabled} \
 	-Dman=true \
@@ -256,6 +257,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %ninja_install -C build
 
+> $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
 > $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
 %py_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
@@ -269,6 +271,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post
 /sbin/ldconfig
+
+umask 022
+%{_bindir}/gio-querymodules %{_libdir}/gio/modules || :
 
 %postun	-p /sbin/ldconfig
 
@@ -292,6 +297,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libgobject-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgthread-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgthread-2.0.so.0
+%dir %{_libdir}/gio
+%dir %{_libdir}/gio/modules
+%attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
+%ghost %{_libdir}/gio/modules/giomodule.cache
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
 %ghost %{_datadir}/glib-2.0/schemas/gschemas.compiled
