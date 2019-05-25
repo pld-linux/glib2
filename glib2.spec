@@ -20,7 +20,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.60.3
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -66,8 +66,6 @@ Requires:	pcre >= 8.31
 Suggests:	gvfs
 Provides:	glib2-libs
 Obsoletes:	glib2-libs
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 # see https://bugzilla.xfce.org/show_bug.cgi?id=9709
 Conflicts:	xfce4-session < 4.10.0-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -263,6 +261,9 @@ rm -rf $RPM_BUILD_ROOT
 %py_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 %py_ocomp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 %py_postclean $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
+
+# adjust for compatibility with names supported by glibc
+%{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
 
 %find_lang glib20
 
