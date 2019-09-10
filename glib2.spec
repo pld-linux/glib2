@@ -38,13 +38,12 @@ BuildRequires:	glibc-localedb-all
 %endif
 %if %{with apidocs}
 BuildRequires:	gtk-doc >= 1.20
-BuildRequires:	gtk-doc-automake >= 1.20
 %endif
 BuildRequires:	libffi-devel >= 3.0.0
 BuildRequires:	libmount-devel >= 2.28
 %{?with_selinux:BuildRequires:	libselinux-devel}
 BuildRequires:	meson >= 0.49.2
-BuildRequires:	ninja
+BuildRequires:	ninja >= 1.5
 BuildRequires:	pcre-devel >= 8.31
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16
