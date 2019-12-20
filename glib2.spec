@@ -20,12 +20,13 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.62.4
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.62/glib-%{version}.tar.xz
 # Source0-md5:	d52234ecba128932bed90bbc3553bfe5
+Patch0:		%{name}-python_shebang.patch
 URL:		https://www.gtk.org/
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd45-xml
@@ -232,6 +233,7 @@ Sondy systemtap/dtrace dla GLib 2.
 
 %prep
 %setup -q -n glib-%{version}
+%patch0 -p1
 
 %build
 %meson build \
