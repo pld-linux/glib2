@@ -5,7 +5,6 @@
 %bcond_without	selinux		# SELinux support in gio
 %bcond_without	systemtap	# systemtap/dtrace probes
 
-%include	/usr/lib/rpm/macros.perl
 Summary:	Useful routines for 'C' programming
 Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
 Summary(da.UTF-8):	Nyttige biblioteksfunktioner
