@@ -50,10 +50,10 @@ BuildRequires:	pkgconfig >= 1:0.16
 # in case of separate libelf (elfutils don't provide .pc file)
 #BuildRequires:	pkgconfig(libelf) >= 0.8.12
 BuildRequires:	pkgconfig(libffi) >= 3.0.0
-BuildRequires:	python3 >= 1:3.4
+BuildRequires:	python3 >= 1:3.5
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.736
+BuildRequires:	rpmbuild(macros) >= 1.745
 BuildRequires:	sed >= 4.0
 %{?with_systemtap:BuildRequires:	systemtap-sdt-devel}
 BuildRequires:	tar >= 1:1.22
@@ -126,7 +126,7 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	libffi-devel >= 3.0.0
 Requires:	libmount-devel >= 2.28
 Requires:	pcre-devel >= 8.31
-Requires:	python3-modules
+Requires:	python3-modules >= 1:3.5
 # gio only
 %{?with_selinux:Requires:	libselinux-devel}
 Requires:	zlib-devel
