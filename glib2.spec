@@ -18,13 +18,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.64.5
+Version:	2.66.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.64/glib-%{version}.tar.xz
-# Source0-md5:	9bc5c8da9b31d19c10d91ea4b902c04b
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.66/glib-%{version}.tar.xz
+# Source0-md5:	5fbccd13eba61294a3e6ba01bb2f9b83
 Patch0:		%{name}-python_shebang.patch
 URL:		https://www.gtk.org/
 BuildRequires:	docbook-dtd412-xml
@@ -37,7 +37,10 @@ BuildRequires:	gettext-tools
 BuildRequires:	glibc-localedb-all
 %endif
 %if %{with apidocs}
-BuildRequires:	gtk-doc >= 1.20
+# TODO: restore when released
+#BuildRequires:	gtk-doc >= 1.32.1
+BuildRequires:	gtk-doc >= 1.32
+BuildRequires:	meson >= 0.52.0
 %endif
 BuildRequires:	libffi-devel >= 3.0.0
 BuildRequires:	libmount-devel >= 2.28
@@ -175,7 +178,7 @@ Summary:	GLib API documetation
 Summary(pl.UTF-8):	Dokumentacja API GLib
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
@@ -207,7 +210,7 @@ Summary(pl.UTF-8):	Bashowe uzupełnianie nazw dla narzędzi gio
 Group:		Applications/Shells
 Requires:	bash-completion >= 2.0
 Obsoletes:	bash-completion-gdbus
-%if "%{_rpmversion}" >= "5"
+%if "%{_rpmversion}" >= "4.6"
 BuildArch:	noarch
 %endif
 
@@ -233,6 +236,9 @@ Sondy systemtap/dtrace dla GLib 2.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+
+# TODO: drop when 1.32.1 is released
+%{__sed} -i -e 's/1.32.1/1.32/' docs/reference/meson.build
 
 %build
 %meson build \
