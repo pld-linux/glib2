@@ -37,9 +37,7 @@ BuildRequires:	gettext-tools
 BuildRequires:	glibc-localedb-all
 %endif
 %if %{with apidocs}
-# TODO: restore when released
-#BuildRequires:	gtk-doc >= 1.32.1
-BuildRequires:	gtk-doc >= 1.32
+BuildRequires:	gtk-doc >= 1.32.1
 BuildRequires:	meson >= 0.52.0
 %endif
 BuildRequires:	libffi-devel >= 3.0.0
@@ -236,9 +234,6 @@ Sondy systemtap/dtrace dla GLib 2.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
-
-# TODO: drop when 1.32.1 is released
-%{__sed} -i -e 's/1.32.1/1.32/' docs/reference/meson.build
 
 %build
 %meson build \
