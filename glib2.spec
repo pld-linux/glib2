@@ -18,13 +18,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.66.2
+Version:	2.66.3
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://ftp.gnome.org/pub/GNOME/sources/glib/2.66/glib-%{version}.tar.xz
-# Source0-md5:	163f2954e75557b86a7aceacd797fc98
+# Source0-md5:	c82fd909e2bef0a79b7430d5f5aa164b
 Patch0:		%{name}-python_shebang.patch
 URL:		https://www.gtk.org/
 BuildRequires:	docbook-dtd412-xml
@@ -54,7 +54,7 @@ BuildRequires:	pkgconfig(libffi) >= 3.0.0
 BuildRequires:	python3 >= 1:3.5
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.745
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	sed >= 4.0
 %{?with_systemtap:BuildRequires:	systemtap-sdt-devel}
 BuildRequires:	tar >= 1:1.22
@@ -176,9 +176,7 @@ Summary:	GLib API documetation
 Summary(pl.UTF-8):	Dokumentacja API GLib
 Group:		Documentation
 Requires:	gtk-doc-common
-%if "%{_rpmversion}" >= "4.6"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description apidocs
 GLib API documetation.
@@ -208,9 +206,7 @@ Summary(pl.UTF-8):	Bashowe uzupełnianie nazw dla narzędzi gio
 Group:		Applications/Shells
 Requires:	bash-completion >= 2.0
 Obsoletes:	bash-completion-gdbus
-%if "%{_rpmversion}" >= "4.6"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description -n bash-completion-gio
 bash-completion for gio utilities: gdbus and gsettings.
