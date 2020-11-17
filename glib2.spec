@@ -4,6 +4,7 @@
 %bcond_without	static_libs	# static library
 %bcond_without	selinux		# SELinux support in gio
 %bcond_without	systemtap	# systemtap/dtrace probes
+%bcond_without	fam		# disable fam filesystem monitoring support
 
 Summary:	Useful routines for 'C' programming
 Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
@@ -31,7 +32,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl-nons
 BuildRequires:	elfutils-devel
-BuildRequires:	fam-devel
+%{?with_fam:BuildRequires:	fam-devel}
 BuildRequires:	gettext-tools
 %if %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
@@ -239,7 +240,7 @@ Sondy systemtap/dtrace dla GLib 2.
 %ifarch %{ix86}
 	%{?with_systemtap:-Dtapset_install_dir=%{_datadir}/systemtap/tapset/i386} \
 %endif
-	-Dfam=true \
+	-Dfam=%{__true_false fam} \
 	-Dgtk_doc=%{__true_false apidocs} \
 	-Dselinux=%{?with_selinux:enabled}%{!?with_selinux:disabled} \
 	-Dman=true \
@@ -249,6 +250,8 @@ Sondy systemtap/dtrace dla GLib 2.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_libdir}/gio/modules
 
 %ninja_install -C build
 
@@ -296,7 +299,7 @@ umask 022
 %attr(755,root,root) %ghost %{_libdir}/libgthread-2.0.so.0
 %dir %{_libdir}/gio
 %dir %{_libdir}/gio/modules
-%attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so
+%{?with_fam:%attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so}
 %ghost %{_libdir}/gio/modules/giomodule.cache
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
