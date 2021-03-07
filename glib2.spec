@@ -177,7 +177,7 @@ Summary:	GLib API documetation
 Summary(pl.UTF-8):	Dokumentacja API GLib
 Group:		Documentation
 Requires:	gtk-doc-common
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 GLib API documetation.
@@ -207,7 +207,7 @@ Summary(pl.UTF-8):	Bashowe uzupełnianie nazw dla narzędzi gio
 Group:		Applications/Shells
 Requires:	bash-completion >= 2.0
 Obsoletes:	bash-completion-gdbus
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description -n bash-completion-gio
 bash-completion for gio utilities: gdbus and gsettings.
