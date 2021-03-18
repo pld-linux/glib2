@@ -8,7 +8,7 @@
 +python_name = python.path()
  
  python_version = python.language_version()
- python_version_req = '>=3.4'
+ python_version_req = '>=3.5'
 --- glib-2.62.4/gio/gdbus-2.0/codegen/gdbus-codegen.in.orig	2019-12-19 17:33:15.000000000 +0100
 +++ glib-2.62.4/gio/gdbus-2.0/codegen/gdbus-codegen.in	2019-12-20 18:38:55.327058974 +0100
 @@ -1,4 +1,4 @@
