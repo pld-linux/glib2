@@ -19,13 +19,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.66.8
+Version:	2.68.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/glib/2.66/glib-%{version}.tar.xz
-# Source0-md5:	705dd46a43d339e8aea19e946e71c32a
+Source0:	https://download.gnome.org/sources/glib/2.68/glib-%{version}.tar.xz
+# Source0-md5:	7d06a0b20454ec17052572dcf8cd7cea
 Patch0:		%{name}-python_shebang.patch
 URL:		https://www.gtk.org/
 BuildRequires:	docbook-dtd412-xml
@@ -43,7 +43,8 @@ BuildRequires:	meson >= 0.52.0
 %endif
 BuildRequires:	libffi-devel >= 3.0.0
 BuildRequires:	libmount-devel >= 2.28
-%{?with_selinux:BuildRequires:	libselinux-devel}
+%{?with_selinux:BuildRequires:	libselinux-devel >= 2.2}
+BuildRequires:	libxslt-progs
 BuildRequires:	meson >= 0.49.2
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pcre-devel >= 8.31
@@ -63,6 +64,7 @@ BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	iconv
 Requires:	libmount >= 2.28
+%{?with_selinux:Requires:	libselinux >= 2.2}
 Requires:	pcre >= 8.31
 Suggests:	gvfs
 Provides:	glib2-libs
@@ -130,7 +132,7 @@ Requires:	libmount-devel >= 2.28
 Requires:	pcre-devel >= 8.31
 Requires:	python3-modules >= 1:3.5
 # gio only
-%{?with_selinux:Requires:	libselinux-devel}
+%{?with_selinux:Requires:	libselinux-devel >= 2.2}
 Requires:	zlib-devel
 
 %description devel
@@ -304,14 +306,12 @@ umask 022
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
 %ghost %{_datadir}/glib-2.0/schemas/gschemas.compiled
-%if %{with apidocs}
 %{_mandir}/man1/gapplication.1*
 %{_mandir}/man1/gdbus.1*
 %{_mandir}/man1/gio.1*
 %{_mandir}/man1/gio-querymodules.1*
 %{_mandir}/man1/glib-compile-schemas.1*
 %{_mandir}/man1/gsettings.1*
-%endif
 
 %files devel
 %defattr(644,root,root,755)
@@ -351,7 +351,6 @@ umask 022
 %{_aclocaldir}/glib-2.0.m4
 %{_aclocaldir}/glib-gettext.m4
 %{_aclocaldir}/gsettings.m4
-%if %{with apidocs}
 %{_mandir}/man1/gdbus-codegen.1*
 %{_mandir}/man1/glib-compile-resources.1*
 %{_mandir}/man1/glib-genmarshal.1*
@@ -361,7 +360,6 @@ umask 022
 %{_mandir}/man1/gresource.1*
 %{_mandir}/man1/gtester-report.1*
 %{_mandir}/man1/gtester.1*
-%endif
 
 %if %{with static_libs}
 %files static
