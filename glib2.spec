@@ -1,10 +1,10 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# disable gtk-doc
+%bcond_without	apidocs		# gtk-doc based API documentation
 %bcond_without	static_libs	# static library
 %bcond_without	selinux		# SELinux support in gio
 %bcond_without	systemtap	# systemtap/dtrace probes
-%bcond_without	fam		# disable fam filesystem monitoring support
+%bcond_without	fam		# FAM filesystem monitoring support
 
 Summary:	Useful routines for 'C' programming
 Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
@@ -54,6 +54,7 @@ BuildRequires:	pkgconfig >= 1:0.16
 #BuildRequires:	pkgconfig(libelf) >= 0.8.12
 BuildRequires:	pkgconfig(libffi) >= 3.0.0
 BuildRequires:	python3 >= 1:3.5
+BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.752
@@ -387,11 +388,11 @@ umask 022
 
 %files -n bash-completion-gio
 %defattr(644,root,root,755)
-%{_datadir}/bash-completion/completions/gapplication
-%{_datadir}/bash-completion/completions/gdbus
-%{_datadir}/bash-completion/completions/gio
-%{_datadir}/bash-completion/completions/gresource
-%{_datadir}/bash-completion/completions/gsettings
+%{bash_compdir}/gapplication
+%{bash_compdir}/gdbus
+%{bash_compdir}/gio
+%{bash_compdir}/gresource
+%{bash_compdir}/gsettings
 
 %if %{with systemtap}
 %files -n systemtap-glib2
