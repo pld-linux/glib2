@@ -19,13 +19,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.68.2
+Version:	2.68.3
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/glib/2.68/glib-%{version}.tar.xz
-# Source0-md5:	8d288416da38476c71998e5c2d3602ed
+# Source0-md5:	a3968c7510447f055fd2204ba947f80f
 Patch0:		%{name}-python_shebang.patch
 URL:		https://www.gtk.org/
 BuildRequires:	docbook-dtd412-xml
