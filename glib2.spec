@@ -27,6 +27,7 @@ Group:		Libraries
 Source0:	https://download.gnome.org/sources/glib/2.69/glib-%{version}.tar.xz
 # Source0-md5:	568d07cb33f506d55efab494f9b0fa34
 Patch0:		%{name}-python_shebang.patch
+Patch1:		gtk-doc-build.patch
 URL:		https://www.gtk.org/
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd45-xml
@@ -234,6 +235,7 @@ Sondy systemtap/dtrace dla GLib 2.
 %prep
 %setup -q -n glib-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %meson build \
