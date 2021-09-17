@@ -3,7 +3,8 @@
 %bcond_without	apidocs		# gtk-doc based API documentation
 %bcond_without	static_libs	# static library
 %bcond_without	selinux		# SELinux support in gio
-%bcond_without	systemtap	# systemtap/dtrace probes
+%bcond_with	sysprof		# sysprof tracing support
+%bcond_without	systemtap	# systemtap/dtrace tracing support
 %bcond_without	fam		# FAM filesystem monitoring support
 
 Summary:	Useful routines for 'C' programming
@@ -19,13 +20,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.69.1
+Version:	2.70.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/glib/2.69/glib-%{version}.tar.xz
-# Source0-md5:	568d07cb33f506d55efab494f9b0fa34
+Source0:	https://download.gnome.org/sources/glib/2.70/glib-%{version}.tar.xz
+# Source0-md5:	4b08228707d28a9f23f7369902f4b166
 Patch0:		%{name}-python_shebang.patch
 Patch1:		gtk-doc-build.patch
 URL:		https://www.gtk.org/
@@ -60,6 +61,7 @@ BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	sed >= 4.0
+%{?with_sysprof:BuildRequires:	sysprof-devel >= 3.38.0}
 %{?with_systemtap:BuildRequires:	systemtap-sdt-devel}
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -70,7 +72,7 @@ Requires:	libmount >= 2.28
 Requires:	pcre >= 8.31
 Suggests:	gvfs
 Provides:	glib2-libs
-Obsoletes:	glib2-libs
+Obsoletes:	glib2-libs < 1:2.12.11-3
 # see https://bugzilla.xfce.org/show_bug.cgi?id=9709
 Conflicts:	xfce4-session < 4.10.0-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -248,8 +250,8 @@ Sondy systemtap/dtrace dla GLib 2.
 	-Dfam=%{__true_false fam} \
 	-Dgtk_doc=%{__true_false apidocs} \
 	-Dselinux=%{?with_selinux:enabled}%{!?with_selinux:disabled} \
-	-Dman=true \
-	-Dinternal_pcre=false
+	%{?with_sysprof:-Dsysprof=enabled} \
+	-Dman=true
 
 %ninja_build -C build
 
