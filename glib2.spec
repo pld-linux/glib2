@@ -20,13 +20,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.70.5
+Version:	2.72.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/glib/2.70/glib-%{version}.tar.xz
-# Source0-md5:	c59d43d79902312311cb7e6a1f449035
+Source0:	https://download.gnome.org/sources/glib/2.72/glib-%{version}.tar.xz
+# Source0-md5:	46a8e04b1b42b64cbef2ea434923e704
 Patch0:		%{name}-python_shebang.patch
 Patch1:		gtk-doc-build.patch
 URL:		https://www.gtk.org/
@@ -212,7 +212,7 @@ Summary:	bash-completion for gio utilities
 Summary(pl.UTF-8):	Bashowe uzupełnianie nazw dla narzędzi gio
 Group:		Applications/Shells
 Requires:	bash-completion >= 2.0
-Obsoletes:	bash-completion-gdbus
+Obsoletes:	bash-completion-gdbus < 1:2.26.0-4
 BuildArch:	noarch
 
 %description -n bash-completion-gio
