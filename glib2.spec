@@ -46,6 +46,7 @@ BuildRequires:	meson >= 0.52.0
 BuildRequires:	libffi-devel >= 3.0.0
 BuildRequires:	libmount-devel >= 2.28
 %{?with_selinux:BuildRequires:	libselinux-devel >= 2.2}
+BuildRequires:	libstdc++-devel
 BuildRequires:	libxslt-progs
 BuildRequires:	meson >= 0.49.2
 BuildRequires:	ninja >= 1.5
