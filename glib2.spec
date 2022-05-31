@@ -266,9 +266,8 @@ install -d $RPM_BUILD_ROOT%{_libdir}/gio/modules
 > $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
 > $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/gschemas.compiled
 
-%py_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
-%py_ocomp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
-%py_postclean $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
+%py3_comp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
+%py3_ocomp $RPM_BUILD_ROOT%{_datadir}/glib-2.0/gdb
 
 # adjust for compatibility with names supported by glibc
 %{__mv} $RPM_BUILD_ROOT%{_localedir}/{sr@ije,sr@ijekavian}
