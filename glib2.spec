@@ -1,3 +1,4 @@
+# TODO: use -Dmultiarch for arch-dependent binaries? (like gio-querymodules or gio-launch-desktop)
 #
 # Conditional build:
 %bcond_without	apidocs		# gtk-doc based API documentation
@@ -5,7 +6,6 @@
 %bcond_without	selinux		# SELinux support in gio
 %bcond_with	sysprof		# sysprof tracing support
 %bcond_without	systemtap	# systemtap/dtrace tracing support
-%bcond_without	fam		# FAM filesystem monitoring support
 
 Summary:	Useful routines for 'C' programming
 Summary(cs.UTF-8):	Šikovná knihovna s funkcemi pro pomocné programy
@@ -20,13 +20,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.72.3
+Version:	2.74.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/glib/2.72/glib-%{version}.tar.xz
-# Source0-md5:	ef67f7e19e47c8e082256d614f1ab8f4
+Source0:	https://download.gnome.org/sources/glib/2.74/glib-%{version}.tar.xz
+# Source0-md5:	06745709784eddb4a3860e1814f795e8
 Patch0:		%{name}-python_shebang.patch
 Patch1:		gtk-doc-build.patch
 URL:		https://www.gtk.org/
@@ -34,23 +34,21 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl-nons
 BuildRequires:	elfutils-devel
-%{?with_fam:BuildRequires:	fam-devel}
 BuildRequires:	gettext-tools
 %if %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
 %if %{with apidocs}
 BuildRequires:	gtk-doc >= 1.32.1
-BuildRequires:	meson >= 0.52.0
 %endif
 BuildRequires:	libffi-devel >= 3.0.0
 BuildRequires:	libmount-devel >= 2.28
 %{?with_selinux:BuildRequires:	libselinux-devel >= 2.2}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxslt-progs
-BuildRequires:	meson >= 0.49.2
+BuildRequires:	meson >= 0.60.0
 BuildRequires:	ninja >= 1.5
-BuildRequires:	pcre-devel >= 8.31
+BuildRequires:	pcre2-8-devel >= 10.32
 BuildRequires:	perl-base
 BuildRequires:	pkgconfig >= 1:0.16
 # in case of separate libelf (elfutils don't provide .pc file)
@@ -70,7 +68,7 @@ BuildRequires:	zlib-devel
 Requires:	iconv
 Requires:	libmount >= 2.28
 %{?with_selinux:Requires:	libselinux >= 2.2}
-Requires:	pcre >= 8.31
+Requires:	pcre2-8 >= 10.32
 Suggests:	gvfs
 Provides:	glib2-libs
 Obsoletes:	glib2-libs < 1:2.12.11-3
@@ -134,7 +132,7 @@ Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	libffi-devel >= 3.0.0
 Requires:	libmount-devel >= 2.28
-Requires:	pcre-devel >= 8.31
+Requires:	pcre2-8-devel >= 10.32
 Requires:	python3-modules >= 1:3.5
 # gio only
 %{?with_selinux:Requires:	libselinux-devel >= 2.2}
@@ -248,7 +246,6 @@ Sondy systemtap/dtrace dla GLib 2.
 %ifarch %{ix86}
 	%{?with_systemtap:-Dtapset_install_dir=%{_datadir}/systemtap/tapset/i386} \
 %endif
-	-Dfam=%{__true_false fam} \
 	-Dgtk_doc=%{__true_false apidocs} \
 	-Dselinux=%{?with_selinux:enabled}%{!?with_selinux:disabled} \
 	%{?with_sysprof:-Dsysprof=enabled} \
@@ -287,13 +284,14 @@ umask 022
 
 %files -f glib20.lang
 %defattr(644,root,root,755)
-%doc AUTHORS README NEWS
+%doc README.md NEWS SECURITY.md
 %attr(755,root,root) %{_bindir}/gapplication
 %attr(755,root,root) %{_bindir}/gdbus
 %attr(755,root,root) %{_bindir}/gio
 %attr(755,root,root) %{_bindir}/gio-querymodules
 %attr(755,root,root) %{_bindir}/glib-compile-schemas
 %attr(755,root,root) %{_bindir}/gsettings
+%attr(755,root,root) %{_libexecdir}/gio-launch-desktop
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
 %attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
@@ -306,7 +304,6 @@ umask 022
 %attr(755,root,root) %ghost %{_libdir}/libgthread-2.0.so.0
 %dir %{_libdir}/gio
 %dir %{_libdir}/gio/modules
-%{?with_fam:%attr(755,root,root) %{_libdir}/gio/modules/libgiofam.so}
 %ghost %{_libdir}/gio/modules/giomodule.cache
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
