@@ -2,7 +2,7 @@
 +++ glib-2.62.4/meson.build	2019-12-20 18:37:03.307665835 +0100
 @@ -1988,7 +1988,7 @@
  
- python = import('python').find_installation('python3')
+ python = import('python').find_installation()
  # used for '#!/usr/bin/env <name>'
 -python_name = 'python3'
 +python_name = python.path()
