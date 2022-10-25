@@ -210,7 +210,7 @@ ramek sygnagłów w zrzutach wywołań (backtrace).
 Summary:	bash-completion for gio utilities
 Summary(pl.UTF-8):	Bashowe uzupełnianie nazw dla narzędzi gio
 Group:		Applications/Shells
-Requires:	bash-completion >= 2.0
+Requires:	bash-completion >= 1:2.0
 Obsoletes:	bash-completion-gdbus < 1:2.26.0-4
 BuildArch:	noarch
 
