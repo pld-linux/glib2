@@ -21,7 +21,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.74.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -29,6 +29,7 @@ Source0:	https://download.gnome.org/sources/glib/2.74/glib-%{version}.tar.xz
 # Source0-md5:	abcfe42128bbace7a63c795551131d93
 Patch0:		%{name}-python_shebang.patch
 Patch1:		gtk-doc-build.patch
+Patch2:		revert-fd-collision-handling.patch
 URL:		https://www.gtk.org/
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd45-xml
@@ -237,6 +238,7 @@ Sondy systemtap/dtrace dla GLib 2.
 %setup -q -n glib-%{version}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %meson build \
