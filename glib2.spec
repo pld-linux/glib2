@@ -168,6 +168,7 @@ Summary(pl.UTF-8):	Biblioteki statyczne GLib
 Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com GLib
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
+Requires:	pcre2-8-static
 
 %description static
 Static GLib libraries.
