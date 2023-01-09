@@ -31,6 +31,7 @@ Patch0:		%{name}-python_shebang.patch
 Patch1:		gtk-doc-build.patch
 Patch2:		errno.patch
 URL:		https://www.gtk.org/
+BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl-nons
