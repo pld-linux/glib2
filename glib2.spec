@@ -58,6 +58,7 @@ BuildRequires:	pkgconfig >= 1:0.16
 #BuildRequires:	pkgconfig(libelf) >= 0.8.12
 BuildRequires:	pkgconfig(libffi) >= 3.0.0
 BuildRequires:	python3 >= 1:3.5
+BuildRequires:	python3-modules >= 1:3.5
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
