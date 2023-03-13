@@ -1,4 +1,6 @@
-# TODO: use -Dmultiarch for arch-dependent binaries? (like gio-querymodules or gio-launch-desktop)
+# TODO: 
+# - use -Dmultiarch for arch-dependent binaries? (like gio-querymodules or gio-launch-desktop)
+# - docutils >= 0.13.1 (rst2html5) based gvariant docs
 #
 # Conditional build:
 %bcond_without	apidocs		# gtk-doc based API documentation
@@ -20,13 +22,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.74.6
+Version:	2.76.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/glib/2.74/glib-%{version}.tar.xz
-# Source0-md5:	38f81d4a06c03e667b1f4d73cb803da8
+Source0:	https://download.gnome.org/sources/glib/2.76/glib-%{version}.tar.xz
+# Source0-md5:	cad9432882fb0a4b311f156210853562
 Patch0:		%{name}-python_shebang.patch
 Patch1:		gtk-doc-build.patch
 URL:		https://www.gtk.org/
