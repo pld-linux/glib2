@@ -1,14 +1,14 @@
---- glib-2.62.4/meson.build.orig	2019-12-19 17:33:15.000000000 +0100
-+++ glib-2.62.4/meson.build	2019-12-20 18:37:03.307665835 +0100
-@@ -1988,7 +1988,7 @@
+--- glib-2.80.0/meson.build.orig	2024-03-09 18:31:13.808268422 +0100
++++ glib-2.80.0/meson.build	2024-03-09 18:34:02.170689658 +0100
+@@ -2421,7 +2421,7 @@ glib_conf.set('HAVE_PROC_SELF_CMDLINE',
  
- python = import('python').find_installation()
+ python = import('python').find_installation(modules: ['packaging'])
  # used for '#!/usr/bin/env <name>'
 -python_name = 'python3'
 +python_name = python.path()
  
  python_version = python.language_version()
- python_version_req = '>=3.5'
+ python_version_req = '>=3.7'
 --- glib-2.62.4/gio/gdbus-2.0/codegen/gdbus-codegen.in.orig	2019-12-19 17:33:15.000000000 +0100
 +++ glib-2.62.4/gio/gdbus-2.0/codegen/gdbus-codegen.in	2019-12-20 18:38:55.327058974 +0100
 @@ -1,4 +1,4 @@
