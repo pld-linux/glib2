@@ -3,6 +3,7 @@
 #
 # Conditional build:
 %bcond_without	apidocs		# gi-docgen based API documentation
+%bcond_without	introspection	# gi modules
 %bcond_without	static_libs	# static library
 %bcond_without	selinux		# SELinux support in gio
 %bcond_with	sysprof		# sysprof tracing support
@@ -39,6 +40,8 @@ BuildRequires:	gettext-tools
 %if %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
+# g-ir-scanner required to build introspection
+%{?with_introspection:BuildRequires:	gobject-introspection-devel}
 BuildRequires:	libffi-devel >= 3.0.0
 BuildRequires:	libmount-devel >= 2.28
 %{?with_selinux:BuildRequires:	libselinux-devel >= 2.2}
@@ -247,6 +250,7 @@ Sondy systemtap/dtrace dla GLib 2.
 %meson build \
 	%{?debug:--debug} \
 	-Ddtrace=%{__true_false systemtap} \
+	%{!?with_introspection:-Dintrospection=disabled} \
 	-Dsystemtap=%{__true_false systemtap} \
 %ifarch %{ix86}
 	%{?with_systemtap:-Dtapset_install_dir=%{_datadir}/systemtap/tapset/i386} \
@@ -260,10 +264,13 @@ Sondy systemtap/dtrace dla GLib 2.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_libdir}/gio/modules
 
 %ninja_install -C build
+
+%if %{without introspection}
+install -d $RPM_BUILD_ROOT{%{_libdir}/girepository-1.0,%{_datadir}/gir-1.0}
+%endif
 
 %if %{with apidocs}
 install -d $RPM_BUILD_ROOT%{_gidocdir}
@@ -321,6 +328,7 @@ umask 022
 %dir %{_libdir}/gio/modules
 %ghost %{_libdir}/gio/modules/giomodule.cache
 %dir %{_libdir}/girepository-1.0
+%if %{with introspection}
 %{_libdir}/girepository-1.0/Gio-2.0.typelib
 %{_libdir}/girepository-1.0/GioUnix-2.0.typelib
 %{_libdir}/girepository-1.0/GIRepository-3.0.typelib
@@ -328,6 +336,7 @@ umask 022
 %{_libdir}/girepository-1.0/GLibUnix-2.0.typelib
 %{_libdir}/girepository-1.0/GModule-2.0.typelib
 %{_libdir}/girepository-1.0/GObject-2.0.typelib
+%endif
 %dir %{_datadir}/glib-2.0
 %dir %{_datadir}/glib-2.0/schemas
 %ghost %{_datadir}/glib-2.0/schemas/gschemas.compiled
@@ -363,6 +372,7 @@ umask 022
 %{_includedir}/gio-unix-2.0
 %{_includedir}/glib-2.0
 %dir %{_datadir}/gir-1.0
+%if %{with introspection}
 %{_datadir}/gir-1.0/Gio-2.0.gir
 %{_datadir}/gir-1.0/GioUnix-2.0.gir
 %{_datadir}/gir-1.0/GIRepository-3.0.gir
@@ -370,6 +380,7 @@ umask 022
 %{_datadir}/gir-1.0/GLibUnix-2.0.gir
 %{_datadir}/gir-1.0/GModule-2.0.gir
 %{_datadir}/gir-1.0/GObject-2.0.gir
+%endif
 %dir %{_datadir}/glib-2.0/codegen
 %{_datadir}/glib-2.0/codegen/*.py*
 %{_datadir}/glib-2.0/dtds
