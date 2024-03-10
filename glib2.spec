@@ -79,7 +79,7 @@ Requires:	pcre2-8 >= 10.32
 Suggests:	gvfs
 Provides:	glib2-libs
 Obsoletes:	glib2-libs < 1:2.12.11-3
-Conflicts:	gobject-introspection < 1.79
+%{?with_introspection:Conflicts:	gobject-introspection < 1.79}
 # see https://bugzilla.xfce.org/show_bug.cgi?id=9709
 Conflicts:	xfce4-session < 4.10.0-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -145,7 +145,7 @@ Requires:	python3-modules >= 1:3.7
 # gio only
 %{?with_selinux:Requires:	libselinux-devel >= 2.2}
 Requires:	zlib-devel
-Conflicts:	gobject-introspection-devel < 1.79
+%{?with_introspection:Conflicts:	gobject-introspection-devel < 1.79}
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
