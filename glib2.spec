@@ -23,7 +23,7 @@ Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
 Version:	2.80.0
-Release:	1
+Release:	2
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
@@ -142,6 +142,7 @@ Requires:	libffi-devel >= 3.0.0
 Requires:	libmount-devel >= 2.28
 Requires:	pcre2-8-devel >= 10.32
 Requires:	python3-modules >= 1:3.7
+Requires:	python3-packaging
 # gio only
 %{?with_selinux:Requires:	libselinux-devel >= 2.2}
 Requires:	zlib-devel
