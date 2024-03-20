@@ -35,6 +35,7 @@ BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd45-xml
 BuildRequires:	docbook-style-xsl-nons
+BuildRequires:	docutils >= 0.13.1
 BuildRequires:	elfutils-devel
 BuildRequires:	gettext-tools
 %if %(locale -a | grep -q '^C\.utf8$'; echo $?)
@@ -69,7 +70,6 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zlib-devel
 %if %{with apidocs}
-BuildRequires:	docutils >= 0.13.1
 BuildRequires:	gi-docgen >= 2023.1
 %endif
 Requires:	iconv
