@@ -4,7 +4,7 @@
 # Conditional build:
 %bcond_without	apidocs		# gi-docgen based API documentation
 %bcond_without	introspection	# gi modules
-%bcond_without	static_libs	# static library
+%bcond_without	static_libs	# static libraries
 %bcond_without	selinux		# SELinux support in gio
 %bcond_with	sysprof		# sysprof tracing support
 %bcond_without	systemtap	# systemtap/dtrace tracing support
@@ -22,13 +22,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.80.0
-Release:	2
+Version:	2.80.1
+Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/glib/2.80/glib-%{version}.tar.xz
-# Source0-md5:	3a51e2803ecd22c2dadcd07d9475ebe3
+# Source0-md5:	a136e66c287b4eb1bf10accb03477b6f
 Patch0:		%{name}-python_shebang.patch
 URL:		https://www.gtk.org/
 BuildRequires:	automake
@@ -275,7 +275,8 @@ install -d $RPM_BUILD_ROOT{%{_libdir}/girepository-1.0,%{_datadir}/gir-1.0}
 
 %if %{with apidocs}
 install -d $RPM_BUILD_ROOT%{_gidocdir}
-%{__mv} $RPM_BUILD_ROOT%{_docdir}/glib-2.0 $RPM_BUILD_ROOT%{_gidocdir}
+%{__mv} $RPM_BUILD_ROOT%{_docdir}/{gio,gio-unix,girepository,glib,glib-unix,gmodule,gobject}-2.0 $RPM_BUILD_ROOT%{_gidocdir}
+%{__rm} $RPM_BUILD_ROOT%{_docdir}/{gvariant-specification-1.0.html,gvariant*.svg}
 %endif
 
 > $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
@@ -430,7 +431,14 @@ umask 022
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
+%doc build/docs/reference/glib/gvariant-specification-1.0.html docs/reference/glib/gvariant*.svg
+%{_gidocdir}/gio-2.0
+%{_gidocdir}/gio-unix-2.0
+%{_gidocdir}/girepository-2.0
 %{_gidocdir}/glib-2.0
+%{_gidocdir}/glib-unix-2.0
+%{_gidocdir}/gmodule-2.0
+%{_gidocdir}/gobject-2.0
 %endif
 
 %files gdb
