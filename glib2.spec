@@ -22,13 +22,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.80.1
+Version:	2.80.2
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/glib/2.80/glib-%{version}.tar.xz
-# Source0-md5:	a136e66c287b4eb1bf10accb03477b6f
+# Source0-md5:	399162c4e5f46e3f331a1f9c7478e4c5
 Patch0:		%{name}-python_shebang.patch
 URL:		https://www.gtk.org/
 BuildRequires:	automake
@@ -275,8 +275,8 @@ install -d $RPM_BUILD_ROOT{%{_libdir}/girepository-1.0,%{_datadir}/gir-1.0}
 
 %if %{with apidocs}
 install -d $RPM_BUILD_ROOT%{_gidocdir}
+%{__rm} $RPM_BUILD_ROOT%{_docdir}/glib-2.0/{gvariant-specification-1.0.html,gvariant*.svg}
 %{__mv} $RPM_BUILD_ROOT%{_docdir}/{gio,gio-unix,girepository,glib,glib-unix,gmodule,gobject}-2.0 $RPM_BUILD_ROOT%{_gidocdir}
-%{__rm} $RPM_BUILD_ROOT%{_docdir}/{gvariant-specification-1.0.html,gvariant*.svg}
 %endif
 
 > $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
