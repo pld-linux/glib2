@@ -22,14 +22,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.80.4
+Version:	2.82.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/glib/2.80/glib-%{version}.tar.xz
-# Source0-md5:	4334211338220a165350d1c4a1597b0e
-Patch0:		%{name}-python_shebang.patch
+Source0:	https://download.gnome.org/sources/glib/2.82/glib-%{version}.tar.xz
+# Source0-md5:	9f94b8b15bc22dbe6a2c8aafd6fb0293
 URL:		https://www.gtk.org/
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
@@ -245,11 +244,11 @@ Sondy systemtap/dtrace dla GLib 2.
 
 %prep
 %setup -q -n glib-%{version}
-%patch0 -p1
 
 %build
 %meson build \
 	%{?debug:--debug} \
+	-Dglib_debug=%{?debug:enabled}%{!?debug:disabled} \
 	-Ddtrace=%{__true_false systemtap} \
 	%{!?with_introspection:-Dintrospection=disabled} \
 	-Dsystemtap=%{__true_false systemtap} \
