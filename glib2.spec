@@ -61,7 +61,7 @@ BuildRequires:	python3-packaging
 BuildRequires:	rpm-build >= 4.6
 BuildRequires:	rpm-perlprov
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 2.029
+BuildRequires:	rpmbuild(macros) >= 2.042
 BuildRequires:	sed >= 4.0
 %{?with_sysprof:BuildRequires:	sysprof-devel >= 3.38.0}
 %{?with_systemtap:BuildRequires:	systemtap-sdt-devel}
@@ -246,7 +246,7 @@ Sondy systemtap/dtrace dla GLib 2.
 %setup -q -n glib-%{version}
 
 %build
-%meson build \
+%meson \
 	%{?debug:--debug} \
 	-Dglib_debug=%{?debug:enabled}%{!?debug:disabled} \
 	-Ddtrace=%{__true_false systemtap} \
@@ -260,13 +260,13 @@ Sondy systemtap/dtrace dla GLib 2.
 	%{?with_sysprof:-Dsysprof=enabled} \
 	-Dman-pages=enabled
 
-%ninja_build -C build
+%meson_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_libdir}/gio/modules
 
-%ninja_install -C build
+%meson_install
 
 %if %{without introspection}
 install -d $RPM_BUILD_ROOT{%{_libdir}/girepository-1.0,%{_datadir}/gir-1.0}
