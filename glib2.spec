@@ -22,13 +22,14 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.82.5
+Version:	2.84.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/glib/2.82/glib-%{version}.tar.xz
-# Source0-md5:	87c7641e80b23a05b8ab506d52c970e3
+Source0:	https://download.gnome.org/sources/glib/2.84/glib-%{version}.tar.xz
+# Source0-md5:	ed2676d7ea8094a151e0431f226343b8
+Patch0:		glib-linux.patch
 URL:		https://www.gtk.org/
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
@@ -47,7 +48,7 @@ BuildRequires:	libmount-devel >= 2.28
 %{?with_selinux:BuildRequires:	libselinux-devel >= 2.2}
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxslt-progs
-BuildRequires:	meson >= 1.2.0
+BuildRequires:	meson >= 1.4.0
 BuildRequires:	ninja >= 1.5
 BuildRequires:	pcre2-8-devel >= 10.32
 BuildRequires:	perl-base
@@ -69,7 +70,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zlib-devel
 %if %{with apidocs}
-BuildRequires:	gi-docgen >= 2023.1
+BuildRequires:	gi-docgen >= 2024.1
 %endif
 Requires:	iconv
 Requires:	libmount >= 2.28
@@ -244,21 +245,27 @@ Sondy systemtap/dtrace dla GLib 2.
 
 %prep
 %setup -q -n glib-%{version}
+%patch -P0 -p1
+
+%{__sed} -i -e '/^python_shebang/ s,/usr/bin/env python3,%{__python3},' meson.build
 
 %build
 %meson \
 	%{?debug:--debug} \
-	-Dglib_debug=%{?debug:enabled}%{!?debug:disabled} \
+	-Ddocumentation=%{__true_false apidocs} \
 	-Ddtrace=%{__true_false systemtap} \
-	%{!?with_introspection:-Dintrospection=disabled} \
+	-Dglib_debug=%{?debug:enabled}%{!?debug:disabled} \
+	-Dintrospection=%{__enabled_disabled introspection} \
+	-Dlibelf=enabled \
+	-Dlibmount=enabled \
+	-Dman-pages=enabled \
+	-Dnls=enabled \
+	-Dselinux=%{__enabled_disabled selinux} \
+	-Dsysprof=%{__enabled_disabled sysprof} \
 	-Dsystemtap=%{__true_false systemtap} \
 %ifarch %{ix86}
-	%{?with_systemtap:-Dtapset_install_dir=%{_datadir}/systemtap/tapset/i386} \
+	%{?with_systemtap:-Dtapset_install_dir=%{_datadir}/systemtap/tapset/i386}
 %endif
-	-Ddocumentation=%{__true_false apidocs} \
-	-Dselinux=%{?with_selinux:enabled}%{!?with_selinux:disabled} \
-	%{?with_sysprof:-Dsysprof=enabled} \
-	-Dman-pages=enabled
 
 %meson_build
 
@@ -277,6 +284,8 @@ install -d $RPM_BUILD_ROOT%{_gidocdir}
 %{__rm} $RPM_BUILD_ROOT%{_docdir}/glib-2.0/{gvariant-specification-1.0.html,gvariant*.svg}
 %{__mv} $RPM_BUILD_ROOT%{_docdir}/{gio,gio-unix,girepository,glib,glib-unix,gmodule,gobject}-2.0 $RPM_BUILD_ROOT%{_gidocdir}
 %endif
+
+%{__rm} -r $RPM_BUILD_ROOT%{_libexecdir}/installed-tests
 
 > $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
 > $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/gschemas.compiled
