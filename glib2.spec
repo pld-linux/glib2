@@ -22,14 +22,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.84.0
+Version:	2.84.1
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/glib/2.84/glib-%{version}.tar.xz
-# Source0-md5:	ed2676d7ea8094a151e0431f226343b8
-Patch0:		glib-linux.patch
+# Source0-md5:	7befc5809f28b092c662d00533b017c2
 URL:		https://www.gtk.org/
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
@@ -245,7 +244,6 @@ Sondy systemtap/dtrace dla GLib 2.
 
 %prep
 %setup -q -n glib-%{version}
-%patch -P0 -p1
 
 %{__sed} -i -e '/^python_shebang/ s,/usr/bin/env python3,%{__python3},' meson.build
 
@@ -284,8 +282,6 @@ install -d $RPM_BUILD_ROOT%{_gidocdir}
 %{__rm} $RPM_BUILD_ROOT%{_docdir}/glib-2.0/{gvariant-specification-1.0.html,gvariant*.svg}
 %{__mv} $RPM_BUILD_ROOT%{_docdir}/{gio,gio-unix,girepository,glib,glib-unix,gmodule,gobject}-2.0 $RPM_BUILD_ROOT%{_gidocdir}
 %endif
-
-%{__rm} -r $RPM_BUILD_ROOT%{_libexecdir}/installed-tests
 
 > $RPM_BUILD_ROOT%{_libdir}/gio/modules/giomodule.cache
 > $RPM_BUILD_ROOT%{_datadir}/glib-2.0/schemas/gschemas.compiled
