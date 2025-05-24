@@ -136,10 +136,10 @@ Summary(es.UTF-8):	Conjunto de funciones gráficas utilitarias para desarrollo
 Summary(pl.UTF-8):	Pliki nagłówkowe i dokumentacja do GLib
 Summary(pt_BR.UTF-8):	Conjunto de ferramentas e biblioteca do kit de desenho do GIMP
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	libffi-devel >= 3.0.0
-Requires:	libmount-devel >= 2.28
-Requires:	pcre2-8-devel >= 10.32
+Requires:	%{name}%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	libffi-devel%{?_isa} >= 3.0.0
+Requires:	libmount-devel%{?_isa} >= 2.28
+Requires:	pcre2-8-devel%{?_isa} >= 10.32
 Requires:	python3-modules >= 1:3.7
 Requires:	python3-packaging
 # gio only
@@ -175,9 +175,9 @@ Summary:	Static GLib libraries
 Summary(pl.UTF-8):	Biblioteki statyczne GLib
 Summary(pt_BR.UTF-8):	Bibliotecas estáticas para desenvolvimento com GLib
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
-Requires:	libatomic-static
-Requires:	pcre2-8-static
+Requires:	%{name}-devel%{?_isa} = %{epoch}:%{version}-%{release}
+Requires:	libatomic-static%{?_isa}
+Requires:	pcre2-8-static%{?_isa}
 
 %description static
 Static GLib libraries.
