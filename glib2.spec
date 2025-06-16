@@ -22,13 +22,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.84.2
+Version:	2.84.3
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/glib/2.84/glib-%{version}.tar.xz
-# Source0-md5:	54d14eb9075cab6712d034465c350f87
+# Source0-md5:	8f61227d9a981f435841dca7666715fe
 URL:		https://www.gtk.org/
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
