@@ -22,13 +22,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.86.0
+Version:	2.86.1
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
 Source0:	https://download.gnome.org/sources/glib/2.86/glib-%{version}.tar.xz
-# Source0-md5:	2148a72c0e910772fdec240287b19aa7
+# Source0-md5:	32a1784f647d55f1568516473bd6a173
 URL:		https://www.gtk.org/
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
@@ -320,17 +320,17 @@ umask 022
 %attr(755,root,root) %{_bindir}/gsettings
 %attr(755,root,root) %{_libexecdir}/gio-launch-desktop
 %attr(755,root,root) %{_libdir}/libgio-2.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgio-2.0.so.0
+%ghost %{_libdir}/libgio-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgirepository-2.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgirepository-2.0.so.0
+%ghost %{_libdir}/libgirepository-2.0.so.0
 %attr(755,root,root) %{_libdir}/libglib-2.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libglib-2.0.so.0
+%ghost %{_libdir}/libglib-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgmodule-2.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgmodule-2.0.so.0
+%ghost %{_libdir}/libgmodule-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgobject-2.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgobject-2.0.so.0
+%ghost %{_libdir}/libgobject-2.0.so.0
 %attr(755,root,root) %{_libdir}/libgthread-2.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libgthread-2.0.so.0
+%ghost %{_libdir}/libgthread-2.0.so.0
 %dir %{_libdir}/gio
 %dir %{_libdir}/gio/modules
 %ghost %{_libdir}/gio/modules/giomodule.cache
@@ -368,12 +368,12 @@ umask 022
 %attr(755,root,root) %{_bindir}/gresource
 %attr(755,root,root) %{_bindir}/gtester
 %attr(755,root,root) %{_bindir}/gtester-report
-%attr(755,root,root) %{_libdir}/libgio-2.0.so
-%attr(755,root,root) %{_libdir}/libgirepository-2.0.so
-%attr(755,root,root) %{_libdir}/libglib-2.0.so
-%attr(755,root,root) %{_libdir}/libgmodule-2.0.so
-%attr(755,root,root) %{_libdir}/libgobject-2.0.so
-%attr(755,root,root) %{_libdir}/libgthread-2.0.so
+%{_libdir}/libgio-2.0.so
+%{_libdir}/libgirepository-2.0.so
+%{_libdir}/libglib-2.0.so
+%{_libdir}/libgmodule-2.0.so
+%{_libdir}/libgobject-2.0.so
+%{_libdir}/libgthread-2.0.so
 %dir %{_libdir}/glib-2.0
 %{_libdir}/glib-2.0/include
 %{_includedir}/gio-unix-2.0
