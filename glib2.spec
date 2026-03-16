@@ -69,7 +69,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zlib-devel
 %if %{with apidocs}
-BuildRequires:	gi-docgen >= 2024.1
+BuildRequires:	gi-docgen >= 2026.1
 %endif
 Requires:	iconv
 Requires:	libmount >= 2.28
