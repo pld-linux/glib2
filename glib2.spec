@@ -22,13 +22,13 @@ Summary(pt_BR.UTF-8):	Conjunto de funções gráficas utilitárias
 Summary(tr.UTF-8):	Yararlı ufak yordamlar kitaplığı
 Summary(zh_CN.UTF-8):	实用工具函数库
 Name:		glib2
-Version:	2.86.4
+Version:	2.88.0
 Release:	1
 Epoch:		1
 License:	LGPL v2+
 Group:		Libraries
-Source0:	https://download.gnome.org/sources/glib/2.86/glib-%{version}.tar.xz
-# Source0-md5:	f2233a826c952aaae42b4a61611a06a4
+Source0:	https://download.gnome.org/sources/glib/2.88/glib-%{version}.tar.xz
+# Source0-md5:	064370bbd78421f639e38ece5e14ca23
 URL:		https://www.gtk.org/
 BuildRequires:	automake
 BuildRequires:	docbook-dtd412-xml
@@ -41,7 +41,7 @@ BuildRequires:	gettext-tools
 BuildRequires:	glibc-localedb-all
 %endif
 # g-ir-scanner required to build introspection
-%{?with_introspection:BuildRequires:	gobject-introspection-devel}
+%{?with_introspection:BuildRequires:	gobject-introspection-devel >= 1.80.0}
 BuildRequires:	libffi-devel >= 3.0.0
 BuildRequires:	libmount-devel >= 2.28
 %{?with_selinux:BuildRequires:	libselinux-devel >= 2.2}
@@ -78,7 +78,7 @@ Requires:	pcre2-8 >= 10.32
 Suggests:	gvfs
 Provides:	glib2-libs
 Obsoletes:	glib2-libs < 1:2.12.11-3
-%{?with_introspection:Conflicts:	gobject-introspection < 1.79}
+%{?with_introspection:Conflicts:	gobject-introspection < 1.80}
 # see https://bugzilla.xfce.org/show_bug.cgi?id=9709
 Conflicts:	xfce4-session < 4.10.0-5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -145,7 +145,7 @@ Requires:	python3-packaging
 # gio only
 %{?with_selinux:Requires:	libselinux-devel >= 2.2}
 Requires:	zlib-devel
-%{?with_introspection:Conflicts:	gobject-introspection-devel < 1.79}
+%{?with_introspection:Conflicts:	gobject-introspection-devel < 1.80}
 
 %description devel
 Header files for the support library for the GIMP's X libraries, which
